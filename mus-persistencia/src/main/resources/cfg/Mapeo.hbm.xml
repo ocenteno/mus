@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="es.insa.proyecto.dominio">
+	<class table="TABLA_CARTAS"
+			name="es.insa.proyecto.dominio.cartas">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="númeroCarta" column="NUMEROCARTA"
+				  not-null="false"/>
+		<property name="palo" column="PALO" not-null="false">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">es.insa.proyecto.dominio.palo</param> 
+			</type>
+		</property>
+		<property name="valorCarta" column="VALORCARTA"
+				  not-null="false"/>
+	</class>
+	<class table="TABLA_MAZO"
+			name="es.insa.proyecto.dominio.mazo">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="nombre" column="NOMBRE"
+				  length="100" not-null="false"/>
+		<list name="listaDeCartasDelMazo" cascade="all">
+			  <key column="FK_CARTASDELMAZO"/>
+			  <index colum="i" type="integer" length="3"/>
+			  <one-to-many class="Carta"/>
+		</list>
+	</class>
+	
+</hibernate-mapping>
