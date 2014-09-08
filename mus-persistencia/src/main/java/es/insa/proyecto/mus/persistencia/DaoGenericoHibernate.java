@@ -7,14 +7,17 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 
 
 
+import org.hibernate.service.ServiceRegistry;
+
 import es.insa.proyecto.mus.contratos.DAO;
 
-public abstract class DaoGenerico<G, K extends Serializable> 
+public abstract class DaoGenericoHibernate<G, K extends Serializable> 
 				implements DAO<G, K> {
 	
 	
@@ -25,11 +28,15 @@ public abstract class DaoGenerico<G, K extends Serializable>
 			sf = sesFact;
 	}
 
-	public DaoGenerico() {
+	public DaoGenericoHibernate() {
 		
-		if(sf == null){
-			sf = new Configuration().configure("cfg/hibernate.cfg.xml")
-					.buildSessionFactory();
+		if (sf == null) {
+			Configuration cfg = new Configuration()
+					.configure("cfg/hibernate.cfg.xml");
+			ServiceRegistry sr = 
+					new StandardServiceRegistryBuilder()
+					.applySettings(cfg.getProperties()).build();
+			sf = cfg.buildSessionFactory(sr);
 		}
 		
 		ParameterizedType claseGenerica = (ParameterizedType)

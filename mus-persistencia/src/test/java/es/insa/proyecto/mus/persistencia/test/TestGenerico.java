@@ -10,11 +10,11 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import es.insa.proyecto.mus.persistencia.DaoGenerico;
+import es.insa.proyecto.mus.persistencia.DaoGenericoHibernate;
 
 public class TestGenerico {
 
-	private static  DaoGenerico dao;
+	private static  DaoGenericoHibernate dao;
 	
 	@BeforeClass
 	public static void inicializar() {

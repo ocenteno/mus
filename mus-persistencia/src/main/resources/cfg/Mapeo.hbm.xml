@@ -7,17 +7,17 @@
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>
-		<property name="númeroCarta" column="NUMEROCARTA"
+		<property name="númeroCarta" column="NUMERO"
 				  not-null="false"/>
 		<property name="palo" column="PALO" not-null="false">
 			<type name="org.hibernate.type.EnumType">
 				<param name="enumClass">es.insa.proyecto.dominio.palo</param> 
 			</type>
 		</property>
-		<property name="valorCarta" column="VALORCARTA"
+		<property name="valorCarta" column="VALOR"
 				  not-null="false"/>
 	</class>
-	<class table="TABLA_MAZO"
+	<class table="TABLA_MAZOS"
 			name="es.insa.proyecto.dominio.mazo">
 		<id name="id" column="ID">
 			<generator class="native"/>
@@ -25,8 +25,8 @@
 		<property name="nombre" column="NOMBRE"
 				  length="100" not-null="false"/>
 		<list name="listaDeCartasDelMazo" cascade="all">
-			  <key column="FK_CARTASDELMAZO"/>
-			  <index colum="i" type="integer" length="3"/>
+			  <key column="FK_MAZO"/>
+			  <index column="i" type="integer" length="3"/>
 			  <one-to-many class="Carta"/>
 		</list>
 	</class>

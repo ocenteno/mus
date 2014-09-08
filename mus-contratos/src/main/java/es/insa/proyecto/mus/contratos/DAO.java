@@ -2,6 +2,15 @@ package es.insa.proyecto.mus.contratos;
 
 import java.util.List;
 
+/**
+ * Insertar, actualizar, eliminar, buscar y
+ * ListarTodos.
+ * @author insa06
+ *
+ * @param <G>
+ * @param <K>
+ */
+
 public interface DAO<G, K> {
 	
 	public abstract void insertar(G c);
