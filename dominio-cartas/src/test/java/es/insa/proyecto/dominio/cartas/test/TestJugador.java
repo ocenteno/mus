@@ -1,17 +1,13 @@
 package es.insa.proyecto.dominio.cartas.test;
 
-import static org.junit.Assert.*;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.Assert;
 import org.junit.Test;
 
+import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
+import es.insa.proyecto.dominio.cartas.Palo;
 
 public class TestJugador {
-	private String nombre;
 	
 	@Test
 	public void testCrearJugador() {
@@ -26,7 +22,7 @@ public class TestJugador {
 	@Test
 	public void testAñadirCarta() {
 		// 1º preparación
-		Object carta = new Object();
+		Carta carta = new Carta();
 		Jugador jugador = new Jugador("Jugador1");
 		// 2º ejecución
 		jugador.añadirCarta(carta);
@@ -37,7 +33,7 @@ public class TestJugador {
 	@Test
 	public void testQuitarCarta() {
 		// 1º preparación
-		Object carta = new Object();
+		Carta carta = new Carta();
 		Jugador jugador = new Jugador("Jugador1");
 		jugador.añadirCarta(carta);
 		// 2º ejecución
@@ -49,19 +45,15 @@ public class TestJugador {
 	@Test
 	public void testConsultarMano() {
 		// 1º preparación
-		Object carta1 = new Object();
-		Object carta2 = new Object();
-		Object carta3 = new Object();
-		Object carta4 = new Object();
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(carta1);
-		jugador.añadirCarta(carta2);
-		jugador.añadirCarta(carta3);
-		jugador.añadirCarta(carta4);
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 10, 10));
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
 		// 2º ejecución
-		jugador.getMano();
+		Carta[] mano = jugador.getMano();
 		// 3º aserción
-		Assert.assertEquals("Ej jugador debe tener una mano con 4 cartas", 4, jugador.getMano().length);
+		Assert.assertEquals("Ej jugador debe tener una mano con 4 cartas", 4, mano.length);
 	}
 
 	
