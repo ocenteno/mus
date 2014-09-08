@@ -1,6 +1,8 @@
 package es.insa.proyecto.mus.contratos;
 
-public interface DaoCarta extends DAO<Object, Integer> {
+import es.insa.proyecto.dominio.cartas.Carta;
+
+public interface DaoCarta extends DAO<Carta, Integer> {
 	
 	
 

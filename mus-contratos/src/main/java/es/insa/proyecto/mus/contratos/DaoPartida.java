@@ -1,6 +1,8 @@
 package es.insa.proyecto.mus.contratos;
 
-public interface DaoPartida extends DAO<Object, Integer>{
+import es.insa.proyecto.mus.modelo.Partida;
+
+public interface DaoPartida extends DAO<Partida, Integer>{
 
 
 }
