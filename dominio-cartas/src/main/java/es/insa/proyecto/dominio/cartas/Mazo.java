@@ -14,27 +14,22 @@ public class Mazo {
 
 	private int id;
 	private String nombre;
-	private LinkedList<Carta> listaDeCartasDelMazo;
+	private List<Carta> listaDeCartasDelMazo;
 
 	/**
 	 * Constructor vacío de la clase Mazo
 	 */
 	public Mazo() {
-
+       listaDeCartasDelMazo = new LinkedList<Carta>();
 	}
 
 	/**
-	 * Constructor con atributos
-	 * 
-	 * @param id
+	 * Constructor con parámetros
 	 * @param nombre
-	 * @param listaDeCartasDelMazo
 	 */
-	public Mazo(int id, String nombre, LinkedList<Carta> listaDeCartasDelMazo) {
+	public Mazo(String nombre) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
-		this.listaDeCartasDelMazo = listaDeCartasDelMazo;
 	}
 
 	/**
@@ -51,7 +46,7 @@ public class Mazo {
 	 * @return la carta que hemos sacado del mazo
 	 * 
 	 */
-	public Carta darCarta() {
+	public Carta sacarCarta() {
 
 		// 1º queremos devolver la primera carta de la lista
 		// y quitarla de la lista
@@ -59,13 +54,14 @@ public class Mazo {
 		// 2º devolverla
 		return cartaADevolver;
 	}
+	
 
 	/**
 	 * Añadimos una carta al mazo
 	 * 
 	 * @param c
 	 */
-	public void añadirCarta(Carta c) {
+	public void añadir(Carta c) {
 
 		// 1º queremos añadir una carta de la listaDeCartas
 		listaDeCartasDelMazo.add(c);
@@ -76,7 +72,7 @@ public class Mazo {
 	 * 
 	 * @param l
 	 */
-	public void añadirListaCarta(List<Carta> l) {
+	public void añadir(List<Carta> l) {
 
 		// 1º queremos añadir una carta de la listaDeCartas
 		listaDeCartasDelMazo.addAll(l);
@@ -97,14 +93,6 @@ public class Mazo {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public LinkedList<Carta> getListaDeCartasDelMazo() {
-		return listaDeCartasDelMazo;
-	}
-
-	public void setListaDeCartasDelMazo(LinkedList<Carta> listaDeCartasDelMazo) {
-		this.listaDeCartasDelMazo = listaDeCartasDelMazo;
 	}
 
 	@Override
