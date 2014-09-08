@@ -2,6 +2,7 @@ package es.insa.proyecto.mus.modelo;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.RandomAccess;
 
 
 /**
@@ -67,7 +68,8 @@ public class Partida {
 	
 	/**
 	 * Podemos empezar partida si tenemos los cuatro jugadores 
-	 * sentados a la mesa
+	 * sentados a la mesa, esto implica crear las parejas, asignar quien 
+	 * es mano y inicializar los puntos.
 	 * @return false si hay alguna silla vacia, o sea el array 
 	 * 			de mesa tiene celdas vacias.
 	 * 			y true si podemos empezar la partida.
@@ -80,10 +82,15 @@ public class Partida {
 			}
 		}
 		if (empezar){
+			// Creamos las parejas
 			pareja1 = new Pareja(mesa[0], mesa[2]);
 			pareja2 = new Pareja(mesa[1], mesa[3]);
+
+			// Asignamos la mano aleatoriamente
 			Random r = new Random();
-			mano = 0; // random
+			mano = r.nextInt(4);
+			 
+			// Inicializamos los puntos de cada pareja
 			pareja1.nuevoJuego();
 			pareja2.nuevoJuego();
 		}

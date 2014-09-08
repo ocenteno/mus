@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import es.insa.proyecto.mus.modelo.Partida;
 
-public class testPartida {
+public class TestPartida {
 	
 	Partida p = new Partida();
 	Object j1 = new Object();
@@ -46,15 +46,7 @@ public class testPartida {
 		p.sentarJugador(j3, 2);
 		p.sentarJugador(j4, 3);
 		
-		System.out.println(j1);
-		System.out.println(j2);
-		System.out.println(j3);
-		System.out.println(j4);
-		
 		p.empezarPartida();
-		System.out.println(p.getPareja1() + " " + p.getPareja2());
-		System.out.println(p.getPareja1().getPiedrasGanadas() + " " + 
-							p.getPareja2().getPiedrasGanadas());
 
 		assertNotNull("La pareja1 no pueden ser nula", p.getPareja1());
 		assertNotNull("La pareja2 no pueden ser nula", p.getPareja2());
@@ -103,7 +95,7 @@ public class testPartida {
 		Object jugadorDespues = p.getMesa()[manoCambiada];
 		boolean resultadoDespues = p.getPareja1().
 					comprobarPertenece(jugadorDespues);
-		
+
 		assertNotEquals("El jugador mano debe haber cambiado", 
 				manoInicial, manoCambiada);
 		assertNotEquals("La mano tiene que haber cambiado de pareja", 
