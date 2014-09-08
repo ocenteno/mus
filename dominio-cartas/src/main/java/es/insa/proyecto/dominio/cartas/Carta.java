@@ -1,15 +1,33 @@
 package es.insa.proyecto.dominio.cartas;
 
+/**
+ * 
+ * @author insa05
+ *
+ */
 public class Carta {
 
     private int id;
+    /**
+     *  Se definen valores del enum de la clase Palo  
+     */
 	private Palo palo;
 	private int numero;	
 	private int valor;
 	
+	/**
+	 * Constructor vacío
+	 */
 	public Carta() {
 	
-	}	
+	}
+	
+	/**
+	 * Constructor con parámetros
+	 * @param palo
+	 * @param numero
+	 * @param valor
+	 */
 	public Carta(Palo palo, int numero, int valor) {
 		super();
 		this.palo = palo;
