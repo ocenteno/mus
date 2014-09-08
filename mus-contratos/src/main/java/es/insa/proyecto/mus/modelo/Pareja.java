@@ -6,15 +6,38 @@ package es.insa.proyecto.mus.modelo;
  *
  */
 public class Pareja {
-
+	
+	
+	/**
+	 * Uno de los jugadores de la pareja
+	 */
 	private Object jugador1;
+	
+	/**
+	 * El otro jugador de la pareja
+	 */
 	private Object jugador2;
+	
+	/**
+	 * Número de puntos de cada pareja en cada juego
+	 */
 	private int piedrasGanadas;
+	
+	/**
+	 * Número de juegos ganados por la pareja
+	 */
 	private int juegosGanados;
+	
+	
 	
 	public Pareja(){
 	}
 	
+	/**
+	 * Constructor de Pareja, necesita dos jugadores
+	 * @param jugador1
+	 * @param jugador2
+	 */
 	public Pareja(Object jugador1, Object jugador2) {
 		super();
 		this.jugador1 = jugador1;
@@ -49,7 +72,7 @@ public class Pareja {
 		return juegosGanados;
 	}
 	
-	public void setJuegosGanados(int juegos) {
+	public void setJuegosGanados(int juegosGanados) {
 		this.juegosGanados = juegosGanados;
 	}
 
@@ -66,6 +89,7 @@ public class Pareja {
 		}
 		return false;
 	}
+	
 	
 	/**
 	 * Este método va acumulando los puntos de la pareja en 
@@ -94,7 +118,7 @@ public class Pareja {
 	 * @return el número de juegos ganados
 	 */
 	public int ganarJuego(){
-		this.juegosGanados += 1;
+		this.juegosGanados ++;
 		return juegosGanados;
 	}
 	
