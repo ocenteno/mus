@@ -1,7 +1,7 @@
 package es.insa.proyecto.dominio.cartas;
 /**
  * 
- * @author insa05
+ * @author Herminio Acedo y Jose Antonio Torre
  *
  */
 public class Gocho extends Carta{
