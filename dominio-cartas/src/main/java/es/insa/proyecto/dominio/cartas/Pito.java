@@ -23,11 +23,23 @@ public class Pito extends Carta{
 		return false;
 	}
 	
+	
+	/**
+	 * Compara el Pito contra otra Carta
+	 * @param cualquier otra carta
+	 * @return -1 porque el Pito es menor que cualquier otra carta
+	 */
 	@Override
 	public int compareTo(Carta otra){
 		return -1;
 	}
 	
+	
+	/**
+	 * Compara el Pito contra otro Pito
+	 * @param  cualquier otro Pito
+	 * @return 0 porque dos Pitos son siempre iguales 
+	 */
 	public int compareTo(Pito otra){
 		return 0;
 	}
