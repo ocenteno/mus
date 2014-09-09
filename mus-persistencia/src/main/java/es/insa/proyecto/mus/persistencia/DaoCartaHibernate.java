@@ -16,31 +16,9 @@ public class DaoCartaHibernate
 	implements DaoCarta {
 
 	public DaoCartaHibernate() {
+		super();
 	}
 
-	@Override
-	public void insertar(Carta c) {
-		
-	}
-
-	@Override
-	public void actualizar(Carta c) {
-		
-	}
-
-	@Override
-	public void eliminar(Carta c) {
-		
-	}
-
-	@Override
-	public Carta buscar(Integer id) {
-		return null;
-	}
-
-	@Override
-	public List<Carta> listarTodos() {
-		return null;
-	}
+	
 
 }

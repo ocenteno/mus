@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Mazo;
 import es.insa.proyecto.mus.contratos.DaoMazo;
 
@@ -16,43 +17,42 @@ import es.insa.proyecto.mus.contratos.DaoMazo;
 public class DaoMazoHibernate
 	extends DaoGenericoHibernate<Mazo, Integer>
 	implements DaoMazo{
+	
+	private DaoMazo daoMazo;
 
 	public DaoMazoHibernate() {
+		super();
 	}
 
-	@Override
-	public void insertar(Mazo c) {
 		
-	}
-
-	@Override
-	public void actualizar(Mazo c) {
-		
-	}
-
-	@Override
-	public void eliminar(Mazo c) {
-		
-	}
-
-	@Override
-	public Mazo buscar(Integer id) {
-		return null;
-	}
-
-	@Override
-	public List<Mazo> listarTodos() {
-		return null;
-	}
-	
 	/**
-	 * Llena el mazo con las cartas. 
-	 *
+	 * Añade una Carta al mazo
+	 * @param m
+	 * @param c
+	 * @return
 	 */
-	public Mazo llenarMazo(Integer id){
-				
-		return null;
+	public Mazo añadirCartaMazo(Mazo m,Carta c){
 		
+		m.añadir(c);
+		// para que se guarde el mazo en la BBDD
+		daoMazo.actualizar(m);
+		return m;		
+		
+	}
+	/**
+	 * Añade una Lista de Cartas en el Mazo
+	 * @param m
+	 * @param lista
+	 * @return
+	 */
+	public Mazo añadirListaCartasMazo(Mazo m, List<Carta> lista){
+		
+		m.añadir(lista);
+		// para que se guarde el mazo en la BBDD
+		daoMazo.actualizar(m);
+		
+		
+		return m;
 	}
 
 }

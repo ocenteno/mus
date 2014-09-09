@@ -8,7 +8,8 @@ package es.insa.proyecto.dominio.cartas;
 public class Carta {
 
     private int id;
-    /**
+    
+	/**
      *  Se definen valores del enum de la clase Palo  
      */
 	private Palo palo;
@@ -58,6 +59,13 @@ public class Carta {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -83,9 +91,7 @@ public class Carta {
 		if (valor != other.valor)
 			return false;
 		return true;
-	}
-
-	
+	}	
 	
 
 }

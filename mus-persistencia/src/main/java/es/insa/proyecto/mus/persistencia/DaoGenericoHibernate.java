@@ -14,6 +14,8 @@ import org.hibernate.cfg.Configuration;
 
 
 import org.hibernate.service.ServiceRegistry;
+import org.junit.After;
+import org.junit.Before;
 
 import es.insa.proyecto.mus.contratos.DAO;
 
@@ -23,6 +25,17 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 	
 	protected static SessionFactory sf;
 	private Class<G> claseG;
+	
+	
+	@Before
+	public void abrirSesion(){
+		sf.openSession();
+	}
+	@After
+	public void cerrarSesion(){
+		sf.getCurrentSession().disconnect();
+		sf.getCurrentSession().close();
+	}
 			
 	public void setSessionFactory(SessionFactory sesFact){
 			sf = sesFact;
@@ -47,7 +60,7 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 		
 		claseG = (Class<G>) params[0];
 	}
-
+	
 	@Override
 	public void insertar(G k) {
 		sf.getCurrentSession().beginTransaction();
