@@ -5,7 +5,7 @@ package es.insa.proyecto.dominio.cartas;
  * @author insa05
  *
  */
-public class Carta {
+public class Carta implements Comparable<Carta>{
 
     private int id;
     /**
@@ -58,32 +58,44 @@ public class Carta {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
+
+	
+	
+	@Override
+	public String toString() {
+		return "Carta [id=" + id + ", palo=" + palo + ", numero=" + numero
+				+ ", valor=" + valor + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + numero;
-		result = prime * result + ((palo == null) ? 0 : palo.hashCode());
-		result = prime * result + valor;
 		return result;
 	}
+
+	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Carta other = (Carta) obj;
-		if (numero != other.numero)
-			return false;
-		if (palo != other.palo)
-			return false;
-		if (valor != other.valor)
-			return false;
-		return true;
+		if(obj instanceof Carta){
+			Carta otra = (Carta) obj;
+			return otra != null && this.numero == otra.numero;
+		}
+		return false;
 	}
+
+	
+	@Override
+	public int compareTo(Carta otra) {
+		return Integer.compare(this.numero, otra.numero);
+	}
+	
+	
+	
+	
+	
+	
 
 	
 	
