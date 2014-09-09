@@ -8,6 +8,7 @@ import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 
 public class TestJugador {
+	boolean errorMano = false;
 	
 	@Test
 	public void testCrearJugador() {
@@ -27,7 +28,11 @@ public class TestJugador {
 		// 2º ejecución
 		jugador.añadirCarta(carta);
 		// 3º aserción
-		Assert.assertNotEquals("Ej jugador debe tener una mano", 0, jugador.getMano().length);
+		Assert.assertNotEquals("El jugador debe tener una mano", 0, jugador.getMano().length);
+		// 4º Comprobar que no exista ya
+		errorMano = jugador.añadirCarta(carta);
+		// 5º Aserción
+		Assert.assertTrue("La carta ya existe o tengo ya 4 cartas ", errorMano);
 	}
 
 	@Test
@@ -39,7 +44,11 @@ public class TestJugador {
 		// 2º ejecución
 		jugador.quitarCarta(carta);
 		// 3º aserción
-		Assert.assertEquals("Ej jugador debe tener una mano vacía", 0, jugador.getMano().length);
+		Assert.assertEquals("El jugador debe tener una mano vacía", 0, jugador.getMano().length);
+		// 4º comprobar que no se puede quitar una que no tenemos
+		errorMano = jugador.quitarCarta(carta);
+		// 5º aserción
+		Assert.assertTrue("La carta sigue existiendo y no debería", errorMano);
 	}
 
 	@Test
@@ -53,7 +62,7 @@ public class TestJugador {
 		// 2º ejecución
 		Carta[] mano = jugador.getMano();
 		// 3º aserción
-		Assert.assertEquals("Ej jugador debe tener una mano con 4 cartas", 4, mano.length);
+		Assert.assertEquals("El jugador debe tener una mano con 4 cartas", 4, mano.length);
 	}
 
 	

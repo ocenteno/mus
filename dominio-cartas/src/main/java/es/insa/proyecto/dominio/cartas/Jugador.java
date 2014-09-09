@@ -7,20 +7,22 @@ import java.util.Set;
  * Esta clase contiene los métodos que interactúan con el Jugador. Las
  * operaciones que se pueden realizar son las siguientes:
  * 
- * - Añadir Carta a la mano del jugador. - Quitar una Carta de la mano del
- * jugador. - Consultar la mano del jugador.
- * 
  * @author Cristina y Javier
  * 
  */
 public class Jugador {
 
+	// nombre del jugador a tratar
 	private String nombre;
+	// cartas que tiene el jugador
 	private Set<Carta> manoJugador;
+	// Booleano para devolver un error en la operación
+	private boolean errorMano = false;
 
 	public Jugador() {
 	}
 
+	// Constructor para crear un jugador e inicializar la mano del jugador
 	public Jugador(String nombre) {
 		super();
 		this.nombre = nombre;
@@ -28,23 +30,37 @@ public class Jugador {
 	}
 
 	/**
-	 * Método para añadir una Carta a la mano del jugador.
+	 * Método para añadir una Carta a la mano del jugador controlando que
+	 * no exista y no se tenga ya 4 cartas, en ambos casos devolverá erroMano a true.
 	 * 
 	 * @param cartaAAñadir
 	 *            --> la carta que se pretende añadir
+	 * @return 
 	 */
-	public void añadirCarta(Carta cartaAAñadir) {
-		this.manoJugador.add(cartaAAñadir);
+	public boolean añadirCarta(Carta cartaAAñadir) {
+		if (this.manoJugador.size() < 4 && !this.manoJugador.contains(cartaAAñadir)) {
+			this.manoJugador.add(cartaAAñadir);
+		}else {
+			errorMano = true;
+		}
+		return errorMano;
 	}
 
 	/**
-	 * Método para quitar una Carta de la mano del jugador.
+	 * Método para quitar una Carta de la mano del jugador controlando que
+	 * ya exista, devolverá erroMano a true si no existe.
 	 * 
 	 * @param cartaAQuitar
 	 *            --> la carta que se pretende quitar
+	 * @return 
 	 */
-	public void quitarCarta(Carta cartaAQuitar) {
-		this.manoJugador.remove(cartaAQuitar);
+	public boolean quitarCarta(Carta cartaAQuitar) {
+		if (this.manoJugador.contains(cartaAQuitar)) {
+			this.manoJugador.remove(cartaAQuitar);
+		}else {
+			errorMano = true;
+		}
+		return errorMano;
 	}
 
 	/**
