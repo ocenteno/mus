@@ -47,6 +47,14 @@ public interface IGestorDeApuestas {
 	 */
 	public abstract void envido(Lances apuesta);
 
+	
+	/**
+	 * Este método devuelve el bote del lance que entra por parámetro
+	 * @param el lance del que se quiere el bote apostado
+	 * @return el bote de ese lance 
+	 */
+	public abstract int getApuestas(Lances apuesta);
+
 
 	
 

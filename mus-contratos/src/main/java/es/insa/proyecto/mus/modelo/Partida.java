@@ -3,6 +3,8 @@ package es.insa.proyecto.mus.modelo;
 import java.util.Arrays;
 import java.util.Random;
 
+import es.insa.proyecto.dominio.cartas.Jugador;
+
 
 /**
  * La clase Partida contiene información sobre la mesa y las parejas que la forman y 
@@ -16,7 +18,7 @@ public class Partida {
 	/**
 	 * Mesa es un array de 4 posiciones donde colocamos a los jugadores
 	 */
-	private Object[] mesa;
+	private Jugador[] mesa;
 	
 	/**
 	 * Las parejas que componen la partida
@@ -34,14 +36,14 @@ public class Partida {
 	 * En el constructor de partida, se inicializa el array con 4 posiciones 
 	 */
 	public Partida(){
-		this.mesa = new Object[4];
+		this.mesa = new Jugador[4];
 	}
 	
-	public Object[] getMesa() {
+	public Jugador[] getMesa() {
 		return mesa;
 	}
 
-	public void setMesa(Object[] mesa) {
+	public void setMesa(Jugador[] mesa) {
 		this.mesa = mesa;
 	}
 
@@ -129,7 +131,7 @@ public class Partida {
 	 * @return true si se ha podido sentar en esa silla,
 	 * 			false si la silla estaba ocupada.
 	 */
-	public boolean sentarJugador (Object jugador, int silla){
+	public boolean sentarJugador (Jugador jugador, int silla){
 		if(mesa[silla] == null){
 			mesa[silla] = jugador;
 			return true;

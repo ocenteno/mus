@@ -26,11 +26,6 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 */
 	private int ultimaApuesta;
 	
-	/**
-	 * En el bote se van acumulando las ganancias de cada lance.
-	 */
-	private int bote;
-	
 	
 	/**
 	 * En el constructor se inicializan las claves del mapa de apuestas.
@@ -44,26 +39,15 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 		apuestas.put(Lances.PUNTO,0);
 	}
 
-	public int getApuesta(Lances apuesta){
+	/**
+	 * Este método devuelve el bote del lance que entra por parámetro
+	 * @param el lance del que se quiere el bote apostado
+	 * @return el bote de ese lance 
+	 */
+	public int getApuestas(Lances apuesta){
 		return apuestas.get(apuesta);
 	}
 	
-	public int getUltimaApuesta() {
-		return ultimaApuesta;
-	}
-
-	public void setUltimaApuesta(int ultimaApuesta) {
-		this.ultimaApuesta = ultimaApuesta;
-	}
-
-	public int getBote() {
-		return bote;
-	}
-
-	public void setBote(int bote) {
-		this.bote = bote;
-	}
-
 
 	
 	// ZONA DE MÉTODOS
@@ -75,7 +59,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 */
 	@Override
 	public void apostar(int piedras, Lances apuesta){
-		bote = apuestas.get(apuesta);
+		int bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		apuestas.put(apuesta, bote);
 		ultimaApuesta = piedras;
@@ -93,7 +77,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 */
 	@Override
 	public int noQuiero(Lances apuesta){
-		bote = apuestas.get(apuesta);
+		int bote = apuestas.get(apuesta);
 		if (bote == 0){
 			return 1;
 		}else{
@@ -109,7 +93,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 */
 	@Override
 	public int quiero(Lances apuesta){
-		bote = apuestas.get(apuesta);
+		int bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		ultimaApuesta = 0;
 		if (bote > 40) {
@@ -126,7 +110,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 */
 	@Override
 	public void envido(Lances apuesta){
-		bote = apuestas.get(apuesta);
+		int bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		apuestas.put(apuesta, bote);
 		ultimaApuesta = 2;
@@ -140,7 +124,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 */
 	@Override
 	public void ordago(Lances apuesta){
-		bote = apuestas.get(apuesta);
+		int bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		apuestas.put(apuesta, bote);
 		ultimaApuesta = 40;

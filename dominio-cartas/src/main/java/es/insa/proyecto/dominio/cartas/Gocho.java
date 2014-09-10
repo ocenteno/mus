@@ -11,23 +11,35 @@ public class Gocho extends Carta{
 	}
 	
 	/**
-	 * Comparar una carta para saber si es Gocho
+	 * Compara una Gocho con otro Gocho y con otra Carta, si esta
+	 * carta es un 12 son iguales.
+	 * @param objeto a comparar
+	 * @return true si son iguales
 	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Gocho) {
 			return true;		
 		}
+		else if (o instanceof Carta){
+			Carta otra = (Carta) o;
+			return otra != null && otra.getNumero() == 12;
+		}
 		return false;
 	}
+	 
 	
 	/**
 	 * Compara el Gocho contra otra Carta
 	 * @param otra, cualquier otra carta
 	 * @return 1 porque el Gocho es mayor que cualquier otra carta
+	 * 			0 si la otra carta es un 12 (son iguales)
 	 */
 	@Override
 	public int compareTo(Carta otra) {
+		if (otra.getNumero() == 12){
+			return 0;
+		}
 		return 1;
 	}
 	

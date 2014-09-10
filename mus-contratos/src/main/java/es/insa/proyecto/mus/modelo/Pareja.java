@@ -1,5 +1,7 @@
 package es.insa.proyecto.mus.modelo;
 
+import es.insa.proyecto.dominio.cartas.Jugador;
+
 /**
  * La clase Pareja está formada por dos jugadores y lleva el control de los puntos y juegos ganados. 
  * @author Eugenia Blanco y M.Angeles Pascual
@@ -11,12 +13,12 @@ public class Pareja {
 	/**
 	 * Uno de los jugadores de la pareja
 	 */
-	private Object jugador1;
+	private Jugador jugador1;
 	
 	/**
 	 * El otro jugador de la pareja
 	 */
-	private Object jugador2;
+	private Jugador jugador2;
 	
 	/**
 	 * Número de puntos de cada pareja en cada juego
@@ -38,25 +40,25 @@ public class Pareja {
 	 * @param jugador1
 	 * @param jugador2
 	 */
-	public Pareja(Object jugador1, Object jugador2) {
+	public Pareja(Jugador jugador1, Jugador jugador2) {
 		super();
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
 	}
 	
-	public Object getJugador1() {
+	public Jugador getJugador1() {
 		return jugador1;
 	}
 	
-	public void setJugador1(Object jugador1) {
+	public void setJugador1(Jugador jugador1) {
 		this.jugador1 = jugador1;
 	}
 	
-	public Object getJugador2() {
+	public Jugador getJugador2() {
 		return jugador2;
 	}
 	
-	public void setJugador2(Object jugador2) {
+	public void setJugador2(Jugador jugador2) {
 		this.jugador2 = jugador2;
 	}
 	
@@ -83,7 +85,7 @@ public class Pareja {
 	 * @return true si el jugador pertenece a la pareja
 	 * 			false en caso contrario
 	 */
-	public boolean comprobarPertenece(Object jugador) {
+	public boolean comprobarPertenece(Jugador jugador) {
 		if (this.jugador1 == jugador || this.jugador2 == jugador){
 			return true;
 		}
