@@ -23,11 +23,12 @@ public class Mazo {
 	 * Constructor vacío de la clase Mazo
 	 */
 	public Mazo() {
-       listaDeCartasDelMazo = new LinkedList<Carta>();
+		listaDeCartasDelMazo = new LinkedList<Carta>();
 	}
 
 	/**
 	 * Constructor con parámetros
+	 * 
 	 * @param nombre
 	 */
 	public Mazo(String nombre) {
@@ -50,14 +51,16 @@ public class Mazo {
 	 * 
 	 */
 	public Carta sacarCarta() {
-
-		// 1º queremos devolver la primera carta de la lista
-		// y quitarla de la lista
-		Carta cartaADevolver = listaDeCartasDelMazo.remove(0);
-		// 2º devolverla
-		return cartaADevolver;
+		if (listaDeCartasDelMazo.size() > 0) {
+			// 1º queremos devolver la primera carta de la lista
+			// y quitarla de la lista
+			Carta cartaADevolver = listaDeCartasDelMazo.remove(0);
+			// 2º devolverla
+			return cartaADevolver;
+		} else {
+			return null;
+		}
 	}
-	
 
 	/**
 	 * Añadimos una carta al mazo
