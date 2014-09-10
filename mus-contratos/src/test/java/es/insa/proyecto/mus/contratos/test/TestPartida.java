@@ -5,15 +5,16 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.modelo.Partida;
 
 public class TestPartida {
 	
 	Partida p = new Partida();
-	Object j1 = new Object();
-	Object j2 = new Object();
-	Object j3 = new Object();
-	Object j4 = new Object();
+	Jugador j1 = new Jugador();
+	Jugador j2 = new Jugador();
+	Jugador j3 = new Jugador();
+	Jugador j4 = new Jugador();
 	
 	
 	@BeforeClass
@@ -87,12 +88,12 @@ public class TestPartida {
 		
 		p.empezarPartida();
 		int manoInicial = p.getMano();
-		Object jugadorAntes = p.getMesa()[manoInicial];
+		Jugador jugadorAntes = p.getMesa()[manoInicial];
 		boolean resultadoAntes = p.getPareja1().
 					comprobarPertenece(jugadorAntes);
 			
 		int manoCambiada = p.cambiarMano();
-		Object jugadorDespues = p.getMesa()[manoCambiada];
+		Jugador jugadorDespues = p.getMesa()[manoCambiada];
 		boolean resultadoDespues = p.getPareja1().
 					comprobarPertenece(jugadorDespues);
 
@@ -112,7 +113,7 @@ public class TestPartida {
 		
 		p.empezarPartida();
 		int manoInicial = p.getMano();
-		Object jugadorAntes = p.getMesa()[manoInicial];
+		Jugador jugadorAntes = p.getMesa()[manoInicial];
 		boolean resultadoAntes = p.getPareja1().
 					comprobarPertenece(jugadorAntes);
 			
@@ -121,7 +122,7 @@ public class TestPartida {
 		p.cambiarMano();
 		int manoCambiada = p.cambiarMano();
 		
-		Object jugadorDespues = p.getMesa()[manoCambiada];
+		Jugador jugadorDespues = p.getMesa()[manoCambiada];
 		boolean resultadoDespues = p.getPareja1().
 					comprobarPertenece(jugadorDespues);
 		
