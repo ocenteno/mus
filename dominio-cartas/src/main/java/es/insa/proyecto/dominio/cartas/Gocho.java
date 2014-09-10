@@ -1,10 +1,15 @@
 package es.insa.proyecto.dominio.cartas;
 /**
  * 
- * @author insa05
+ * @author Herminio Acedo y Jose Antonio Torre
  *
  */
 public class Gocho extends Carta{
+	
+	public Gocho(Palo palo, int numero, int valor) {
+		super(palo, numero, valor);
+	}
+	
 	/**
 	 * Comparar una carta para saber si es Gocho
 	 */
@@ -15,6 +20,26 @@ public class Gocho extends Carta{
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Compara el Gocho contra otra Carta
+	 * @param otra, cualquier otra carta
+	 * @return 1 porque el Gocho es mayor que cualquier otra carta
+	 */
+	@Override
+	public int compareTo(Carta otra) {
+		return 1;
+	}
+	
+	
+	/**
+	 * Compara el Gocho contra otro Gocho
+	 * @param otra, cualquier otro Gocho
+	 * @return 0 porque dos Gochos son iguales 
+	 */
+	public int compareTo(Gocho otra){
+		return 0;
+	}
+	
 }
 
