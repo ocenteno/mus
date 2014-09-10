@@ -56,10 +56,12 @@ public class TestDaoMazoHibernate {
 	@Test
 	public void testLlenarMazo(){	
 		// PREPARAR
-			
+		Carta c1 = new Carta(Palo.BASTOS, 1, 1);
+		Carta c2 = new Carta(Palo.COPAS, 10, 10);
+		Carta c3 = new Carta(Palo.OROS, 7, 7);
 		Mazo m = new Mazo("barajaEspañola2");
-		m.setId(3);
-		//m.añadir(c1,c2,c3);
+		m.añadir(c1,c2,c3);
+		dmh.insertar(m);
 		
 		// insertamos lista de cartas del mazo
 		dmh.llenarMazo(m);
@@ -70,7 +72,7 @@ public class TestDaoMazoHibernate {
 		System.out.println(m.getNombre());
 		System.out.println(m.getCantidadDeCartas());
 		
-		
+		dmh.eliminar(m);
 	}
 	
 
