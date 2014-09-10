@@ -1,5 +1,7 @@
 package es.insa.proyecto.mus.contratos;
 
+import es.insa.proyecto.mus.modelo.Lances;
+
 public interface IGestorDeApuestas {
 
 	
@@ -8,7 +10,7 @@ public interface IGestorDeApuestas {
 	 * su propia apuesta.
 	 * @param recibe las piedras apostadas y el lance, o sea, grandes, chicas... 
 	 */
-	public abstract void apostar(int piedras, Enum apuesta);
+	public abstract void apostar(int piedras, Lances apuesta);
 
 	
 	/**
@@ -19,7 +21,7 @@ public interface IGestorDeApuestas {
 	 * @param recibe el lance.
 	 * @return devuelve el bote que había antes de la última apuesta.
 	 */
-	public abstract int noQuiero(Enum apuesta);
+	public abstract int noQuiero(Lances apuesta);
 
 	
 	/**
@@ -27,7 +29,7 @@ public interface IGestorDeApuestas {
 	 * @param recibe el lance.
 	 * @return devuelve el bote.
 	 */
-	public abstract int quiero(Enum apuesta);
+	public abstract int quiero(Lances apuesta);
 
 	
 	/**
@@ -35,7 +37,7 @@ public interface IGestorDeApuestas {
 	 * hasta que no se acepte en el método "quiero".
 	 * @param recibe el lance. 
 	 */
-	public abstract void ordago(Enum apuesta);
+	public abstract void ordago(Lances apuesta);
 
 	
 	/**
@@ -43,7 +45,7 @@ public interface IGestorDeApuestas {
 	 * 2 piedras.
 	 * @param recibe el lance, o sea, grandes, chicas... 
 	 */
-	public abstract void envido(Enum apuesta);
+	public abstract void envido(Lances apuesta);
 
 
 	

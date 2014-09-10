@@ -44,16 +44,10 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 		apuestas.put(Lances.PUNTO,0);
 	}
 
-	
-	
-	public Map<Enum, Integer> getApuestas() {
-		return apuestas;
+	public int getApuesta(Lances apuesta){
+		return apuestas.get(apuesta);
 	}
-
-	public void setApuestas(Map<Enum, Integer> apuestas) {
-		this.apuestas = apuestas;
-	}
-
+	
 	public int getUltimaApuesta() {
 		return ultimaApuesta;
 	}
@@ -80,7 +74,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @param recibe las piedras apostadas y el lance, o sea, grandes, chicas... 
 	 */
 	@Override
-	public void apostar(int piedras, Enum apuesta){
+	public void apostar(int piedras, Lances apuesta){
 		bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		apuestas.put(apuesta, bote);
@@ -98,7 +92,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @return devuelve el bote que había antes de la última apuesta.
 	 */
 	@Override
-	public int noQuiero(Enum apuesta){
+	public int noQuiero(Lances apuesta){
 		bote = apuestas.get(apuesta);
 		if (bote == 0){
 			return 1;
@@ -114,7 +108,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @return devuelve el bote.
 	 */
 	@Override
-	public int quiero(Enum apuesta){
+	public int quiero(Lances apuesta){
 		bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		ultimaApuesta = 0;
@@ -131,7 +125,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @param recibe el lance, o sea, grandes, chicas... 
 	 */
 	@Override
-	public void envido(Enum apuesta){
+	public void envido(Lances apuesta){
 		bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		apuestas.put(apuesta, bote);
@@ -145,7 +139,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @param recibe el lance. 
 	 */
 	@Override
-	public void ordago(Enum apuesta){
+	public void ordago(Lances apuesta){
 		bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		apuestas.put(apuesta, bote);

@@ -24,7 +24,7 @@ public class TestGestorDeApuestas {
 		
 		gda.envido(Lances.GRANDE);
 		gda.quiero(Lances.GRANDE);
-		int bote = gda.getApuestas().get(Lances.GRANDE);
+		int bote = gda.getApuesta(Lances.GRANDE);
 		
 		assertEquals("La apuesta debe ser 2", 2, bote);
 	}
@@ -34,7 +34,7 @@ public class TestGestorDeApuestas {
 		
 		gda.envido(Lances.CHICA);
 		gda.noQuiero(Lances.CHICA);
-		int bote = gda.getApuestas().get(Lances.CHICA);
+		int bote = gda.getApuesta(Lances.CHICA);
 		
 		assertEquals("La apuesta debe ser 0", 0, bote);
 	}
@@ -47,7 +47,7 @@ public class TestGestorDeApuestas {
 		gda.apostar(5, Lances.JUEGO);
 		gda.envido(Lances.JUEGO);
 		gda.quiero(Lances.JUEGO);
-		int bote = gda.getApuestas().get(Lances.JUEGO);
+		int bote = gda.getApuesta(Lances.JUEGO);
 		
 		assertEquals("La apuesta debe ser 9", 9, bote);
 	}
@@ -59,7 +59,7 @@ public class TestGestorDeApuestas {
 		gda.apostar(5, Lances.PARES);
 		gda.envido(Lances.PARES);
 		gda.noQuiero(Lances.PARES);
-		int bote = gda.getApuestas().get(Lances.PARES);
+		int bote = gda.getApuesta(Lances.PARES);
 		
 		assertEquals("La apuesta debe ser 7", 7, bote);
 	}
@@ -69,7 +69,7 @@ public class TestGestorDeApuestas {
 		gda.envido(Lances.JUEGO);
 		gda.ordago(Lances.JUEGO);
 		gda.quiero(Lances.JUEGO);
-		int bote = gda.getApuestas().get(Lances.JUEGO);
+		int bote = gda.getApuesta(Lances.JUEGO);
 		
 		assertEquals("La apuesta debe ser 40", 40, bote);
 	}
@@ -79,7 +79,7 @@ public class TestGestorDeApuestas {
 //		gda.envido(Lances.PUNTO);
 		gda.ordago(Lances.PUNTO);
 		gda.noQuiero(Lances.PUNTO);
-		int bote = gda.getApuestas().get(Lances.PUNTO);
+		int bote = gda.getApuesta(Lances.PUNTO);
 		
 //		assertEquals("La apuesta debe ser 2", 2, bote);
 		assertEquals("La apuesta debe ser 0", 0, bote);
