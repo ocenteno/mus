@@ -1,5 +1,7 @@
 package es.insa.proyecto.dominio.cartas;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Mazo {
 	private int id;
 	private String nombre;
 	private List<Carta> listaDeCartasDelMazo;
+	
 
 	/**
 	 * Constructor vacío de la clase Mazo
@@ -28,8 +31,9 @@ public class Mazo {
 	 * @param nombre
 	 */
 	public Mazo(String nombre) {
-		super();
+		this();		
 		this.nombre = nombre;
+		
 	}
 
 	/**
@@ -78,6 +82,15 @@ public class Mazo {
 		listaDeCartasDelMazo.addAll(l);
 
 	}
+	
+	public void añadir(Carta...arrayCartas) {
+
+		// 1º queremos añadir una carta de la listaDeCartas
+		// Arrays.asList(arrayCartas);
+		listaDeCartasDelMazo.addAll(Arrays.asList(arrayCartas));
+
+	}
+	
 
 	public int getId() {
 		return id;
@@ -94,6 +107,12 @@ public class Mazo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public int getCantidadDeCartas() {
+		return this.listaDeCartasDelMazo.size();
+	}
+	public void setListaDeCartasDelMazo(List<Carta> listaDeCartasDelMazo) {
+		this.listaDeCartasDelMazo = listaDeCartasDelMazo;
+	}
 
 	@Override
 	public int hashCode() {
@@ -106,6 +125,10 @@ public class Mazo {
 						.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
+	}
+
+	public List<Carta> getListaDeCartasDelMazo() {
+		return listaDeCartasDelMazo;
 	}
 
 	@Override

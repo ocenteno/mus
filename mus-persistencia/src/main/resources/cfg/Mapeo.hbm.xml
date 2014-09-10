@@ -17,19 +17,19 @@
 		<property name="numero" column="NUMERO" not-null="false"/>		
 		<property name="valor" column="VALOR" not-null="false"/>
 	</class>
-	<!--  
+	  
 	<class table="TABLA_MAZOS"
-			name="es.insa.proyecto.dominio.mazo">
+			name="Mazo">
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>
 		<property name="nombre" column="NOMBRE"
 				  length="100" not-null="false"/>
-		<list name="listaDeCartasDelMazo" cascade="all">
+		<list name="listaDeCartasDelMazo" cascade="save-update">
 			  <key column="FK_MAZO"/>
 			  <index column="i" type="integer" length="3"/>
 			  <one-to-many class="Carta"/>
 		</list>
 	</class>
-	-->
+	
 </hibernate-mapping>

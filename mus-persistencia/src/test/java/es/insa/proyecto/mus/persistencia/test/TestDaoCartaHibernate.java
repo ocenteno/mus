@@ -2,6 +2,8 @@ package es.insa.proyecto.mus.persistencia.test;
 
 
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,6 +33,12 @@ public class TestDaoCartaHibernate {
 		Assert.assertNotEquals(
 				"Debería devolver un ID distinto de cero", 0, c.getId());
 	}
+	//public void actualizar(G k) {
+	//public void eliminar(G k)
+	//public G buscar(K id)
+	//public List<G> listarTodos()
+	
+	
 	
 
 }
