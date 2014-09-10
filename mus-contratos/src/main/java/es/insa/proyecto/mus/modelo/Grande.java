@@ -99,9 +99,9 @@ public class Grande extends Lance{
             Carta cartaJugadorUno = mano1[i];
             Carta cartaJugadorDos = mano2[i];
 
-            if (cartaJugadorUno.getValor() > cartaJugadorDos.getValor()) {
+            if (cartaJugadorUno.getNumero() > cartaJugadorDos.getNumero()) {
                 return true;
-            } else if (cartaJugadorUno.getValor() < cartaJugadorDos.getValor()) {
+            } else if (cartaJugadorUno.getNumero() < cartaJugadorDos.getNumero()) {
                 return false;
             }
         }
