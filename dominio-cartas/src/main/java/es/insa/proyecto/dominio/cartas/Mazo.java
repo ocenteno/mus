@@ -1,5 +1,7 @@
 package es.insa.proyecto.dominio.cartas;
 
+
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Mazo {
 	private int id;
 	private String nombre;
 	private List<Carta> listaDeCartasDelMazo;
+	
 
 	/**
 	 * Constructor vacío de la clase Mazo
@@ -28,7 +31,7 @@ public class Mazo {
 	 * @param nombre
 	 */
 	public Mazo(String nombre) {
-		super();
+		this();		
 		this.nombre = nombre;
 	}
 
@@ -78,9 +81,17 @@ public class Mazo {
 		listaDeCartasDelMazo.addAll(l);
 
 	}
+	
+	public void añadir(Carta...arrayCartas) {
+
+		// 1º queremos añadir una carta de la listaDeCartas
+		// Arrays.asList(arrayCartas);
+		listaDeCartasDelMazo.addAll(Arrays.asList(arrayCartas));
+
+	}
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
@@ -88,26 +99,32 @@ public class Mazo {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		result = prime
-				* result
-				+ ((listaDeCartasDelMazo == null) ? 0 : listaDeCartasDelMazo
-						.hashCode());
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		return result;
+	public int getCantidadDeCartas() {
+		return this.listaDeCartasDelMazo.size();
 	}
-
+	/**
+	 * La lista de cartas lo devolvemos como un
+	 * Array de Cartas
+	 * 
+	 * @return devuelve un Array de Carta
+	 */
+	public Carta[] getListaDeCartasDelMazo() {
+		return this.listaDeCartasDelMazo.toArray(new Carta[0]);
+	}
+	/**
+	 * Este setter no hace nada
+	 * @param l
+	 * @deprecated
+	 */
+	public void setListaDeCartasDelMazo(Carta[] l) {
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

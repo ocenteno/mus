@@ -1,6 +1,9 @@
 package es.insa.proyecto.mus.contratos;
 
-public interface DaoJugador extends DAO<Object, Integer>{
+
+import es.insa.proyecto.dominio.cartas.Jugador;
+
+public interface DaoJugador extends DAO<Jugador, Integer>{
 
 	
 }

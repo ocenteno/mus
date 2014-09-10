@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-<hibernate-mapping package="es.insa.proyecto.dominio">
+<!--  <hibernate-mapping package="es.insa.proyecto.dominio">-->
+<hibernate-mapping package="es.insa.proyecto.dominio.cartas">
 	<class table="TABLA_CARTAS"
-			name="es.insa.proyecto.dominio.cartas">
+			name="Carta">
 		<id name="id" column="ID">
-			<generator class="native"/>
-		</id>
-		<property name="númeroCarta" column="NUMERO"
-				  not-null="false"/>
+			<generator class="native"></generator>
+		</id>	
+				  
 		<property name="palo" column="PALO" not-null="false">
 			<type name="org.hibernate.type.EnumType">
-				<param name="enumClass">es.insa.proyecto.dominio.palo</param> 
+				<param name="enumClass">es.insa.proyecto.dominio.cartas.Palo</param> 
 			</type>
 		</property>
-		<property name="valorCarta" column="VALOR"
-				  not-null="false"/>
+		<property name="numero" column="NUMERO" not-null="false"/>		
+		<property name="valor" column="VALOR" not-null="false"/>
 	</class>
+	  
 	<class table="TABLA_MAZOS"
-			name="es.insa.proyecto.dominio.mazo">
+			name="Mazo">
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>
 		<property name="nombre" column="NOMBRE"
 				  length="100" not-null="false"/>
-		<list name="listaDeCartasDelMazo" cascade="all">
+		<array name="listaDeCartasDelMazo" cascade="save-update">
 			  <key column="FK_MAZO"/>
 			  <index column="i" type="integer" length="3"/>
 			  <one-to-many class="Carta"/>
-		</list>
+		</array>
 	</class>
 	
 </hibernate-mapping>
