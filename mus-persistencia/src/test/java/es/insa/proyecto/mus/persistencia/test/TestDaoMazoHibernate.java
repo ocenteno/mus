@@ -45,7 +45,7 @@ public class TestDaoMazoHibernate {
 		
 		Mazo m = new Mazo("barajaEspañola2");
 		m.añadir(c1,c2,c3);
-		
+		 
 		//Mazo mazoBBDD = dmh.buscar(m.getId());
 		
 		
