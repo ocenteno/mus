@@ -4,11 +4,11 @@ public interface IGestorDeApuestas {
 
 	
 	/**
-	 * Este método se llama cuando el jugador acepta la apuesta y añades
-	 * tu propia apuesta.
+	 * Este método se llama cuando el jugador acepta la apuesta y añade
+	 * su propia apuesta.
 	 * @param recibe las piedras apostadas y el lance, o sea, grandes, chicas... 
 	 */
-	public abstract void subir(int piedras, String apuesta);
+	public abstract void apostar(int piedras, Enum apuesta);
 
 	
 	/**
@@ -19,7 +19,7 @@ public interface IGestorDeApuestas {
 	 * @param recibe el lance.
 	 * @return devuelve el bote que había antes de la última apuesta.
 	 */
-	public abstract int noQuiero(String apuesta);
+	public abstract int noQuiero(Enum apuesta);
 
 	
 	/**
@@ -27,7 +27,7 @@ public interface IGestorDeApuestas {
 	 * @param recibe el lance.
 	 * @return devuelve el bote.
 	 */
-	public abstract int quiero(String apuesta);
+	public abstract int quiero(Enum apuesta);
 
 	
 	/**
@@ -35,6 +35,26 @@ public interface IGestorDeApuestas {
 	 * hasta que no se acepte en el método "quiero".
 	 * @param recibe el lance. 
 	 */
-	public abstract void ordago(String apuesta);
+	public abstract void ordago(Enum apuesta);
+
+	
+	/**
+	 * Este método se llama cuando el jugador acepta la apuesta y apuesta
+	 * 2 piedras.
+	 * @param recibe el lance, o sea, grandes, chicas... 
+	 */
+	public abstract void envido(Enum apuesta);
+
+
+	
+
+
+	
+
+
+	
+
+
+	
 
 }

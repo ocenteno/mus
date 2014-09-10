@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import es.insa.proyecto.mus.contratos.IGestorDeApuestas;
+import es.insa.proyecto.mus.modelo.Lances;
 
 /**
  * 
@@ -17,7 +18,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * Se utiliza un Map para que cada lance tenga su propio bote, para acceder al bote de Chicas
 	 * por ejemplo haremos "bote = apuestas.get(apuesta)" siendo apuesta "Chica".
 	 */
-	private Map<String, Integer> apuestas;
+	private Map<Enum, Integer> apuestas;
 	
 	/**
 	 * La última apuesta se guarda por si no se acepta, se sumará
@@ -35,21 +36,21 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * En el constructor se inicializan las claves del mapa de apuestas.
 	 */
 	public GestorDeApuestas() {
-		apuestas = new HashMap<String, Integer>();
-		apuestas.put("Grandes",0);
-		apuestas.put("Chicas",0);
-		apuestas.put("Pares",0);
-		apuestas.put("Juego",0);
-		apuestas.put("Punto",0);
+		apuestas = new HashMap<Enum, Integer>();
+		apuestas.put(Lances.GRANDE,0);
+		apuestas.put(Lances.CHICA,0);
+		apuestas.put(Lances.PARES,0);
+		apuestas.put(Lances.JUEGO,0);
+		apuestas.put(Lances.PUNTO,0);
 	}
 
 	
 	
-	public Map<String, Integer> getApuestas() {
+	public Map<Enum, Integer> getApuestas() {
 		return apuestas;
 	}
 
-	public void setApuestas(Map<String, Integer> apuestas) {
+	public void setApuestas(Map<Enum, Integer> apuestas) {
 		this.apuestas = apuestas;
 	}
 
@@ -79,7 +80,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @param recibe las piedras apostadas y el lance, o sea, grandes, chicas... 
 	 */
 	@Override
-	public void subir(int piedras, String apuesta){
+	public void apostar(int piedras, Enum apuesta){
 		bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		apuestas.put(apuesta, bote);
@@ -97,7 +98,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @return devuelve el bote que había antes de la última apuesta.
 	 */
 	@Override
-	public int noQuiero(String apuesta){
+	public int noQuiero(Enum apuesta){
 		bote = apuestas.get(apuesta);
 		if (bote == 0){
 			return 1;
@@ -113,12 +114,28 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @return devuelve el bote.
 	 */
 	@Override
-	public int quiero(String apuesta){
+	public int quiero(Enum apuesta){
 		bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		ultimaApuesta = 0;
+		if (bote > 40) {
+			bote = 40;
+		}
 		apuestas.put(apuesta, bote);
 		return bote;
+	}
+	
+	/**
+	 * Este método se llama cuando el jugador acepta la apuesta y apuesta
+	 * 2 piedras.
+	 * @param recibe el lance, o sea, grandes, chicas... 
+	 */
+	@Override
+	public void envido(Enum apuesta){
+		bote = apuestas.get(apuesta);
+		bote = bote + ultimaApuesta;
+		apuestas.put(apuesta, bote);
+		ultimaApuesta = 2;
 	}
 	
 	
@@ -128,7 +145,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * @param recibe el lance. 
 	 */
 	@Override
-	public void ordago(String apuesta){
+	public void ordago(Enum apuesta){
 		bote = apuestas.get(apuesta);
 		bote = bote + ultimaApuesta;
 		apuestas.put(apuesta, bote);

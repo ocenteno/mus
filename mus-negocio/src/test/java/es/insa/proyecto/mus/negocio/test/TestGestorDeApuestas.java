@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import es.insa.proyecto.mus.contratos.IGestorDeApuestas;
+import es.insa.proyecto.mus.modelo.Lances;
 import es.insa.proyecto.mus.negocio.GestorDeApuestas;
 
 public class TestGestorDeApuestas {
@@ -19,69 +20,69 @@ public class TestGestorDeApuestas {
 
 	
 	@Test
-	public void testGrandes() {
+	public void testEnvidoQuiero() {
 		
-		gda.subir(4, "Grandes");
-		gda.subir(2, "Grandes");
-		gda.subir(5, "Grandes");
-		gda.noQuiero("Grandes");
-		gda.subir(2, "Grandes");
-		gda.quiero("Grandes");
-		int bote = gda.getApuestas().get("Grandes");
+		gda.envido(Lances.GRANDE);
+		gda.quiero(Lances.GRANDE);
+		int bote = gda.getApuestas().get(Lances.GRANDE);
 		
-		assertEquals("La apuesta a grandes debe ser 13", 13, bote);
+		assertEquals("La apuesta debe ser 2", 2, bote);
 	}
 
 	@Test
-	public void testChicas() {
+	public void testEnvidoNoQuiero() {
 		
-		gda.subir(4, "Chicas");
-		gda.subir(6, "Chicas");
-		gda.ordago("Chicas");
-		gda.noQuiero("Chicas");
-		gda.quiero("Chicas");
-		int bote = gda.getApuestas().get("Chicas");
+		gda.envido(Lances.CHICA);
+		gda.noQuiero(Lances.CHICA);
+		int bote = gda.getApuestas().get(Lances.CHICA);
 		
-		assertEquals("La apuesta a chicas debe ser 50", 50, bote);
+		assertEquals("La apuesta debe ser 0", 0, bote);
+	}
+
+	
+	@Test
+	public void testEnvidoVariasQuiero() {
+		
+		gda.envido(Lances.JUEGO);
+		gda.apostar(5, Lances.JUEGO);
+		gda.envido(Lances.JUEGO);
+		gda.quiero(Lances.JUEGO);
+		int bote = gda.getApuestas().get(Lances.JUEGO);
+		
+		assertEquals("La apuesta debe ser 9", 9, bote);
 	}
 	
 	@Test
-	public void testPares() {
+	public void testEnvidoVariasNoQuiero() {
 		
-		gda.subir(3, "Pares");
-		gda.noQuiero("Pares");
-		gda.subir(6, "Pares");
-		gda.quiero("Pares");
-		int bote = gda.getApuestas().get("Pares");
+		gda.envido(Lances.PARES);
+		gda.apostar(5, Lances.PARES);
+		gda.envido(Lances.PARES);
+		gda.noQuiero(Lances.PARES);
+		int bote = gda.getApuestas().get(Lances.PARES);
 		
-		assertEquals("La apuesta a pares debe ser 9", 9, bote);
+		assertEquals("La apuesta debe ser 7", 7, bote);
 	}
 	
 	@Test
-	public void testJuego() {
+	public void testOrdagoQuiero() {
+		gda.envido(Lances.JUEGO);
+		gda.ordago(Lances.JUEGO);
+		gda.quiero(Lances.JUEGO);
+		int bote = gda.getApuestas().get(Lances.JUEGO);
 		
-		gda.subir(3, "Juego");
-		gda.noQuiero("Juego");
-		gda.subir(6, "Juego");
-		gda.ordago("Juego");
-		gda.quiero("Juego");
-		int bote = gda.getApuestas().get("Juego");
-		
-		assertEquals("La apuesta a juego debe ser 49", 49, bote);
+		assertEquals("La apuesta debe ser 40", 40, bote);
 	}
 	
 	@Test
-	public void testPunto() {
+	public void testOrdagoNoQuiero() {
+//		gda.envido(Lances.PUNTO);
+		gda.ordago(Lances.PUNTO);
+		gda.noQuiero(Lances.PUNTO);
+		int bote = gda.getApuestas().get(Lances.PUNTO);
 		
-		gda.subir(3, "Punto");
-		gda.noQuiero("Punto");
-		gda.subir(6, "Punto");
-		gda.ordago("Punto");
-		gda.noQuiero("Punto");
-		gda.quiero("Punto");
-		int bote = gda.getApuestas().get("Punto");
-		
-		assertEquals("La apuesta a punto debe ser 49", 49, bote);
+//		assertEquals("La apuesta debe ser 2", 2, bote);
+		assertEquals("La apuesta debe ser 0", 0, bote);
 	}
 	
 }
