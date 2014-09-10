@@ -2,7 +2,10 @@ package es.insa.proyecto.mus.persistencia;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Mazo;
@@ -18,41 +21,40 @@ public class DaoMazoHibernate
 	extends DaoGenericoHibernate<Mazo, Integer>
 	implements DaoMazo{
 	
-	private DaoMazo daoMazo;
-
+	
 	public DaoMazoHibernate() {
 		super();
 	}
 
-		
 	/**
-	 * Añade una Carta al mazo
+	 * Llenar Mazo de cartas
+	 * dado un mazo m, va a las Cartas y recoge todas las que pertenezcan a ese mazo
+	 * y las inserta en el mazo	
 	 * @param m
-	 * @param c
 	 * @return
 	 */
-	public Mazo añadirCartaMazo(Mazo m,Carta c){
+	@SuppressWarnings("unchecked")
+	public Mazo llenarMazo(Mazo m){
 		
-		m.añadir(c);
-		// para que se guarde el mazo en la BBDD
-		daoMazo.actualizar(m);
-		return m;		
 		
-	}
-	/**
-	 * Añade una Lista de Cartas en el Mazo
-	 * @param m
-	 * @param lista
-	 * @return
-	 */
-	public Mazo añadirListaCartasMazo(Mazo m, List<Carta> lista){
+		Session sesion = sf.getCurrentSession();
+		sesion.beginTransaction();
 		
-		m.añadir(lista);
-		// para que se guarde el mazo en la BBDD
-		daoMazo.actualizar(m);
+		String hql="SELECT m.listaDeCartasDelMazo FROM Mazo m WHERE m.id=" + m.getId();
+		Query query2 = sesion.createQuery(hql);
+		// ejecutamos la consulta
+		// como nos da una lista de lista solo queremos una
+		List<Carta> resul = (List<Carta>) query2.list();
 		
+		// Metemos la lista en el Mazo
+		m.añadir(resul);
+		sf.getCurrentSession().getTransaction().commit();
 		
 		return m;
 	}
+	
+	
+	
+	
 
 }
