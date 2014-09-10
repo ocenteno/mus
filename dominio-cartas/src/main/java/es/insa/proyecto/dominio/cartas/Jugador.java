@@ -1,6 +1,9 @@
 package es.insa.proyecto.dominio.cartas;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -81,4 +84,16 @@ public class Jugador {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * Ordenamos la mano de un jugador concreto.
+	 * 
+	 * @return devuelve el jugador
+	 */
+	public Jugador ordenarMano(Jugador jugador) {
+		Carta[] mano = jugador.getMano();
+		// Ordenar las cartas de la mano
+		Arrays.sort(mano);
+		// Devuelve el jugador con su mano ordenada
+		return jugador;
+	}
 }
