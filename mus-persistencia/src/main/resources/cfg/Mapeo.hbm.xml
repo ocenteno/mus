@@ -25,11 +25,11 @@
 		</id>
 		<property name="nombre" column="NOMBRE"
 				  length="100" not-null="false"/>
-		<list name="listaDeCartasDelMazo" cascade="save-update">
+		<array name="listaDeCartasDelMazo" cascade="save-update">
 			  <key column="FK_MAZO"/>
 			  <index column="i" type="integer" length="3"/>
 			  <one-to-many class="Carta"/>
-		</list>
+		</array>
 	</class>
 	
 </hibernate-mapping>

@@ -1,8 +1,6 @@
 package es.insa.proyecto.mus.persistencia.test;
 
 
-import java.util.LinkedList;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
