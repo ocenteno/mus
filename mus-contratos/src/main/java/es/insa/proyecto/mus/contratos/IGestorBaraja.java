@@ -25,20 +25,20 @@ public interface IGestorBaraja {
 	/**
 	 * Este método permite repartir del mazo un número de cartas concreto al
 	 * jugador
-	 * @param numCartas
+	 * @param numCartas y Jugador
 	 */
 	void repartirCartas(int numCartas, Jugador j);
 	
 	/**
 	 * Este método permite recoger unas cartas concretas de la mano de jugador
 	 * y ponerlas en el mazo de descartes 
-	 * @param numCartas
+	 * @param cartasADescartar y Jugador
 	 */
-	Carta[] descartarCartas(Carta[] cartasADescartar, Jugador j);
+	Carta descartarCartas(Jugador j, Carta...cartasADescartar);
 	
 	/**
 	 * Este método permite recoger las cartas del mazo de descartes y ponerlas
-	 * en el mazo de reparto (cambia uno por otro)
+	 * en el mazo de reparto (cambia uno por otro) y barajar el mazo
 	 */
 	void recogerDescartes();
 	
