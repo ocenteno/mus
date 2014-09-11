@@ -12,6 +12,7 @@ import java.util.List;
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.contratos.IGestorDeComprobacionJuegoYPares;
+import es.insa.proyecto.mus.contratos.QueJuego;
 import es.insa.proyecto.mus.contratos.QuePares;
 
 /**
@@ -29,19 +30,20 @@ public class GestorComprobadorSiTieneJuegoYPares implements
 	 * (es.insa.proyecto.dominio.cartas.Jugador)
 	 */
 	@Override
-	public boolean tieneJuego(Jugador j) {
+	public QueJuego tieneJuego(Jugador j) {
 		Carta[] manoJugador = j.getMano();
 		int totalJuego = manoJugador[0].getValor() + manoJugador[1].getValor()
 				+ manoJugador[2].getValor() + manoJugador[3].getValor();
 
-		if (totalJuego > 30) {
-			
-			return true;
-		} else {
-			
-			return false;
+		if (totalJuego == 31) {
+			return QueJuego.TREINTAYUNA;
+		} else if (totalJuego > 31){
+				return QueJuego.JUEGO;
+			  }else {
+				   return QueJuego.PUNTO;
+			}
 		}
-	}
+	
 
 	@Override
 	public QuePares quePares(Jugador j) {

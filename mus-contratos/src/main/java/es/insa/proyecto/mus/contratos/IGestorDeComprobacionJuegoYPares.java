@@ -12,7 +12,7 @@ import es.insa.proyecto.dominio.cartas.Jugador;
  */
 public interface IGestorDeComprobacionJuegoYPares {
 
-	public boolean tieneJuego(Jugador j);
+	public QueJuego tieneJuego(Jugador j);
 	
 	public QuePares quePares(Jugador j);
 	
