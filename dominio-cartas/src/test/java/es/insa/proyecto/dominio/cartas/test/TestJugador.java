@@ -1,11 +1,15 @@
 package es.insa.proyecto.dominio.cartas.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import es.insa.proyecto.dominio.cartas.Carta;
+import es.insa.proyecto.dominio.cartas.Gocho;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
+import es.insa.proyecto.dominio.cartas.Pito;
 
 public class TestJugador {
 	boolean errorMano = false;
@@ -23,16 +27,22 @@ public class TestJugador {
 	@Test
 	public void testAñadirCarta() {
 		// 1º preparación
-		Carta carta = new Carta();
+		Carta carta1 = new Carta();
 		Jugador jugador = new Jugador("Jugador1");
 		// 2º ejecución
-		jugador.añadirCarta(carta);
+		jugador.añadirCarta(carta1);
 		// 3º aserción
 		Assert.assertNotEquals("El jugador debe tener una mano", 0, jugador.getMano().length);
-		// 4º Comprobar que no exista ya
-		errorMano = jugador.añadirCarta(carta);
+		Carta carta2 = new Carta();
+		Carta carta3 = new Carta();
+		Carta carta4 = new Carta();
+		Carta carta5 = new Carta();
+		jugador.añadirCarta(carta2);
+		jugador.añadirCarta(carta3);
+		jugador.añadirCarta(carta4);
+		errorMano = jugador.añadirCarta(carta5);
 		// 5º Aserción
-		Assert.assertTrue("La carta ya existe o tengo ya 4 cartas ", errorMano);
+		Assert.assertTrue("Ya tengo 4 cartas ", errorMano);
 	}
 
 	@Test
@@ -65,6 +75,64 @@ public class TestJugador {
 		Assert.assertEquals("El jugador debe tener una mano con 4 cartas", 4, mano.length);
 	}
 
+	@Test
+	public void testOrdenarManoPito() {
+		// 1º preparación
+		Jugador jugador = new Jugador("Jugador1");
+		jugador.añadirCarta(new Pito(Palo.BASTOS, 2, 2));
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
+		// 2º ejecución
+		jugador.ordenarMano();
+		// 3º aserción
+		Carta[] mano = jugador.getMano();
+		
+		Assert.assertEquals("La primera - 2", 2, mano[0].getNumero());
+		Assert.assertEquals("La segunda - 1", 1, mano[1].getNumero());
+		Assert.assertEquals("La tercera - 3", 3, mano[2].getNumero());
+		Assert.assertEquals("La cuarta - 7", 7,  mano[3].getNumero());
+		
+	}
+
+	@Test
+	public void testOrdenarManoGocho() {
+		// 1º preparación
+		Jugador jugador = new Jugador("Jugador1");
+		jugador.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
+		jugador.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
+		// 2º ejecución
+		jugador.ordenarMano();
+		// 3º aserción
+		Carta[] mano = jugador.getMano();
+		
+		Assert.assertEquals("La primera - 1", 1, mano[0].getNumero());
+		Assert.assertEquals("La segunda - 7", 7, mano[1].getNumero());
+		Assert.assertEquals("La tercera - 12", 12, mano[2].getNumero());
+		Assert.assertEquals("La cuarta - 3", 3,  mano[3].getNumero());
+		
+	}
 	
 
+	@Test
+	public void testOrdenarMano() {
+		// 1º preparación
+		Jugador jugador = new Jugador("Jugador1");
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
+		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
+		// 2º ejecución
+		jugador.ordenarMano();
+		// 3º aserción
+		Carta[] mano = jugador.getMano();
+		
+		Assert.assertEquals("La primera - 1", 1, mano[0].getNumero());
+		Assert.assertEquals("La segunda - 3", 3, mano[1].getNumero());
+		Assert.assertEquals("La tercera - 7", 7, mano[2].getNumero());
+		Assert.assertEquals("La cuarta - 12", 12,  mano[3].getNumero());
+		
+	}
 }

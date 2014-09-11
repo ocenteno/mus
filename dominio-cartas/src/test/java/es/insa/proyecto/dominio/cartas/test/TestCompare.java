@@ -28,7 +28,7 @@ public class TestCompare {
 		Carta c2 = new Carta(Palo.BASTOS, 5, 5);
 		Carta c3 = new Carta(Palo.BASTOS, 11, 10);
 		Gocho g1 = new Gocho(Palo.BASTOS, 3, 10);
-		Gocho g2 = new Gocho(Palo.BASTOS, 12, 10);
+		Carta g2 = new Carta(Palo.BASTOS, 12, 10);
 		Pito p1 = new Pito(Palo.BASTOS, 1, 1);
 		Pito p2 = new Pito(Palo.BASTOS, 2, 1);
 				

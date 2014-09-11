@@ -37,9 +37,13 @@ public class Gocho extends Carta{
 	 */
 	@Override
 	public int compareTo(Carta otra) {
+		if (otra instanceof Gocho){
+			return compareTo((Gocho) otra);
+		}
 		if (otra.getNumero() == 12){
 			return 0;
 		}
+		
 		return 1;
 	}
 	
