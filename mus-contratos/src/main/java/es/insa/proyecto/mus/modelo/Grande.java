@@ -21,7 +21,7 @@ public class Grande extends Lance{
 		// Para cada jugador
 		for (Jugador jugador : ordenJugadores) {
 			// Ordenar las cartas de la mano de cada uno de los jugadores de entrada
-			jugador.ordenarMano(jugador);
+			jugador.ordenarMano();
 		}
 		
 		// Guardar cada jugador con su mano
