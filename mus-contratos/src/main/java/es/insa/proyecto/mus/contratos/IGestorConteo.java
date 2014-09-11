@@ -1,14 +1,18 @@
 package es.insa.proyecto.mus.contratos;
 
 import es.insa.proyecto.dominio.cartas.Jugador;
+import es.insa.proyecto.mus.modelo.Lance;
 
 /**
- * Este gestor se encargará de contar las piedras que otorga una jugada
+ * Esta Interfaces se encargará de contar las 
+ * piedras que otorga una jugada.
  * @author Jose Antonio y Cristina
  *
  */
 public interface IGestorConteo {
 	
-	public void contarLasPiedrasPorJugada();
+	public int contarLasPiedrasPorPares(Jugador J);
+	
+	public int contarLasPiedrasPorJuego(Jugador J);
 	
 }
