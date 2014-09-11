@@ -5,6 +5,7 @@ package es.insa.proyecto.mus.negocio.test;
 
 import static org.junit.Assert.*;
 
+import org.hamcrest.core.IsEqual;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import es.insa.proyecto.dominio.cartas.Gocho;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;
+import es.insa.proyecto.mus.contratos.QueJuego;
 import es.insa.proyecto.mus.contratos.QuePares;
 import es.insa.proyecto.mus.negocio.GestorComprobadorSiTieneJuegoYPares;
 
@@ -37,30 +39,39 @@ public class TestGestorComprobadorJuegoPares {
 	 */
 	@Test
 	public void testTieneJuego() {
-		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 10, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		Jugador jugador1 = new Jugador("Jugador1");
+		jugador1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador1.añadirCarta(new Carta(Palo.BASTOS, 1, 1));
 		// 2º ejecución
-		Carta[] mano = jugador.getMano();
 		GestorComprobadorSiTieneJuegoYPares miGestor = new GestorComprobadorSiTieneJuegoYPares();
-		miGestor.tieneJuego(jugador);
+		QueJuego juego = miGestor.tieneJuego(jugador1);
 		// 3º aserción
-		Assert.assertTrue(true);
+		assertEquals(" Es Treintayuna ", QueJuego.TREINTAYUNA, juego);
 
-		Jugador jugador2 = new Jugador("Jugador1");
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 10, 10));
+		Jugador jugador2 = new Jugador("Jugador2");
+		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
 		// 2º ejecución
-		Carta[] mano1 = jugador.getMano();
-		GestorComprobadorSiTieneJuegoYPares miGestor1 = new GestorComprobadorSiTieneJuegoYPares();
-		miGestor1.tieneJuego(jugador2);
 		// 3º aserción
-		// Assert.assertFalse(false);
-		Assert.assertTrue(true);
+		juego = miGestor.tieneJuego(jugador2);
+		// 3º aserción
+		assertEquals(" Es Punto ",QueJuego.PUNTO, juego);
+		
+		Jugador jugador3 = new Jugador("Jugador3");
+		jugador3.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador3.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
+		jugador3.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
+		jugador3.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		// 2º ejecución
+		// 3º aserción
+		juego = miGestor.tieneJuego(jugador3);
+		// 3º aserción
+		assertEquals(" Juego ",QueJuego.JUEGO, juego);
+		
 	}
 
 	@Test
