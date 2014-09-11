@@ -1,14 +1,8 @@
 package es.insa.proyecto.mus.persistencia.test;
 
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-
-
-
-
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Mazo;
 import es.insa.proyecto.dominio.cartas.Palo;

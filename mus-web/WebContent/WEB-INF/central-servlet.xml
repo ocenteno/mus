@@ -13,10 +13,17 @@
 	</bean>
 	<bean name="vistasJSP"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value='"WEB-INF/paginas/'></property>
-		<property name="suffix" value='".jsp"'></property>
+		<property name="prefix" value="WEB-INF/paginas/"></property>
+		<property name="suffix" value=".jsp"></property>
 	</bean>
 	<bean name="adaptador"
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter">
 	</bean>
+	<!-- CONTROLADORES -->
+	<bean name="controladorMesaJugador" class="es.insa.proyecto.mus.web.ControladorMesaJugador">
+	</bean>
+	
+	
+	<context:component-scan base-package="es.insa.proyecto.mus.web" />
+	<mvc:annotation-driven />
 </beans>
