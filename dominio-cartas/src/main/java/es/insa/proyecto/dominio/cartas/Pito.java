@@ -5,7 +5,7 @@ package es.insa.proyecto.dominio.cartas;
  * @author Herminio Acedo y Jose Antonio Torre
  *
  */
-public class Pito extends Carta{
+public class Pito extends Carta {
 	
 	public Pito(Palo palo, int numero, int valor) {
 		super(palo, numero, valor);
@@ -39,6 +39,9 @@ public class Pito extends Carta{
 	 */
 	@Override
 	public int compareTo(Carta otra){
+		if (otra instanceof Pito){
+			return compareTo((Pito) otra);
+		}
 		if (otra.getNumero() == 1){
 			return 0;
 		}

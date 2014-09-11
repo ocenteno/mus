@@ -5,7 +5,7 @@ package es.insa.proyecto.dominio.cartas;
  * @author Herminio Acedo y Jose Antonio Torre
  *
  */
-public class Carta implements Comparable<Carta>{
+public class Carta implements Comparable<Carta> {
 
 	
 	/**
@@ -109,6 +109,12 @@ public class Carta implements Comparable<Carta>{
 	 */
 	@Override
 	public int compareTo(Carta otra) {
+		if (otra instanceof Gocho){
+			return compareTo((Gocho) otra);
+		}
+		if (otra instanceof Pito){
+			return compareTo((Pito) otra);
+		}
 		return Integer.compare(this.numero, otra.numero);
 	}	
 	
@@ -120,7 +126,7 @@ public class Carta implements Comparable<Carta>{
 	 * @return 0 si son iguales
 	 * 		  -1 en cualquier otro caso
 	 */
-	public int compareTo(Gocho otro){
+	public int compareTo(Gocho otra){
 		if (this.numero == 12){
 			return 0;
 		}
@@ -135,7 +141,7 @@ public class Carta implements Comparable<Carta>{
 	 * @return 0 si son iguales
 	 * 		   1 en cualquier otro caso
 	 */
-	public int compareTo (Pito otro){
+	public int compareTo (Pito otra){
 		if (this.numero == 1){
 			return 0;
 		}

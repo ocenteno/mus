@@ -1,5 +1,6 @@
 package es.insa.proyecto.dominio.cartas;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,7 +19,7 @@ public class Jugador {
 	// nombre del jugador a tratar
 	private String nombre;
 	// cartas que tiene el jugador
-	private Set<Carta> manoJugador;
+	private List<Carta> manoJugador;
 	// Booleano para devolver un error en la operación
 	private boolean errorMano = false;
 
@@ -29,7 +30,7 @@ public class Jugador {
 	public Jugador(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.manoJugador = new HashSet<Carta>();
+		this.manoJugador = new ArrayList<Carta>();
 	}
 
 	/**
@@ -41,7 +42,7 @@ public class Jugador {
 	 * @return 
 	 */
 	public boolean añadirCarta(Carta cartaAAñadir) {
-		if (this.manoJugador.size() < 4 && !this.manoJugador.contains(cartaAAñadir)) {
+		if (this.manoJugador.size() < 4) {
 			this.manoJugador.add(cartaAAñadir);
 		}else {
 			errorMano = true;
@@ -85,15 +86,30 @@ public class Jugador {
 	}
 
 	/**
+	 * @param manoJugador the manoJugador to set
+	 */
+	public void setManoJugador(List<Carta> manoJugador) {
+		this.manoJugador = manoJugador;
+	}
+
+	/**
 	 * Ordenamos la mano de un jugador concreto.
 	 * 
 	 * @return devuelve el jugador
 	 */
-	public Jugador ordenarMano(Jugador jugador) {
-		Carta[] mano = jugador.getMano();
+	public void ordenarMano() {
+	//	System.out.println("Antes");
+	//	System.out.println("Mano del jugador 1: " + this.manoJugador();
+	//	System.out.println("Mano del jugador 2: " + this.jugador.getMano()[1].getNumero());
+	//	System.out.println("Mano del jugador 3: " + this.jugador.getMano()[2].getNumero());
+	//	System.out.println("Mano del jugador 4: " + this.jugador.getMano()[3].getNumero());
 		// Ordenar las cartas de la mano
-		Arrays.sort(mano);
+		Collections.sort(this.manoJugador);
+	//	System.out.println("Después");
+	//	System.out.println("Mano del jugador 1: " + this.jugador.getMano()[0].getNumero());
+	//	System.out.println("Mano del jugador 2: " + this.jugador.getMano()[1].getNumero());
+	//	System.out.println("Mano del jugador 3: " + this.jugador.getMano()[2].getNumero());
+	//	System.out.println("Mano del jugador 4: " + this.jugador.getMano()[3].getNumero());
 		// Devuelve el jugador con su mano ordenada
-		return jugador;
 	}
 }
