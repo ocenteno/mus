@@ -11,16 +11,16 @@ import java.util.List;
 
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
-import es.insa.proyecto.mus.contratos.IGestorDeComprobacionJuegoYPares;
-import es.insa.proyecto.mus.contratos.QueJuego;
-import es.insa.proyecto.mus.contratos.QuePares;
+import es.insa.proyecto.dominio.cartas.Juego;
+import es.insa.proyecto.dominio.cartas.Pares;
+import es.insa.proyecto.mus.contratos.IComprobadorParesJuego;
 
 /**
  * @author Hermino Acedo y Jose A. Torre
  * 
  */
-public class GestorComprobadorSiTieneJuegoYPares implements
-		IGestorDeComprobacionJuegoYPares {
+public class ComprobadorParesJuego implements
+		IComprobadorParesJuego {
 
 	/*
 	 * (non-Javadoc)
@@ -30,23 +30,23 @@ public class GestorComprobadorSiTieneJuegoYPares implements
 	 * (es.insa.proyecto.dominio.cartas.Jugador)
 	 */
 	@Override
-	public QueJuego tieneJuego(Jugador j) {
+	public Juego tieneJuego(Jugador j) {
 		Carta[] manoJugador = j.getMano();
 		int totalJuego = manoJugador[0].getValor() + manoJugador[1].getValor()
 				+ manoJugador[2].getValor() + manoJugador[3].getValor();
 
 		if (totalJuego == 31) {
-			return QueJuego.TREINTAYUNA;
+			return Juego.TREINTAYUNA;
 		} else if (totalJuego > 31){
-				return QueJuego.JUEGO;
+				return Juego.JUEGO;
 			  }else {
-				   return QueJuego.PUNTO;
+				   return Juego.PUNTO;
 			}
 		}
 	
 
 	@Override
-	public QuePares quePares(Jugador j) {
+	public Pares quePares(Jugador j) {
 		Carta[] manoJugador = j.getMano();
 		int hayPares = 0;
 		int i = 0;
@@ -64,20 +64,20 @@ public class GestorComprobadorSiTieneJuegoYPares implements
 
 		if (hayPares == 0) {
 			
-			return QuePares.NO;
+			return Pares.NO;
 		} else if (hayPares == 1) {
 			
-			return QuePares.PAR;
+			return Pares.PAR;
 		} else if (hayPares == 2 ) {
 			
-			return QuePares.DUPLES;
+			return Pares.DUPLES;
 		} 
 		else if (hayPares == 3 ) {
 			
-			return QuePares.MEDIAS;
+			return Pares.MEDIAS;
 		}else {
 			
-			return QuePares.DUPLES;
+			return Pares.DUPLES;
 		}
 	}
 }

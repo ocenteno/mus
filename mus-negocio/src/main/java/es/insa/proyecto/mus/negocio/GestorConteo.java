@@ -1,9 +1,10 @@
 package es.insa.proyecto.mus.negocio;
 
 import es.insa.proyecto.dominio.cartas.Jugador;
+import es.insa.proyecto.dominio.cartas.Juego;
+import es.insa.proyecto.dominio.cartas.Pares;
+import es.insa.proyecto.mus.contratos.IComprobadorParesJuego;
 import es.insa.proyecto.mus.contratos.IGestorConteo;
-import es.insa.proyecto.mus.contratos.QueJuego;
-import es.insa.proyecto.mus.contratos.QuePares;
 
 /**
  * Este gestor se encargará de contar las 
@@ -13,15 +14,15 @@ import es.insa.proyecto.mus.contratos.QuePares;
  */
 public class GestorConteo implements IGestorConteo{
 	
-	GestorComprobadorSiTieneJuegoYPares gcpj = new GestorComprobadorSiTieneJuegoYPares();
+	private IComprobadorParesJuego comprobadorParesJuego;
 		
 	/**
 	 * Controlamos los puntos obtenidos a pares
 	 */
 	@Override
-	public int contarLasPiedrasPorPares(Jugador j) {
+	public int contarPiedrasPorPares(Jugador j) {
 		
-		QuePares pares = gcpj.quePares(j);
+		Pares pares = comprobadorParesJuego.quePares(j);
 		switch (pares) {
 		case PAR:
 			return 1;
@@ -41,9 +42,10 @@ public class GestorConteo implements IGestorConteo{
 	 * Controlamos los puntos obtenidos a Juego/Punto
 	 */
 	@Override
-	public int contarLasPiedrasPorJuego(Jugador j) {
+	public int contarPiedrasPorJuego(Jugador j) {
 		
-		QueJuego juego = gcpj.tieneJuego(j);
+		
+		Juego juego = comprobadorParesJuego.tieneJuego(j);
 		switch (juego) {
 		case TREINTAYUNA:
 			return 3;
@@ -51,12 +53,21 @@ public class GestorConteo implements IGestorConteo{
 		case JUEGO:
 			return 2;
 			
-		case PUNTO:
-			return 1;		
+		default:
+			return 0;		
 		}
-		return 0;
 	}
 
+	public IComprobadorParesJuego getComprobadorParesJuego() {
+		return comprobadorParesJuego;
+	}
+
+	public void setComprobadorParesJuego(
+			IComprobadorParesJuego comprobadorParesJuego) {
+		this.comprobadorParesJuego = comprobadorParesJuego;
+	}
+	
+	
 	
 
 }

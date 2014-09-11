@@ -10,6 +10,8 @@ import es.insa.proyecto.dominio.cartas.Gocho;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;
+import es.insa.proyecto.mus.contratos.IComprobadorParesJuego;
+import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
 import es.insa.proyecto.mus.negocio.GestorConteo;
 
 
@@ -34,7 +36,9 @@ public class TestGestorConteo {
 		jugador1.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
 		// 2º ejecución
 		GestorConteo miGestor = new GestorConteo();
-		int piedras = miGestor.contarLasPiedrasPorPares(jugador1);
+		ComprobadorParesJuego comprobador = new ComprobadorParesJuego();
+		miGestor.setComprobadorParesJuego(comprobador);
+		int piedras = miGestor.contarPiedrasPorPares(jugador1);
 		// 3º aserción
 		assertEquals(" Son pares ", 1, piedras);
 		
@@ -44,7 +48,7 @@ public class TestGestorConteo {
 		jugador2.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
 		jugador2.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
 		// 2º ejecución
-		piedras = miGestor.contarLasPiedrasPorPares(jugador2);
+		piedras = miGestor.contarPiedrasPorPares(jugador2);
 		// 3º aserción
 		assertEquals(" Son medias ", 2, piedras);
 		
@@ -54,7 +58,7 @@ public class TestGestorConteo {
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 8, 8));
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 8, 8));
 		// 2º ejecución
-		piedras = miGestor.contarLasPiedrasPorPares(jugador3);
+		piedras = miGestor.contarPiedrasPorPares(jugador3);
 		// 3º aserción
 		assertEquals(" Son duples ", 3, piedras);
 		
@@ -64,7 +68,7 @@ public class TestGestorConteo {
 		jugador4.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
 		jugador4.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
 		// 2º ejecución
-		piedras = miGestor.contarLasPiedrasPorPares(jugador4);
+		piedras = miGestor.contarPiedrasPorPares(jugador4);
 		// 3º aserción
 		assertEquals(" Son duples ", 3, piedras);
 	}
@@ -78,7 +82,8 @@ public class TestGestorConteo {
 		jugador1.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
 		// 2º ejecución
 		GestorConteo miGestor = new GestorConteo();
-		int piedras = miGestor.contarLasPiedrasPorJuego(jugador1);
+		miGestor.setComprobadorParesJuego(new ComprobadorParesJuego());
+		int piedras = miGestor.contarPiedrasPorJuego(jugador1);
 		// 3º aserción
 		assertEquals(" Treintayuna ", 3, piedras);
 		
@@ -88,7 +93,7 @@ public class TestGestorConteo {
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
 		// 2º ejecución
-		piedras = miGestor.contarLasPiedrasPorJuego(jugador2);
+		piedras = miGestor.contarPiedrasPorJuego(jugador2);
 		// 3º aserción
 		assertEquals(" Juego ", 2, piedras);
 		
@@ -98,9 +103,9 @@ public class TestGestorConteo {
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
 		// 2º ejecución
-		piedras = miGestor.contarLasPiedrasPorJuego(jugador3);
+		piedras = miGestor.contarPiedrasPorJuego(jugador3);
 		// 3º aserción
-		assertEquals(" Punto ", 1, piedras);
+		assertEquals(" Sin Juego ", 0, piedras);
 	}
 
 }
