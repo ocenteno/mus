@@ -8,7 +8,8 @@
 		<id name="id" column="ID">
 			<generator class="native"></generator>
 		</id>	
-		<discriminator column="TIPO" type="string" length="2"/>		  
+		<discriminator column="TIPO" type="string" length="2" not-null="true"
+				force="false" insert="true"/>		  
 		<property name="palo" column="PALO" not-null="false">
 			<type name="org.hibernate.type.EnumType">
 				<param name="enumClass">es.insa.proyecto.dominio.cartas.Palo</param> 
