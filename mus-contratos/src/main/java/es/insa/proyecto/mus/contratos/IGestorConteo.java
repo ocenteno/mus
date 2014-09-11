@@ -11,8 +11,8 @@ import es.insa.proyecto.mus.modelo.Lance;
  */
 public interface IGestorConteo {
 	
-	public int contarLasPiedrasPorPares(Jugador J);
+	public int contarPiedrasPorPares(Jugador j);
 	
-	public int contarLasPiedrasPorJuego(Jugador J);
+	public int contarPiedrasPorJuego(Jugador j);
 	
 }
