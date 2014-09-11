@@ -44,9 +44,8 @@ public class TestDaoMazoHibernate {
 		dmh.insertar(m);
 		// 3º VERIFICAR
 		Assert.assertNotEquals("Tienen que ser distintos",0, m.getCantidadDeCartas());
-		
-		
 	}
+	
 	@Test
 	public void testLlenarMazo(){	
 		// PREPARAR
