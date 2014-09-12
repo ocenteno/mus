@@ -4,11 +4,12 @@
 <!--  <hibernate-mapping package="es.insa.proyecto.dominio">-->
 <hibernate-mapping package="es.insa.proyecto.dominio.cartas">
 	<class table="TABLA_CARTAS"
-			name="Carta">
+			name="Carta" discriminator-value="CA">
 		<id name="id" column="ID">
 			<generator class="native"></generator>
 		</id>	
-				  
+		<discriminator column="TIPO" type="string" length="2" not-null="true"
+				force="false" insert="true"/>		  
 		<property name="palo" column="PALO" not-null="false">
 			<type name="org.hibernate.type.EnumType">
 				<param name="enumClass">es.insa.proyecto.dominio.cartas.Palo</param> 
@@ -16,6 +17,8 @@
 		</property>
 		<property name="numero" column="NUMERO" not-null="false"/>		
 		<property name="valor" column="VALOR" not-null="false"/>
+		<subclass name="Gocho" discriminator-value="GO"/>
+		<subclass name="Pito" discriminator-value="PI"/>
 	</class>
 	  
 	<class table="TABLA_MAZOS"
