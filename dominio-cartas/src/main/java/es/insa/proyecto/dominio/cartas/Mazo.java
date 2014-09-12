@@ -46,8 +46,8 @@ public class Mazo {
 
 	/**
 	 * Devuelve la carta de arriba del mazo
-	 * 
-	 * @return la carta que hemos sacado del mazo
+	 * Cuando no quedan cartas devuelve null
+	 * @return la carta que hemos sacado del mazo o null
 	 * 
 	 */
 	public Carta sacarCarta() {
@@ -69,7 +69,7 @@ public class Mazo {
 	 */
 	public void añadir(Carta c) {
 
-		// 1º queremos añadir una carta de la listaDeCartas
+		// 1º queremos añadir una Carta
 		listaDeCartasDelMazo.add(c);
 	}
 
@@ -80,14 +80,14 @@ public class Mazo {
 	 */
 	public void añadir(List<Carta> l) {
 
-		// 1º queremos añadir una carta de la listaDeCartas
+		// 1º queremos añadir una lista de Carta
 		listaDeCartasDelMazo.addAll(l);
 
 	}
 	
 	public void añadir(Carta...arrayCartas) {
 
-		// 1º queremos añadir una carta de la listaDeCartas
+		// 1º queremos añadir una array de Carta previa conversión a lista 
 		// Arrays.asList(arrayCartas);
 		listaDeCartasDelMazo.addAll(Arrays.asList(arrayCartas));
 
