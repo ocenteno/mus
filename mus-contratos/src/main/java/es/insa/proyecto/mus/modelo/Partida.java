@@ -43,6 +43,26 @@ public class Partida {
 		return mesa;
 	}
 
+	/**
+	 * Método que suma puntos a la pareja 1
+	 * @param puntos
+	 * @return piedras ganadas
+	 */
+	public int sumarPuntosPareja1(int puntos){
+		int piedrasGanadas = this.pareja1.sumarPuntos(puntos);
+		return piedrasGanadas;
+	}
+
+	/**
+	 * Método que suma puntos a la pareja 2
+	 * @param puntos
+	 * @return piedras ganadas
+	 */
+	public int sumarPuntosPareja2(int puntos){
+		int piedrasGanadas = this.pareja2.sumarPuntos(puntos);
+		return piedrasGanadas;
+	}
+
 	public void setMesa(Jugador[] mesa) {
 		this.mesa = mesa;
 	}
@@ -132,9 +152,11 @@ public class Partida {
 	 * 			false si la silla estaba ocupada.
 	 */
 	public boolean sentarJugador (Jugador jugador, int silla){
-		if(mesa[silla] == null){
-			mesa[silla] = jugador;
-			return true;
+		if (silla < 4) {
+			if (mesa[silla] == null) {
+				mesa[silla] = jugador;
+				return true;
+			}
 		}
 		return false;
 	}

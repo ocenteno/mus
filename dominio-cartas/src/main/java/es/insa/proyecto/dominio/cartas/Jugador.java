@@ -93,23 +93,9 @@ public class Jugador {
 	}
 
 	/**
-	 * Ordenamos la mano de un jugador concreto.
-	 * 
-	 * @return devuelve el jugador
+	 * Ordenamos la mano del jugador.
 	 */
 	public void ordenarMano() {
-	//	System.out.println("Antes");
-	//	System.out.println("Mano del jugador 1: " + this.manoJugador();
-	//	System.out.println("Mano del jugador 2: " + this.jugador.getMano()[1].getNumero());
-	//	System.out.println("Mano del jugador 3: " + this.jugador.getMano()[2].getNumero());
-	//	System.out.println("Mano del jugador 4: " + this.jugador.getMano()[3].getNumero());
-		// Ordenar las cartas de la mano
 		Collections.sort(this.manoJugador);
-	//	System.out.println("Después");
-	//	System.out.println("Mano del jugador 1: " + this.jugador.getMano()[0].getNumero());
-	//	System.out.println("Mano del jugador 2: " + this.jugador.getMano()[1].getNumero());
-	//	System.out.println("Mano del jugador 3: " + this.jugador.getMano()[2].getNumero());
-	//	System.out.println("Mano del jugador 4: " + this.jugador.getMano()[3].getNumero());
-		// Devuelve el jugador con su mano ordenada
 	}
 }
