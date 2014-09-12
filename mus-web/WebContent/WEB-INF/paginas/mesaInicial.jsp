@@ -12,51 +12,83 @@
 </script>
 </head>
 <body>
-
-
-	<h1>BIENVENIDOS AL JUEGO DE MUS!!!!</h1>
-
-	<h3>Para unirte a la partida, indica tu nombre y siéntate en una
-		silla libre</h3>
-	Nombre:
-	<input name="nombre" id="jugador" type="text" />
-
-
-	
-	
-	<c:forEach items="${resultado }" var="m">
-	
-		<  ${m.nombre == null ? "pintosilla" : "${m.nombre}"
-		
-		<form ></form>
-	</c:forEach>
-	
-	
+	<a href="./index.jsp">Página Inicial</a>
+	<h3>Para unirte a la partida, elige una  silla libre y aguarda que se complete la mesa</h3>
+	<a href="./refrescarMesa.html">Ver al resto de jugadores</a>
 	<table>
-	<form id="formulario" action="./mesaInicial.htlm"> 
 		<tr>
 			<td></td>
-			<td><input id="silla0" type="submit" value="SIENTATE"/><img id="imagen" alt="" src="imagenes/silla.jpg" width="50px"
-				height="75px"></td>
+			<td>
+				<c:if test="${mesa[0] == null}">
+					<c:if test="${jugadorActual == null }">
+						<a href="./sentarJugador.html?silla=0&nombre=${param.nombre}">
+						<img src='imagenes/sillaIzq.jpg' width='100px' height='150px'/>
+						</a>
+					</c:if>
+					<c:if test="${jugadorActual != null }">
+						<img src='imagenes/sillaIzq.jpg' width='100px' height='150px'/>
+					</c:if>
+				</c:if>
+				<c:if test="${mesa[0] != null}">
+					<h3>${mesa[0].nombre}</h3>
+				</c:if>
+			</td>
 			<td></td>
 		</tr>
 		<tr>
-			<td><input id="silla3" type="submit" value="SIENTATE"/><img id="imagen" alt="" src="imagenes/silla.jpg" width="50px"
-				height="75px"></td>
+			<td>
+				<c:if test="${mesa[3] == null}">
+					<c:if test="${jugadorActual == null }">
+						<a href="./sentarJugador.html?silla=3&nombre=${param.nombre}">
+						<img src='./imagenes/sillaIzq.jpg' width='100px' height='150px'/>
+						</a>
+					</c:if>	
+					<c:if test="${jugadorActual != null }">
+						<img src='./imagenes/sillaIzq.jpg' width='100px' height='150px'/>
+					</c:if>
+				</c:if>
+				<c:if test="${mesa[3] != null}">
+					<h3>${mesa[3].nombre}</h3>
+				</c:if>
+			</td>
 			
-			<td><img id="imagen" alt="" src="imagenes/mesa.jpg" width="50px" height="75px"></td>
-			<td><input id="silla1" type="submit" value="SIENTATE"/><img id="imagen" alt="" src="imagenes/silla.jpg" width="50px"
-				height="75px"></td>
+			<td><img id="imagen" alt="" src="imagenes/mesa.jpg" width="100px" height="150px"></td>
+			
+			<td>
+				<c:if test="${mesa[1] == null}">
+					<c:if test="${jugadorActual == null }">
+						<a href="./sentarJugador.html?silla=1&nombre=${param.nombre}">
+						<img src='imagenes/silla.jpg' width='100px' height='150px'/>
+						</a>
+					</c:if>	
+					<c:if test="${jugadorActual != null }">
+						<img src='imagenes/silla.jpg' width='100px' height='150px'/>
+					</c:if>	
+				</c:if>
+				<c:if test="${mesa[1] != null}">
+					<h3>${mesa[1].nombre}</h3>
+				</c:if>
+			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td><input id="silla2" type="submit" value="SIENTATE"/><img id="imagen" alt="" src="imagenes/silla.jpg" width="50px"
-				height="75px"></td>
+			<td>
+				<c:if test="${mesa[2] == null}">
+					<c:if test="${jugadorActual == null }">
+						<a href="./sentarJugador.html?silla=2&nombre=${param.nombre}">
+						<img src='imagenes/silla.jpg' width='100px' height='150px'/>
+						</a>
+					</c:if>	
+					<c:if test="${jugadorActual != null }">
+						<img src='imagenes/silla.jpg' width='100px' height='150px'/>
+					</c:if>	
+				</c:if>	
+				<c:if test="${mesa[2] != null}">
+					<h3>${mesa[2].nombre}</h3>
+				</c:if>
+			</td>
 			<td></td>
 		</tr>
-		</form>
 	</table>
-
-
 </body>
 </html>
