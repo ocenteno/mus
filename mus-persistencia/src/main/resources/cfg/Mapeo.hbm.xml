@@ -4,7 +4,7 @@
 <!--  <hibernate-mapping package="es.insa.proyecto.dominio">-->
 <hibernate-mapping package="es.insa.proyecto.dominio.cartas">
 	<class table="TABLA_CARTAS"
-			name="Carta">
+			name="Carta" discriminator-value="CA">
 		<id name="id" column="ID">
 			<generator class="native"></generator>
 		</id>	
