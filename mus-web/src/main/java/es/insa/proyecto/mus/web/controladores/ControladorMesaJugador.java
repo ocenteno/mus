@@ -1,4 +1,4 @@
-package  es.insa.proyecto.mus.web;
+package  es.insa.proyecto.mus.web.controladores;
 
 
 
