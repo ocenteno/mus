@@ -26,4 +26,5 @@
 	
 	<context:component-scan base-package="es.insa.proyecto.mus.web" />
 	<mvc:annotation-driven />
+	<context:annotation-config></context:annotation-config>
 </beans>
