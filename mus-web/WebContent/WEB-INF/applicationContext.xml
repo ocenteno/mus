@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!--  AUTOWARE DE PARTIDA DEL ControladorMesaInicial -->
+	<bean class="es.insa.proyecto.mus.modelo.Partida"></bean>
+	
+	
+	<!--  DAO CARTA HIBERNATE  -->
+	<bean name="daoCarta"
+		class="es.insa.proyecto.mus.persistencia.DaoCartaHibernate">
+  			<property name="sessionFactory" ref="sfSpring" /> 
+  	</bean>
 
-	<bean class="es.insa.proyecto.mus.modelo.Partida">
-	</bean>
+	<!--  DAO JUGADOR HIBERNATE  -->
+	<bean name="daoJugador"
+		class="es.insa.proyecto.mus.persistencia.DaoJugadorHibernate">
+  			<property name="sessionFactory" ref="sfSpring" /> 
+  	</bean>
+  	
+  	<!--  DAO MAZO HIBERNATE  -->
+	<bean name="daoMazo"
+		class="es.insa.proyecto.mus.persistencia.DaoMazoHibernate">
+  			<property name="sessionFactory" ref="sfSpring" /> 
+  	</bean>
+  	
+  	<!--  DAO PARTIDA HIBERNATE  -->
+	<bean name="daoPartida"
+		class="es.insa.proyecto.mus.persistencia.DaoPartidaHibernate">
+  			<property name="sessionFactory" ref="sfSpring" /> 
+  	</bean>
+	
+	<!--  GESTOR CONTEO  -->
+	<bean name="gestorConteo"
+		class="es.insa.proyecto.mus.negocio.GestorConteo">
+  	</bean>
+	
+	<!--  GESTOR APUESTAS  -->
+	<bean name="gestorApuestas"
+		class="es.insa.proyecto.mus.negocio.GestorDeApuestas">
+  	</bean>
+	
+	<!--  GESTOR LANCES  -->
+	<bean name="gestorLances"
+		class="es.insa.proyecto.mus.negocio.GestorLances">
+  	</bean>
+	
+	<!--  GESTOR COMPROBADOR PARES-JUEGO  -->
+	<bean name="comprobadorParesJuego"
+		class="es.insa.proyecto.mus.negocio.ComprobadorParesJuego">
+  	</bean>
+	
+	
+	
+	
+	
+	<!--  SESSION FACTORY DE SPRING   --> 
+ <bean name="sfSpring" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+ <property name="hibernateProperties">
+ <props>
+  <prop key="hibernate.show_sql">true</prop> 
+  <prop key="hibernate.hbm2ddl.auto">update</prop> 
+  <prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop> 
+  <prop key="hibernate.current_session_context_class">thread</prop> 
+  </props>
+  </property>
+ <!--  Las cosas especificas de una BD son otro bean   --> 
+  <property name="dataSource" ref="ds" /> 
+ <!--  Los mapeos que los busque (si son varios utilizamos array)  --> 
+ <property name="mappingResources">
+ <array>
+  <value>cfg/Mapeo.hbm.xml</value> 
+  </array>
+  </property>
+  </bean>
+  	
+  	
+  <!-- UN DATASOURCE ES UNA CONEXIÓN A BD -->
+	<bean name="ds" 
+			class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="url" value="jdbc:derby:C:\BaseDeDatos"/>
+		<property name="driverClassName" 
+					value="org.apache.derby.jdbc.EmbeddedDriver"/>
+		<property name="username" value=""/>
+		<property name="password" value=""/>
+	</bean>	
+  	
 </beans>
