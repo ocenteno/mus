@@ -19,12 +19,8 @@
 	<bean name="adaptador"
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter">
 	</bean>
-	<!-- CONTROLADORES -->
-	<bean name="controladorMesaJugador" class="es.insa.proyecto.mus.web.controladores.ControladorMesaJugador">
-	</bean>
-	<bean name="controladorMesaInicial" class="es.insa.proyecto.mus.web.controladores.ControladorMesaInicial">
-	</bean>
 	
 	<context:component-scan base-package="es.insa.proyecto.mus.web.controladores" />
 	<mvc:annotation-driven />
+	<context:annotation-config></context:annotation-config>
 </beans>
