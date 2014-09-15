@@ -5,7 +5,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -91,7 +90,10 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 	@Override
 	@SuppressWarnings("unchecked")
 	public G buscar(K id) {
-		return (G) sf.getCurrentSession().get(claseG, id);
+		sf.getCurrentSession().beginTransaction();
+		Object resultado = sf.getCurrentSession().get(claseG, id);
+		sf.getCurrentSession().getTransaction().commit();
+		return (G) resultado;
 	}
 
 	@Override

@@ -52,3 +52,4 @@ hs_err_pid*
 # LOGS
 *.log
 
+/~$Historias.xlsx
