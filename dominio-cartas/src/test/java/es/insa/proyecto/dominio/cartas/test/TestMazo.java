@@ -35,7 +35,7 @@ public class TestMazo {
 		Mazo mazo = new Mazo("Nombre Mazo");
 		// 3º aserción
 		Assert.assertNotNull("El nombre no puede estar vacio", mazo.getNombre());
-		Assert.assertEquals("Ej mazo debe tener una lista de cartas vacía", 0, mazo.getListaDeCartasDelMazo().length);
+		Assert.assertEquals("Ej mazo debe tener una lista de cartas vacía", 0, mazo.getCantidadDeCartas());
 
 	}
 
@@ -52,7 +52,7 @@ public class TestMazo {
 		c.setPalo(Palo.OROS);
 		c.setValor(1);
 		miMazo.añadir(c);
-		assertEquals("Debe haber una carta en el mazo",1, miMazo.getListaDeCartasDelMazo().length);
+		assertEquals("Debe haber una carta en el mazo",1, miMazo.getCantidadDeCartas());
 
 	}
 
@@ -83,7 +83,7 @@ public class TestMazo {
 		
 		miMazo.añadir(lista);
 		
-		assertEquals("Debe haber 7 cartas en el mazo",7, miMazo.getListaDeCartasDelMazo().length);
+		assertEquals("Debe haber 7 cartas en el mazo",7, miMazo.getCantidadDeCartas());
 
 	}
 	
@@ -108,7 +108,7 @@ public class TestMazo {
 			
 		miMazo.añadir(array);
 		
-		assertEquals("Debe haber 5 cartas en el mazo",5, miMazo.getListaDeCartasDelMazo().length);
+		assertEquals("Debe haber 5 cartas en el mazo",5, miMazo.getCantidadDeCartas());
 
 	}
 	/**
@@ -124,7 +124,7 @@ public class TestMazo {
 		c.setValor(1);
 		miMazo.añadir(c);
 		miMazo.sacarCarta();
-		assertEquals("No debe haber una carta en el mazo",0, miMazo.getListaDeCartasDelMazo().length);
+		assertEquals("No debe haber una carta en el mazo",0, miMazo.getCantidadDeCartas());
 		Carta d = miMazo.sacarCarta();
 		assertNull("Debería devolver NULL ya que no hay cartas en el mazo", d);
 
@@ -182,7 +182,7 @@ public class TestMazo {
 		
 		miMazo.añadir(lista);
 				
-		assertEquals("La lista de cartas obtenida debe tener 4 cartas", 4, miMazo.getListaDeCartasDelMazo().length);
+		assertEquals("La lista de cartas obtenida debe tener 4 cartas", 4, miMazo.getCantidadDeCartas());
 
 	}
 }

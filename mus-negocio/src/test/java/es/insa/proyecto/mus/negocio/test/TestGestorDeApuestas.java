@@ -18,7 +18,9 @@ public class TestGestorDeApuestas {
 	public static void setUpBeforeClass() throws Exception {
 	}
 
-	
+	/**
+	 * Se comprueba que si se envida y se quiere el valor de la apuesta de 2
+	 */
 	@Test
 	public void testEnvidoQuiero() {
 		
@@ -29,6 +31,9 @@ public class TestGestorDeApuestas {
 		assertEquals("La apuesta debe ser 2", 2, bote);
 	}
 
+	/**
+	 * Se comprueba que si se envida y no se quiere el valor de la apuesta es 0
+	 */
 	@Test
 	public void testEnvidoNoQuiero() {
 		
@@ -39,7 +44,9 @@ public class TestGestorDeApuestas {
 		assertEquals("La apuesta debe ser 0", 0, bote);
 	}
 
-	
+	/**
+	 * Se comprueba que si se envida y se apuestan 5 y se vuelve a envidar y se quiere el valor de la apuesta es 9 (2+5+2)
+	 */	
 	@Test
 	public void testEnvidoVariasQuiero() {
 		
@@ -51,7 +58,10 @@ public class TestGestorDeApuestas {
 		
 		assertEquals("La apuesta debe ser 9", 9, bote);
 	}
-	
+
+	/**
+	 * Se comprueba que si se envida y se apuestan 5 y se vuelve a envidar y no se quiere el valor de la apuesta es 7 (2+5)
+	 */	
 	@Test
 	public void testEnvidoVariasNoQuiero() {
 		
@@ -64,6 +74,9 @@ public class TestGestorDeApuestas {
 		assertEquals("La apuesta debe ser 7", 7, bote);
 	}
 	
+	/**
+	 * Se comprueba que si se envida y se echa un ordago y se quiere el valor de la apuesta es 40
+	 */	
 	@Test
 	public void testOrdagoQuiero() {
 		gda.envido(Lances.JUEGO);
@@ -73,15 +86,16 @@ public class TestGestorDeApuestas {
 		
 		assertEquals("La apuesta debe ser 40", 40, bote);
 	}
-	
+
+	/**
+	 * Se comprueba que si se echa un ordago y no se quiere el valor de la apuesta es 0
+	 */	
 	@Test
 	public void testOrdagoNoQuiero() {
-//		gda.envido(Lances.PUNTO);
 		gda.ordago(Lances.PUNTO);
 		gda.noQuiero(Lances.PUNTO);
 		int bote = gda.getApuestas(Lances.PUNTO);
 		
-//		assertEquals("La apuesta debe ser 2", 2, bote);
 		assertEquals("La apuesta debe ser 0", 0, bote);
 	}
 	
