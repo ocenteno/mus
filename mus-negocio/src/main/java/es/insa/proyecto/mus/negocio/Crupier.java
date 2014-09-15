@@ -15,13 +15,34 @@ import es.insa.proyecto.mus.contratos.ICrupier;
 public class Crupier implements ICrupier{
 
 	@Override
-	public void ejecutarDescarte(Jugador j, Carta... cartas) {
+	public void barajar() {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void ejecutarReparto(Jugador j, int numCarta) {
+	public void inicializarMazo() {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void repartirCartas(int numCartas, Jugador j) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void descartarCartas(Jugador j, Carta... cartasADescartar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void recogerDescartes() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
