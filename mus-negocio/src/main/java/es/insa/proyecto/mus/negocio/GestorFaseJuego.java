@@ -73,9 +73,9 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 			if (descarteMus.size() < 4) {
 				descarteMus.put(j, cartas);
 				if (descarteMus.size() == 4) {
-					Set<Entry<Jugador, Carta[]>> entries = descarteMus.entrySet();
-					for (Entry<Jugador, Carta[]> jugadorCartas : entries) {
-						crupier.ejecutarDescarte(jugadorCartas.getKey(), jugadorCartas.getValue());
+					for (Jugador jugador : descarteMus.keySet()) {
+						Carta[]descartes = descarteMus.get(jugador);
+						crupier.ejecutarDescarte(jugador, descartes);
 					}
 				}
 				return true;
@@ -88,11 +88,9 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 
 	@Override
 	public boolean reparte(Jugador j, int numCartas) {
-		Set<Entry<Jugador, Carta[]>> entries = descarteMus.entrySet();
-		for (Entry<Jugador, Carta[]> jugadorCartas : entries) {
-			Carta[] cartasJugador = new Carta[4];
-			cartasJugador = jugadorCartas.getValue();
-			crupier.ejecutarReparto(jugadorCartas.getKey(), cartasJugador.length);
+		for (Jugador jugador : descarteMus.keySet()) {
+			Carta[] numDescartes = descarteMus.get(jugador);
+			crupier.ejecutarReparto(jugador, numDescartes.length);
 		}
 		return false;
 	}
@@ -107,14 +105,13 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 	@Override
 	public int turnoJuego() {
 	
-		if (siguiente == mano && mano == 3) {
-			siguiente=0;
-			return mano;
+		mano = siguiente;
+		if (mano == 3){
+		siguiente = 0;
 		}else {
-			mano = siguiente;
-			siguiente = +1;
-			return mano;
+			siguiente += 1;
 		}
+		return mano;
 	}
 
 	@Override
