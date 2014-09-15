@@ -75,7 +75,7 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 				if (descarteMus.size() == 4) {
 					for (Jugador jugador : descarteMus.keySet()) {
 						Carta[]descartes = descarteMus.get(jugador);
-						crupier.ejecutarDescarte(jugador, descartes);
+						crupier.descartarCartas(jugador, descartes);
 					}
 				}
 				return true;
@@ -90,7 +90,7 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 	public boolean reparte(Jugador j, int numCartas) {
 		for (Jugador jugador : descarteMus.keySet()) {
 			Carta[] numDescartes = descarteMus.get(jugador);
-			crupier.ejecutarReparto(jugador, numDescartes.length);
+			crupier.repartirCartas(numDescartes.length, jugador);
 		}
 		return false;
 	}
