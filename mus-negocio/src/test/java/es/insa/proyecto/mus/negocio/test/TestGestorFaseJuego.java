@@ -16,8 +16,33 @@ import es.insa.proyecto.mus.negocio.GestorFaseJuego;
 
 public class TestGestorFaseJuego {
 	
+	private static Jugador j1;
+	private static Jugador j2;
+	private static Jugador j3;
+	private static Jugador j4;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		j1 = new Jugador("Jugador1");
+		j1.añadirCarta(new Carta(Palo.BASTOS, 10, 10));
+		j1.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
+		j1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
+		j1.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		j2 = new Jugador("Jugador2");
+		j2.añadirCarta(new Carta(Palo.ESPADAS, 10, 10));
+		j2.añadirCarta(new Carta(Palo.ESPADAS, 11, 10));
+		j2.añadirCarta(new Carta(Palo.ESPADAS, 12, 10));
+		j2.añadirCarta(new Carta(Palo.ESPADAS, 7, 7));
+		j3 = new Jugador("Jugador3");
+		j3.añadirCarta(new Carta(Palo.OROS, 10, 10));
+		j3.añadirCarta(new Carta(Palo.OROS, 11, 10));
+		j3.añadirCarta(new Carta(Palo.OROS, 12, 10));
+		j3.añadirCarta(new Carta(Palo.OROS, 7, 7));
+		j4 = new Jugador("Jugador4");
+		j4.añadirCarta(new Carta(Palo.COPAS, 10, 10));
+		j4.añadirCarta(new Carta(Palo.COPAS, 11, 10));
+		j4.añadirCarta(new Carta(Palo.COPAS, 12, 10));
+		j4.añadirCarta(new Carta(Palo.COPAS, 7, 7));
 	}
 
 	@Test
@@ -25,23 +50,31 @@ public class TestGestorFaseJuego {
 		Jugador j1 = new Jugador("Jugador1");
 		GestorFaseJuego miGestor = new GestorFaseJuego();
 		boolean resultado = miGestor.pedirMus(j1);
-		Assert.assertTrue("Permite mus", resultado);
 		Jugador j2 = new Jugador("Jugador2");
 		resultado = miGestor.pedirMus(j2);
-		Assert.assertTrue("Permite mus", resultado);
 		Jugador j3 = new Jugador("Jugador3");
 		resultado = miGestor.pedirMus(j3);
-		Assert.assertTrue("Permite mus", resultado);
 		Jugador j4 = new Jugador("Jugador4");
 		resultado = miGestor.pedirMus(j4);
-		Assert.assertTrue("Permite mus", resultado);
 		Jugador j5 = new Jugador("Jugador5");
 		resultado = miGestor.pedirMus(j5);
 		Assert.assertFalse("No permite mus", resultado);
 	}
 
 	@Test
-	public void testCortaMus() {
+	public void testPedirMusSiCortado() {
+		Jugador j1 = new Jugador("Jugador1");
+		GestorFaseJuego miGestor = new GestorFaseJuego();
+		miGestor.pedirMus(j1);
+		Jugador j2 = new Jugador("Jugador2");
+		miGestor.cortarMus(j2);
+		Jugador j3 = new Jugador("Jugador3");
+		boolean resultado = miGestor.pedirMus(j3);
+		Assert.assertFalse("Permite mus", resultado);
+	}
+	
+	@Test
+	public void testPedirMusDespuesDeCortar() {
 		Jugador j1 = new Jugador("Jugador1");
 		Jugador j2 = new Jugador("Jugador2");
 		Jugador j3 = new Jugador("Jugador3");
@@ -51,6 +84,14 @@ public class TestGestorFaseJuego {
 		Assert.assertTrue("Permite cortar mus", resultado);
 		resultado = miGestor.cortarMus(j3);
 		Assert.assertFalse("No permite cortar mus", resultado);	
+	}
+	
+	@Test
+	public void testCortarMus() {
+		Jugador j1 = new Jugador("Jugador1");
+		GestorFaseJuego miGestor = new GestorFaseJuego();
+		boolean resultado = miGestor.cortarMus(j1);
+		Assert.assertTrue("Permite cortar mus", resultado);
 	}
 	
 	@Test
@@ -70,7 +111,7 @@ public class TestGestorFaseJuego {
 	}
 	
 	@Test
-	public void testFasesJuego() {
+	public void testFaseDescarte() {
 		//PRUEBA PARA DESCARTE
 		Jugador j1 = new Jugador("Jugador1");
 		GestorFaseJuego miGestor = new GestorFaseJuego();
@@ -83,7 +124,10 @@ public class TestGestorFaseJuego {
 		miGestor.pedirMus(j4);
 		FasesJuego resultado = miGestor.faseJuego();
 		Assert.assertEquals("Fase :", FasesJuego.DESCARTE, resultado);
-		
+	}
+	
+	@Test
+	public void testFaseMus() {
 		//PRUEBA PARA MUS
 		Jugador j5 = new Jugador("Jugador5");
 		GestorFaseJuego miGestor2 = new GestorFaseJuego();
@@ -92,7 +136,10 @@ public class TestGestorFaseJuego {
 		miGestor2.pedirMus(j6);
 		FasesJuego resultado2 = miGestor2.faseJuego();
 		Assert.assertEquals("Fase :", FasesJuego.MUS, resultado2);
+	}
 		
+	@Test
+	public void testFaseGrande() {
 		//PRUEBA PARA GRANDE
 		Jugador j7 = new Jugador("Jugador7");
 		GestorFaseJuego miGestor3 = new GestorFaseJuego();
@@ -106,7 +153,58 @@ public class TestGestorFaseJuego {
 	}
 	
 	@Test
-	public void testDescarte() {
-		
+	public void testpedirDescarteConCartas() {
+		//La mano incluye las cartas de las que se descarta
+		GestorFaseJuego miGestor = new GestorFaseJuego();
+		miGestor.pedirMus(j1);
+		miGestor.pedirMus(j2);
+		miGestor.pedirMus(j3);
+		miGestor.pedirMus(j4);
+		Carta carta1 = new Carta(Palo.BASTOS, 10, 10);
+		Carta carta2 = new Carta(Palo.BASTOS, 7, 7);
+		boolean resultado = miGestor.pedirDescarte(j1, carta1, carta2);
+		Assert.assertTrue("Si Descarte", resultado);
+	}
+	
+	@Test
+	public void testpedirDescarteSinCartas() {
+		//La mano NO incluye las cartas de las que se descarta
+		GestorFaseJuego miGestor = new GestorFaseJuego();
+		miGestor.pedirMus(j1);
+		miGestor.pedirMus(j2);
+		miGestor.pedirMus(j3);
+		miGestor.pedirMus(j4);
+		Carta carta1 = new Carta(Palo.OROS, 10, 10);
+		Carta carta2 = new Carta(Palo.BASTOS, 7, 7);
+		boolean resultado = miGestor.pedirDescarte(j1, carta1, carta2);
+		Assert.assertFalse("No Descarte", resultado);
+	}
+	
+	@Test
+	public void testpedirDescarteYNoTodosMus() {
+		//No se puede descartar si los 4 jugadores no se han dado mus
+		GestorFaseJuego miGestor = new GestorFaseJuego();
+		miGestor.pedirMus(j1);
+		miGestor.pedirMus(j2);
+		miGestor.pedirMus(j3);
+		Carta carta1 = new Carta(Palo.BASTOS, 10, 10);
+		Carta carta2 = new Carta(Palo.BASTOS, 7, 7);
+		boolean resultado = miGestor.pedirDescarte(j1, carta1, carta2);
+		Assert.assertFalse("No Descarte", resultado);
+	}
+	
+	@Test
+	public void testEjecutarDescarteSiNoTodos() {
+		//Solicitar ejecución descartes sin que todos se hayan descartado
+		GestorFaseJuego miGestor = new GestorFaseJuego();
+		miGestor.pedirMus(j1);
+		miGestor.pedirMus(j2);
+		miGestor.pedirMus(j3);
+		miGestor.pedirMus(j4);
+		Carta carta1 = new Carta(Palo.BASTOS, 10, 10);
+		Carta carta2 = new Carta(Palo.BASTOS, 7, 7);
+		miGestor.pedirDescarte(j1, carta1, carta2);
+		boolean resultado = miGestor.ejecutarDescartar();
+		Assert.assertFalse("No Descarte", resultado);
 	}
 }

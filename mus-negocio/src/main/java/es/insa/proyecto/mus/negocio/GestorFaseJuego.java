@@ -2,6 +2,7 @@ package es.insa.proyecto.mus.negocio;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 		partida = new Partida();
 		pideMus = new HashSet<Jugador>();
 		cortaMus = 0;
+		descarteMus = new HashMap<Jugador, Carta[]>();
 		recuperarMano();
 	}
 
@@ -67,21 +69,41 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 		return false;
 	}
 
+	/**
+	 * Pide descartar un conjunto de cartas de la mano de un jugador
+	 * @param j Jugador del que descartar
+	 * @param cartas Cartas a descartar de la mano de ese jugador
+	 * @return true si se ha podido descartar, false en caso contrario
+	 */
 	@Override
-	public boolean descarte(Jugador j, Carta... cartas) {
+	public boolean pedirDescarte(Jugador j, Carta... cartas) {
+		// Sólo se puede descartar si han pedido mus los 4
 		if (pideMus.size() == 4) {
-			if (descarteMus.size() < 4) {
-				descarteMus.put(j, cartas);
-				if (descarteMus.size() == 4) {
-					for (Jugador jugador : descarteMus.keySet()) {
-						Carta[]descartes = descarteMus.get(jugador);
-						crupier.ejecutarDescarte(jugador, descartes);
-					}
+			// Sólo permitimos descartar las cartas si las tiene en la mano
+			if(j.tieneEnMano(cartas)){
+				// Añadimos al descarte sólo si no se ha intentado descartar antes
+				if(descarteMus.containsKey(j)){
+					return false;
+				}else{
+					descarteMus.put(j, cartas);
+					return true;
 				}
-				return true;
-			}else {
-				return false;
 			}
+			return false;
+		}
+		// Si no han pedido mus todos, no se permite
+		return false;
+	}
+	
+	@Override
+	public boolean ejecutarDescartar() {
+		// Sólo se puede ejecutar el descarte si los 4 han pedido descartes
+		if (descarteMus.size() == 4) {
+			for (Jugador jugador : descarteMus.keySet()) {
+				Carta[]descartes = descarteMus.get(jugador);
+				crupier.ejecutarDescarte(jugador, descartes);
+			}
+			return true;
 		}
 		return false;
 	}

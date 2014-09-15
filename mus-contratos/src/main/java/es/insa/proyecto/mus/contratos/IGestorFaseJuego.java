@@ -43,14 +43,20 @@ public interface IGestorFaseJuego {
 	
 	/**
 	 * Controla los descartes (nº de cartas y cuales) del jugador
-	 * y una vez que todos han solicitado su descarte utiliza la
-	 * interface de descartes para que lo haga efectivo.
 	 * 
 	 * @param j
 	 * @param cartas
 	 * @return boolean
 	 */
-	public boolean descarte(Jugador j, Carta... cartas);
+	public boolean pedirDescarte(Jugador j, Carta... cartas);
+
+	/**
+	 * Una vez que todos han solicitado su descarte utiliza la
+	 * interface de descartes para que lo haga efectivo.
+
+	 * @return
+	 */
+	public boolean ejecutarDescartar();
 	
 	/**
 	 * Se encarga de controlar el reparto de cargas teniendo en cuenta los
