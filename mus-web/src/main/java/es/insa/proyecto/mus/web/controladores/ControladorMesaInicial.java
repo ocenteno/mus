@@ -15,7 +15,11 @@ import es.insa.proyecto.mus.modelo.Partida;
 @Controller
 public class ControladorMesaInicial {
 
-	Partida partida = new Partida();
+	//Partida partida = new Partida();
+	@Autowired
+	private Partida partida;
+	
+
 	
 	
 	@RequestMapping("/buscarMesa.html")
