@@ -27,6 +27,9 @@ public class TestGestorConteo {
 	public static void setUpBeforeClass() throws Exception {
 	}
 	
+	/**
+	 * Se comprueba que que se cuenta una piedra por Pares
+	 */
 	@Test
 	public void testContarPares() {
 		Jugador jugador1 = new Jugador("Jugador1");
@@ -41,24 +44,42 @@ public class TestGestorConteo {
 		int piedras = miGestor.contarPiedrasPorPares(jugador1);
 		// 3º aserción
 		assertEquals(" Son pares ", 1, piedras);
-		
+	}
+	
+	/**
+	 * Se comprueba que que se cuenta dos piedras por Medias
+	 */
+	@Test
+	public void testContarMedias() {	
 		Jugador jugador2 = new Jugador("Jugador2");
 		jugador2.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
 		jugador2.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
 		jugador2.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
 		jugador2.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
 		// 2º ejecución
-		piedras = miGestor.contarPiedrasPorPares(jugador2);
+		GestorConteo miGestor = new GestorConteo();
+		ComprobadorParesJuego comprobador = new ComprobadorParesJuego();
+		miGestor.setComprobadorParesJuego(comprobador);
+		int piedras = miGestor.contarPiedrasPorPares(jugador2);
 		// 3º aserción
 		assertEquals(" Son medias ", 2, piedras);
-		
+	}
+	
+	/**
+	 * Se comprueba que que se cuenta tres piedras por Duples
+	 */
+	@Test
+	public void testContarDuples() {	
 		Jugador jugador3 = new Jugador("Jugador3");
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 8, 8));
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 8, 8));
 		// 2º ejecución
-		piedras = miGestor.contarPiedrasPorPares(jugador3);
+		GestorConteo miGestor = new GestorConteo();
+		ComprobadorParesJuego comprobador = new ComprobadorParesJuego();
+		miGestor.setComprobadorParesJuego(comprobador);
+		int piedras = miGestor.contarPiedrasPorPares(jugador3);
 		// 3º aserción
 		assertEquals(" Son duples ", 3, piedras);
 		
@@ -72,9 +93,12 @@ public class TestGestorConteo {
 		// 3º aserción
 		assertEquals(" Son duples ", 3, piedras);
 	}
-	
+
+	/**
+	 * Se comprueba que que se cuentan tres piedras por Juego de 31
+	 */
 	@Test
-	public void testContarJuego() {
+	public void testContarJuego31() {
 		Jugador jugador1 = new Jugador("Jugador1");
 		jugador1.añadirCarta(new Carta(Palo.BASTOS, 1, 1));
 		jugador1.añadirCarta(new Carta(Palo.OROS, 12, 10));
@@ -86,24 +110,39 @@ public class TestGestorConteo {
 		int piedras = miGestor.contarPiedrasPorJuego(jugador1);
 		// 3º aserción
 		assertEquals(" Treintayuna ", 3, piedras);
-		
+	}
+	
+	/**
+	 * Se comprueba que que se cuentan dos piedras por Juego sin ser 31
+	 */
+	@Test
+	public void testContarJuego() {	
 		Jugador jugador2 = new Jugador("Jugador2");
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 6, 6));
 		jugador2.añadirCarta(new Carta(Palo.OROS, 12, 10));
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
 		// 2º ejecución
-		piedras = miGestor.contarPiedrasPorJuego(jugador2);
+		GestorConteo miGestor = new GestorConteo();
+		miGestor.setComprobadorParesJuego(new ComprobadorParesJuego());
+		int piedras = miGestor.contarPiedrasPorJuego(jugador2);
 		// 3º aserción
 		assertEquals(" Juego ", 2, piedras);
-		
+	}
+	/**
+	 * Se comprueba que no se cuentan piedras sin tener Juego
+	 */
+	@Test
+	public void testContarJuegoNo() {	
 		Jugador jugador3 = new Jugador("Jugador3");
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 6, 6));
 		jugador3.añadirCarta(new Carta(Palo.OROS, 4, 4));
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
 		// 2º ejecución
-		piedras = miGestor.contarPiedrasPorJuego(jugador3);
+		GestorConteo miGestor = new GestorConteo();
+		miGestor.setComprobadorParesJuego(new ComprobadorParesJuego());
+		int piedras = miGestor.contarPiedrasPorJuego(jugador3);
 		// 3º aserción
 		assertEquals(" Sin Juego ", 0, piedras);
 	}

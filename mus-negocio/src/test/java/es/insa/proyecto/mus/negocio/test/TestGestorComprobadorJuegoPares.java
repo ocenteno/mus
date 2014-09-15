@@ -20,7 +20,7 @@ import es.insa.proyecto.dominio.cartas.Pares;
 import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
 
 /**
- * @author insa01
+ * @author insa01 
  * 
  */
 public class TestGestorComprobadorJuegoPares {
@@ -33,9 +33,8 @@ public class TestGestorComprobadorJuegoPares {
 	}
 
 	/**
-	 * Test method for
-	 * {@link es.insa.proyecto.mus.negocio.ComprobadorParesJuego#tieneJuego(es.insa.proyecto.dominio.cartas.Jugador)}
-	 * .
+	 * Se comprueba que tiene juego de 31 puntos y que tiene juego pero no de 31
+	 * 
 	 */
 	@Test
 	public void testTieneJuego() {
@@ -48,19 +47,8 @@ public class TestGestorComprobadorJuegoPares {
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Juego juego = miGestor.tieneJuego(jugador1);
 		// 3º aserción
-		assertEquals(" Es Treintayuna ", Juego.TREINTAYUNA, juego);
+		assertEquals(" Tiene Juego de 31 puntos ", Juego.TREINTAYUNA, juego);
 
-		Jugador jugador2 = new Jugador("Jugador2");
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		// 2º ejecución
-		// 3º aserción
-		juego = miGestor.tieneJuego(jugador2);
-		// 3º aserción
-		assertEquals(" Es Punto ",Juego.PUNTO, juego);
-		
 		Jugador jugador3 = new Jugador("Jugador3");
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
@@ -73,7 +61,31 @@ public class TestGestorComprobadorJuegoPares {
 		assertEquals(" Juego ",Juego.JUEGO, juego);
 		
 	}
+	
+	/**
+	 * Se comprueba que no tiene juego 
+	 * 
+	 */
+	@Test
+	public void testNoTieneJuego() {
 
+		Jugador jugador2 = new Jugador("Jugador2");
+		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador2.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
+		jugador2.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
+		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		// 2º ejecución
+		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
+		Juego juego = miGestor.tieneJuego(jugador2);
+		// 3º aserción
+		assertEquals(" No tiene Juego, es Punto ",Juego.PUNTO, juego);
+		
+	}
+	
+	
+	/**
+	 * Se comprueba que tiene Duples de Gochos-Pitos
+	 */
 	@Test
 	public void testDuplesGochoyPito() {
 
@@ -92,6 +104,10 @@ public class TestGestorComprobadorJuegoPares {
 
 		
 	}
+	
+	/**
+	 * Comprueba que tiene Duples dos parejas de distinto numero 
+	 */
 	@Test
 	public void test2Pares() {
 
@@ -111,6 +127,9 @@ public class TestGestorComprobadorJuegoPares {
 		
 	}
 	
+	/**
+	 * Se comprueba que tiene Duples de dos parejas iguales
+	 */
 	@Test
 	public void testDuples() {
 
@@ -129,6 +148,10 @@ public class TestGestorComprobadorJuegoPares {
 
 		
 	}
+	
+	/**
+	 * Se comprueba que tiene Duples de Gochos
+	 */
 	@Test
 	public void testDuplesGocho() {
 
@@ -148,7 +171,9 @@ public class TestGestorComprobadorJuegoPares {
 		
 	}
 
-
+	/**
+	 * Se comprueba que tiene Pares de carta normal
+	 */
 	@Test
 	public void test1Pareja() {
 
@@ -167,6 +192,9 @@ public class TestGestorComprobadorJuegoPares {
 
 	}
 
+	/**
+	 * Se comprueba que tiene Pares de Pitos
+	 */
 	@Test
 	public void test1ParejaPito() {
 
@@ -184,6 +212,10 @@ public class TestGestorComprobadorJuegoPares {
 		Assert.assertEquals("Esperamos reconozca un PAR ", Pares.PAR, respuesta);
 
 	}
+	
+	/**
+	 * Se comprueba que tiene Pares de Gochos
+	 */
 	@Test
 	public void test1ParejaGocho() {
 
@@ -201,6 +233,10 @@ public class TestGestorComprobadorJuegoPares {
 		Assert.assertEquals("Esperamos reconozca un PAR ", Pares.PAR, respuesta);
 
 	}
+	
+	/**
+	 * Se comprueba que no tiene Pares 
+	 */
 	@Test
 	public void testSinParejas() {
 
@@ -219,6 +255,9 @@ public class TestGestorComprobadorJuegoPares {
 		assertEquals("Esperamos sin PAR", Pares.NO, respuesta);
 	}
 
+	/**
+	 * Se comprueba que tiene Medias de Cartas 
+	 */
 	@Test
 	public void testMedias() {
 
@@ -237,6 +276,9 @@ public class TestGestorComprobadorJuegoPares {
 
 	}
 
+	/**
+	 * Se comprueba que tiene Medias de Gochos 
+	 */
 	@Test
 	public void testMediasGochos() {
 
@@ -255,7 +297,9 @@ public class TestGestorComprobadorJuegoPares {
 
 	}
 
-	
+	/**
+	 * Se comprueba que tiene Medias de Pitos 
+	 */
 	@Test
 	public void testMediasPitos() {
 
@@ -274,24 +318,7 @@ public class TestGestorComprobadorJuegoPares {
 
 	}
 	
-	
-	@Test
-	public void testMediasG() {
 
-		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
-		jugador.añadirCarta(new Gocho(Palo.OROS, 3, 10));
-		jugador.añadirCarta(new Carta(Palo.ESPADAS, 4, 4));
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
-		// 2º ejecución
-		Carta[] mano = jugador.getMano();
-
-		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
-		// 3º aserción
-		Assert.assertEquals("Debe devolver MEDIAS", Pares.MEDIAS, respuesta);
-
-	}
 
 
 }
