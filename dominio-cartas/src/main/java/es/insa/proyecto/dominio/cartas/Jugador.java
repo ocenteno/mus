@@ -98,4 +98,14 @@ public class Jugador {
 	public void ordenarMano() {
 		Collections.sort(this.manoJugador);
 	}
+	
+	/**
+	 * Comprueba si el jugador tiene un conjunto de cartas en la mano
+	 * @param cartas Conjunto de cartas a comprobar
+	 * @return true si contiene todas las cartas, false en caso contrario
+	 */
+	public boolean tieneEnMano(Carta... cartas){
+		return this.manoJugador.containsAll(Arrays.asList(cartas));
+	}
+	
 }

@@ -85,15 +85,24 @@ public class Carta implements Comparable<Carta> {
 	}
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Carta){
+		if(!(obj instanceof Carta))
+			return false;
+		else{
 			Carta otra = (Carta) obj;
-			return otra != null && this.numero == otra.numero;
-		}else if (obj instanceof Pito){
-			Pito otra = (Pito) obj;
-			return otra != null && this.numero == 1;
-		}else if (obj instanceof Gocho){
-			Gocho otra = (Gocho) obj;
-			return otra != null && this.numero == 12;
+			if(otra.palo != this.palo)
+				return false;
+			else{
+				if(otra.numero == this.numero)
+					return true;
+				else{
+					if (otra instanceof Pito && this.numero==1) {
+						return true;
+					}
+					if (otra instanceof Gocho && this.numero==12) {
+						return true;
+					}
+				}					
+			}
 		}
 		return false;
 	}
