@@ -22,7 +22,7 @@ public class GestorConteo implements IGestorConteo{
 	@Override
 	public int contarPiedrasPorPares(Jugador j) {
 		
-		Pares pares = comprobadorParesJuego.quePares(j);
+		Pares pares = comprobadorParesJuego.comprobarPares(j);
 		switch (pares) {
 		case PAR:
 			return 1;
@@ -45,7 +45,7 @@ public class GestorConteo implements IGestorConteo{
 	public int contarPiedrasPorJuego(Jugador j) {
 		
 		
-		Juego juego = comprobadorParesJuego.tieneJuego(j);
+		Juego juego = comprobadorParesJuego.comprobarJuego(j);
 		switch (juego) {
 		case TREINTAYUNA:
 			return 3;

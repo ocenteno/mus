@@ -45,7 +45,7 @@ public class TestGestorComprobadorJuegoPares {
 		jugador1.añadirCarta(new Carta(Palo.BASTOS, 1, 1));
 		// 2º ejecución
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Juego juego = miGestor.tieneJuego(jugador1);
+		Juego juego = miGestor.comprobarJuego(jugador1);
 		// 3º aserción
 		assertEquals(" Tiene Juego de 31 puntos ", Juego.TREINTAYUNA, juego);
 
@@ -56,7 +56,7 @@ public class TestGestorComprobadorJuegoPares {
 		jugador3.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
 		// 2º ejecución
 		// 3º aserción
-		juego = miGestor.tieneJuego(jugador3);
+		juego = miGestor.comprobarJuego(jugador3);
 		// 3º aserción
 		assertEquals(" Juego ",Juego.JUEGO, juego);
 		
@@ -76,7 +76,7 @@ public class TestGestorComprobadorJuegoPares {
 		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
 		// 2º ejecución
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Juego juego = miGestor.tieneJuego(jugador2);
+		Juego juego = miGestor.comprobarJuego(jugador2);
 		// 3º aserción
 		assertEquals(" No tiene Juego, es Punto ",Juego.PUNTO, juego);
 		
@@ -98,7 +98,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Duples", Pares.DUPLES, respuesta);
 
@@ -120,7 +120,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Duples", Pares.DUPLES, respuesta);
 
@@ -142,7 +142,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Duples", Pares.DUPLES, respuesta);
 
@@ -164,7 +164,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Esperamos que lleguen DUPLES ", Pares.DUPLES, respuesta);
 
@@ -186,7 +186,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Esperamos reconozca un PAR ", Pares.PAR, respuesta);
 
@@ -207,7 +207,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Esperamos reconozca un PAR ", Pares.PAR, respuesta);
 
@@ -228,7 +228,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Esperamos reconozca un PAR ", Pares.PAR, respuesta);
 
@@ -249,7 +249,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 
 		assertEquals("Esperamos sin PAR", Pares.NO, respuesta);
@@ -270,7 +270,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Debe devolver MEDIAS", Pares.MEDIAS, respuesta);
 
@@ -291,7 +291,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Debe devolver MEDIAS", Pares.MEDIAS, respuesta);
 
@@ -312,7 +312,7 @@ public class TestGestorComprobadorJuegoPares {
 		Carta[] mano = jugador.getMano();
 
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
-		Pares respuesta = miGestor.quePares(jugador);
+		Pares respuesta = miGestor.comprobarPares(jugador);
 		// 3º aserción
 		Assert.assertEquals("Debe devolver MEDIAS", Pares.MEDIAS, respuesta);
 

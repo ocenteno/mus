@@ -14,8 +14,18 @@ import es.insa.proyecto.dominio.cartas.Pares;
  */
 public interface IComprobadorParesJuego {
 
-	public Juego tieneJuego(Jugador j);
+	/**
+	 * 
+	 * @param j
+	 * @return
+	 */
+	public Juego comprobarJuego(Jugador j);
 	
-	public Pares quePares(Jugador j);
+	/**
+	 * 
+	 * @param j
+	 * @return
+	 */
+	public Pares comprobarPares(Jugador j);
 	
 }	
