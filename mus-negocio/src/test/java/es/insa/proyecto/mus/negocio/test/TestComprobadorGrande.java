@@ -28,52 +28,52 @@ public class TestComprobadorGrande {
 	 * teniendo en cuenta su posición en la mesa (mano, ..., postre)
 	 */
 	@Test
-	public void testGanadorA() {
+	public void testGanadorCartaContraCarta() {
 		Jugador ganadorGrande = grande.ganador(jugador1, jugador2);
 		Assert.assertEquals("Debe ganar el jugador2", jugador2, ganadorGrande);
 	}
 	@Test
-	public void testGanadorB() {
+	public void testGanadorCartaContraPito() {
 		Jugador ganadorGrande = grande.ganador(jugador2, jugador3);
 		Assert.assertEquals("Debe ganar el jugador2", jugador2, ganadorGrande);
 	}
 	@Test
-	public void testGanadorC() {
+	public void testGanadorCartaContraGocho() {
 		Jugador ganadorGrande = grande.ganador(jugador1, jugador4);
 		Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorGrande);
 	}
 	@Test
-	public void testGanadorD() {
+	public void testGanadorCartaContraGochoIguales() {
 		Jugador ganadorGrande = grande.ganador(jugador2, jugador5);
 		Assert.assertEquals("Debe ganar el jugador5", jugador5, ganadorGrande);
 	}
 	@Test
-	public void testGanadorE() {
+	public void testGanadorGochoContraGocho() {
 		Jugador ganadorGrande = grande.ganador(jugador4, jugador5);
 		Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorGrande);
 	}
 	@Test
-	public void testGanadorF() {
+	public void testGanadorPitoContraGocho() {
 		Jugador ganadorGrande = grande.ganador(jugador3, jugador4);
 		Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorGrande);
 	}
 	@Test
-	public void testGanadorG() {
+	public void testGanadorCartaContraGochoDistintos() {
 		Jugador ganadorGrande = grande.ganador(jugador2, jugador6);
 		Assert.assertEquals("Debe ganar el jugador6", jugador6, ganadorGrande);
 	}
 	@Test
-	public void testGanadorH() {
+	public void testGanadorGochoContraGochoIguales() {
 		Jugador ganadorGrande = grande.ganador(jugador4, jugador6);
 		Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorGrande);
 	}
 	@Test
-	public void testGanadorI() {
+	public void testGanadorGochoContraGochoMano() {
 		Jugador ganadorGrande = grande.ganador(jugador6, jugador7);
 		Assert.assertEquals("Debe ganar el jugador6", jugador6, ganadorGrande);
 	}
 	@Test
-	public void testGanadorJ() {
+	public void testGanadorGochoContraGochoOtraMano() {
 		Jugador ganadorGrande = grande.ganador(jugador7, jugador6);
 		Assert.assertEquals("Debe ganar el jugador7", jugador7, ganadorGrande);
 	}

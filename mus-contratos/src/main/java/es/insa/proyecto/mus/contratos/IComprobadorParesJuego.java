@@ -3,6 +3,7 @@
  */
 package es.insa.proyecto.mus.contratos;
 
+import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Juego;
 import es.insa.proyecto.dominio.cartas.Pares;
@@ -27,5 +28,7 @@ public interface IComprobadorParesJuego {
 	 * @return
 	 */
 	public Pares comprobarPares(Jugador j);
+
+	public Carta[] obtenerEmparejadas(Jugador j);
 	
 }	

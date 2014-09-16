@@ -29,52 +29,52 @@ public class TestComprobadorChica {
 		 * teniendo en cuenta su posición en la mesa (mano, ..., postre)
 		 */
 		@Test
-		public void testGanadorA() {
+		public void testGanadorCartaContraCarta() {
 			Jugador ganadorChica = chica.ganador(jugador1, jugador2);
 			Assert.assertEquals("Debe ganar el jugador1", jugador1, ganadorChica);
 		}
 		@Test
-		public void testGanadorB() {
+		public void testGanadorCartaContraGocho() {
 			Jugador ganadorChica = chica.ganador(jugador2, jugador3);
 			Assert.assertEquals("Debe ganar el jugador2", jugador2, ganadorChica);
 		}
 		@Test
-		public void testGanadorC() {
+		public void testGanadorCartaContraPito() {
 			Jugador ganadorChica = chica.ganador(jugador1, jugador4);
 			Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorChica);
 		}
 		@Test
-		public void testGanadorD() {
+		public void testGanadorCartaContraPitoDistintos() {
 			Jugador ganadorChica = chica.ganador(jugador2, jugador5);
 			Assert.assertEquals("Debe ganar el jugador5", jugador5, ganadorChica);
 		}
 		@Test
-		public void testGanadorE() {
+		public void testGanadorPitoContraPitoDistintos() {
 			Jugador ganadorChica = chica.ganador(jugador4, jugador5);
 			Assert.assertEquals("Debe ganar el jugador5", jugador5, ganadorChica);
 		}
 		@Test
-		public void testGanadorF() {
+		public void testGanadorGochoContraPito() {
 			Jugador ganadorChica = chica.ganador(jugador3, jugador4);
 			Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorChica);
 		}
 		@Test
-		public void testGanadorG() {
+		public void testGanadorCartaContraPitoYGocho() {
 			Jugador ganadorChica = chica.ganador(jugador2, jugador6);
 			Assert.assertEquals("Debe ganar el jugador6", jugador6, ganadorChica);
 		}
 		@Test
-		public void testGanadorH() {
+		public void testGanadorPitoContraPitoYGocho() {
 			Jugador ganadorChica = chica.ganador(jugador4, jugador6);
 			Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorChica);
 		}
 		@Test
-		public void testGanadorI() {
+		public void testGanadorPitoYGochoContraPitoYGochoMano() {
 			Jugador ganadorChica = chica.ganador(jugador7, jugador6);
 			Assert.assertEquals("Debe ganar el jugador7", jugador7, ganadorChica);
 		}
 		@Test
-		public void testGanadorJ() {
+		public void testGanadorPitoYGochoContraPitoYGochoOtraMano() {
 			Jugador ganadorChica = chica.ganador(jugador6, jugador7);
 			Assert.assertEquals("Debe ganar el jugador6", jugador6, ganadorChica);
 		}
