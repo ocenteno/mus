@@ -4,5 +4,9 @@ public enum FasesJuego {
 	MUS,
 	DESCARTE,
 	REPARTO,
-	GRANDE
+	GRANDE,
+	CHICA,
+	PARES,
+	JUEGO,
+	PUNTO
 }
