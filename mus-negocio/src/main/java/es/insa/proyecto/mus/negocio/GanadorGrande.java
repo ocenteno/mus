@@ -5,13 +5,13 @@ import java.util.Comparator;
 
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.contratos.IGestorLances;
-import es.insa.proyecto.mus.modelo.Lance;
+import es.insa.proyecto.mus.contratos.IGanadorLance;
 
-public class ComprobadorChica extends Lance  implements Comparator<Jugador>{
+public class GanadorGrande implements IGanadorLance, Comparator<Jugador>{
 	
 	private IGestorLances gestorLances;
 
-	public ComprobadorChica() {
+	public GanadorGrande() {
 		
 	}
 
@@ -38,8 +38,8 @@ public class ComprobadorChica extends Lance  implements Comparator<Jugador>{
 		// 0 indica que son iguales
 		int resultado = 0;
 		
-		for (int i = 0; i < 4 && resultado == 0; i++) {
-			resultado = j1.getMano()[i].compareTo(j2.getMano()[i]);			
+		for (int i = 4; i > 0 && resultado == 0; i--) {
+			resultado = -j1.getMano()[i-1].compareTo(j2.getMano()[i-1]);			
 		}
 		// resultado == -1 indica que j1 tiene las cartas mas altas
 		// resultado ==  1 indica que j2 tiene las cartas mas altas

@@ -10,7 +10,7 @@ import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;
 import es.insa.proyecto.mus.contratos.IGestorLances;
-import es.insa.proyecto.mus.negocio.ComprobadorChica;
+import es.insa.proyecto.mus.negocio.GanadorChica;
 
 public class TestComprobadorChica {
 
@@ -22,7 +22,7 @@ public class TestComprobadorChica {
 		private static Jugador jugador6;
 		private static Jugador jugador7;
 		
-		private static ComprobadorChica chica;
+		private static GanadorChica chica;
 
 		/**
 		 * Test que comprueba si ha ordenado bien los ganadores de los lances a Chica
@@ -119,7 +119,7 @@ public class TestComprobadorChica {
 			jugador7.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
 			jugador7.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
 			
-			chica = new ComprobadorChica();
+			chica = new GanadorChica();
 			chica.setGestorLances(new IGestorLances() {
 				@Override
 				public Jugador[] ordenJugadoresSegunMano(Jugador... jugadores) {

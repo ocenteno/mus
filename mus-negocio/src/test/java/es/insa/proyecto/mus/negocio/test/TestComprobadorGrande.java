@@ -10,7 +10,7 @@ import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;
 import es.insa.proyecto.mus.contratos.IGestorLances;
-import es.insa.proyecto.mus.negocio.ComprobadorGrande;
+import es.insa.proyecto.mus.negocio.GanadorGrande;
 
 public class TestComprobadorGrande {
 
@@ -21,7 +21,7 @@ public class TestComprobadorGrande {
 	private static Jugador jugador5;
 	private static Jugador jugador6;
 	private static Jugador jugador7;
-	private static ComprobadorGrande grande;
+	private static GanadorGrande grande;
 
 	/**
 	 * Test que comprueba si ha ordenado bien los ganadores de los lances a Grande
@@ -118,7 +118,7 @@ public class TestComprobadorGrande {
 		jugador7.añadirCarta(new Carta(Palo.BASTOS, 5, 4));
 		jugador7.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
 		
-		grande = new ComprobadorGrande();
+		grande = new GanadorGrande();
 		grande.setGestorLances(new IGestorLances() {
 			@Override
 			public Jugador[] ordenJugadoresSegunMano(Jugador... jugadores) {
