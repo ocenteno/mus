@@ -1,7 +1,11 @@
 package es.insa.proyecto.mus.negocio;
 
+import java.util.Arrays;
+
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
+import es.insa.proyecto.dominio.cartas.Mazo;
+import es.insa.proyecto.mus.contratos.DaoMazo;
 import es.insa.proyecto.mus.contratos.ICrupier;
 
 
@@ -13,34 +17,57 @@ import es.insa.proyecto.mus.contratos.ICrupier;
  *
  */
 public class Crupier implements ICrupier{
+	
+	
+	private DaoMazo daoMazo;
+	private Mazo mazoDeReparto;
+	private Mazo mazoDeDescartes;
+
+	public void setDaoMazo(DaoMazo daoMazo) {
+		this.daoMazo = daoMazo;
+	}
 
 	@Override
 	public void barajar() {
-		// TODO Auto-generated method stub
-		
+		mazoDeReparto.barajar();	
 	}
 
 	@Override
 	public void inicializarMazo() {
-		// TODO Auto-generated method stub
+		mazoDeReparto = daoMazo.buscar(1);
+		daoMazo.llenarMazo(mazoDeReparto);
+		mazoDeDescartes = new Mazo();
 		
 	}
 
 	@Override
 	public void repartirCartas(int numCartas, Jugador j) {
-		// TODO Auto-generated method stub
-		
+		for (int i=0; i<numCartas ; i++) {
+			Carta carta = mazoDeReparto.sacarCarta();
+			if (carta == null){
+				recogerDescartes();
+				carta = mazoDeReparto.sacarCarta();
+			}
+			j.añadirCarta(carta);
+		}
 	}
 
 	@Override
 	public void descartarCartas(Jugador j, Carta... cartasADescartar) {
-		// TODO Auto-generated method stub
+		for (Carta c : cartasADescartar) {
+			j.quitarCarta(c);
+			mazoDeDescartes.añadir(c);
+		}
+		
 		
 	}
 
 	@Override
 	public void recogerDescartes() {
-		// TODO Auto-generated method stub
+		Mazo temporal = mazoDeReparto;
+		mazoDeReparto = mazoDeDescartes;
+		mazoDeDescartes = temporal;
+		barajar();
 		
 	}
 

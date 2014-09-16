@@ -12,7 +12,8 @@
 				force="false" insert="true"/>		  
 		<property name="palo" column="PALO" not-null="false">
 			<type name="org.hibernate.type.EnumType">
-				<param name="enumClass">es.insa.proyecto.dominio.cartas.Palo</param> 
+				<param name="enumClass">es.insa.proyecto.dominio.cartas.Palo</param>
+				<param name="type">12</param> 
 			</type>
 		</property>
 		<property name="numero" column="NUMERO" not-null="false"/>		
