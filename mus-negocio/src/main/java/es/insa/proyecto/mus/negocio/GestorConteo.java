@@ -15,7 +15,9 @@ import es.insa.proyecto.mus.contratos.IGestorConteo;
 public class GestorConteo implements IGestorConteo{
 	
 	private IComprobadorParesJuego comprobadorParesJuego;
-		
+	
+	
+	
 	/**
 	 * Controlamos los puntos obtenidos a pares
 	 */
@@ -58,9 +60,6 @@ public class GestorConteo implements IGestorConteo{
 		}
 	}
 
-	public IComprobadorParesJuego getComprobadorParesJuego() {
-		return comprobadorParesJuego;
-	}
 
 	public void setComprobadorParesJuego(
 			IComprobadorParesJuego comprobadorParesJuego) {

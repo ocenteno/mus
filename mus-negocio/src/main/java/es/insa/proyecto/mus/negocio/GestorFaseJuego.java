@@ -149,9 +149,6 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 		}
 	}
 
-	public ICrupier getCrupier() {
-		return crupier;
-	}
 
 	public void setCrupier(ICrupier crupier) {
 		this.crupier = crupier;

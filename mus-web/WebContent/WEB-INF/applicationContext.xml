@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!--  AUTOWARE DE PARTIDA DEL ControladorMesaInicial -->
-	<bean class="es.insa.proyecto.mus.modelo.Partida"></bean>
+	<bean name="partida" class="es.insa.proyecto.mus.modelo.Partida"/>
 	
 	
 	<!--  DAO CARTA HIBERNATE  -->
@@ -34,7 +34,14 @@
 	
 	<!--  GESTOR CONTEO  -->
 	<bean name="gestorConteo"
-		class="es.insa.proyecto.mus.negocio.GestorConteo">
+			class="es.insa.proyecto.mus.negocio.GestorConteo">
+		<property name="comprobadorParesJuego" ref="comprobadorParesJuego"/>
+  	</bean>
+  	
+  	<!--  GESTOR FASEJUEGO -->
+  	<bean name="gestorFaseJuego"
+  			class="es.insa.proyecto.mus.negocio.GestorFaseJuego">
+  		<property name="crupier" ref="crupier"/>
   	</bean>
 	
 	<!--  GESTOR APUESTAS  -->
@@ -52,8 +59,11 @@
 		class="es.insa.proyecto.mus.negocio.ComprobadorParesJuego">
   	</bean>
 	
-	
-	
+	<!-- CRUPIER -->
+	<bean name="crupier"
+			class="es.insa.proyecto.mus.negocio.Crupier">
+		<property name="daoMazo" ref="daoMazo"/>
+	</bean>
 	
 	
 	<!--  SESSION FACTORY DE SPRING   --> 
