@@ -109,7 +109,8 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 	}
 
 	@Override
-	public boolean reparte(Jugador j, int numCartas) {
+	public boolean reparte(Jugador j) {
+		//Por cada jugador se recupera (get) sus cartas (de las que se ha descartado) 
 		for (Jugador jugador : descarteMus.keySet()) {
 			Carta[] numDescartes = descarteMus.get(jugador);
 			crupier.repartirCartas(numDescartes.length, jugador);

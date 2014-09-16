@@ -1,7 +1,5 @@
 package es.insa.proyecto.mus.web.controladores;
 
-import java.sql.Array;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.insa.proyecto.dominio.cartas.Jugador;
+import es.insa.proyecto.mus.contratos.ICrupier;
 import es.insa.proyecto.mus.modelo.Partida;
+import es.insa.proyecto.mus.negocio.Crupier;
 
 @Controller
 public class ControladorMesaInicial {
 
 	//Partida partida = new Partida();
-	@Autowired
+	@Autowired(required=true)
 	private Partida partida;
-	
-
 	
 	
 	@RequestMapping("/buscarMesa.html")
@@ -28,7 +26,6 @@ public class ControladorMesaInicial {
 		m.addAttribute("mesa", miMesa);
 		m.addAttribute("jugador", nombre);
 		return "mesaInicial";
-
 	}
 
 	@RequestMapping("/sentarJugador.html")
@@ -50,7 +47,20 @@ public class ControladorMesaInicial {
 			if(miMesa[x]== null) lleno=false;
 		}
 		if(lleno){
-			return "mesaJugador";
+			// iniciar la partida
+			partida.empezarPartida();
+			// llamar al gestor inicializarMazo, barajar, repartirCartas
+			ICrupier icrupier = new Crupier();
+			
+			icrupier.inicializarMazo();
+			icrupier.barajar();
+			
+			icrupier.repartirCartas(4, miMesa[0]);
+			icrupier.repartirCartas(4, miMesa[1]);
+			icrupier.repartirCartas(4, miMesa[2]);
+			icrupier.repartirCartas(4, miMesa[3]);			
+			
+			return "iniciar";
 		}else{
 			return "mesaInicial";
 		}

@@ -62,9 +62,8 @@ public interface IGestorFaseJuego {
 	 * Se encarga de controlar el reparto de cargas teniendo en cuenta los
 	 * descartes realizados.
 	 * @param j
-	 * @param numCartas
 	 * @return boolean
 	 */
-	public boolean reparte(Jugador j, int numCartas);
+	public boolean reparte(Jugador j);
 	
 }
