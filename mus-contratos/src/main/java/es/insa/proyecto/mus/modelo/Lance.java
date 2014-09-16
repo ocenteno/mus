@@ -15,7 +15,7 @@ public class Lance {
 	/**
 	 *  Este método permite saber que jugador, de un array de jugadores, ha ganado un lance
 	 */
-	Jugador ganador(Jugador... jugadores){
+	public Jugador ganador(Jugador... jugadores){
 		return jugadorGanador;
 	}
 
