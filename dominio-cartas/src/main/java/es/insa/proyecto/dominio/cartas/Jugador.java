@@ -24,6 +24,7 @@ public class Jugador {
 	private boolean errorMano = false;
 
 	public Jugador() {
+		this("");
 	}
 
 	// Constructor para crear un jugador e inicializar la mano del jugador

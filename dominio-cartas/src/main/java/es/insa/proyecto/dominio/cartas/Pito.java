@@ -7,6 +7,12 @@ package es.insa.proyecto.dominio.cartas;
  */
 public class Pito extends Carta {
 	
+	
+	
+	public Pito() {
+	}
+
+
 	public Pito(Palo palo, int numero, int valor) {
 		super(palo, numero, valor);
 	}

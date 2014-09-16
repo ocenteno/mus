@@ -34,7 +34,7 @@ public class DaoMazoHibernate
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public Mazo llenarMazo(Mazo m){
+	public void llenarMazo(Mazo m){
 		
 		
 		Session sesion = sf.getCurrentSession();
@@ -50,7 +50,6 @@ public class DaoMazoHibernate
 		m.añadir(resul);
 		sf.getCurrentSession().getTransaction().commit();
 		
-		return m;
 	}
 	
 	

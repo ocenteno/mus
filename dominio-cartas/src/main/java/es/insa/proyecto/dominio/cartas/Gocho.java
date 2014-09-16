@@ -6,6 +6,11 @@ package es.insa.proyecto.dominio.cartas;
  */
 public class Gocho extends Carta{
 	
+	
+	public Gocho() {
+	}
+	
+	
 	public Gocho(Palo palo, int numero, int valor) {
 		super(palo, numero, valor);
 	}
