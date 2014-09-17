@@ -1,13 +1,5 @@
 package es.insa.proyecto.mus.persistencia.test;
 
-import static org.junit.Assert.*;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Gocho;
 import es.insa.proyecto.dominio.cartas.Mazo;
@@ -16,13 +8,9 @@ import es.insa.proyecto.dominio.cartas.Pito;
 import es.insa.proyecto.mus.contratos.DaoMazo;
 import es.insa.proyecto.mus.persistencia.DaoMazoHibernate;
 
-public class TestCargaCartas {
+public class CargaCartas {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	public void testCargaCartas() {
+	public static void main(String[] args) {
 	
 		Carta unoOros = new Pito(Palo.OROS, 1, 1);
 		Carta dosOros = new Pito(Palo.OROS, 2, 1);
@@ -86,6 +74,5 @@ public class TestCargaCartas {
 		DaoMazoHibernate daoMazo = new DaoMazoHibernate();
 		daoMazo.insertar(mazo);
 		
-		assertNotEquals("el ID del mazo insertado debe ser distinto de CERO", 0, mazo.getId());
 	}
 }

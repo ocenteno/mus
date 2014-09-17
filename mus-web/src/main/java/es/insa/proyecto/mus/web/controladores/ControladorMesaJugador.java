@@ -1,16 +1,20 @@
 package  es.insa.proyecto.mus.web.controladores;
 
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import es.insa.proyecto.dominio.cartas.AccionesLance;
 import es.insa.proyecto.dominio.cartas.Carta;
+import es.insa.proyecto.dominio.cartas.FasesJuego;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
+import es.insa.proyecto.mus.contratos.IGestorFaseJuego;
+import es.insa.proyecto.mus.contratos.IGestorFasesLance;
 import es.insa.proyecto.mus.modelo.Partida;
 
 
@@ -18,9 +22,15 @@ import es.insa.proyecto.mus.modelo.Partida;
 public class ControladorMesaJugador {
 	
 	// para que no se pierda la patida
-	Partida partidaInicial;
-	int elQueHablaInicial;
+	@Autowired(required=true)
+	private Partida partida;
 	
+	private Jugador jugadorEnviado;
+	int intYo;
+	@Autowired
+	private IGestorFaseJuego iGestorFaseJuego;
+	private IGestorFasesLance iGestorFasesLance;
+		
 	
 	/**
 	 * Este método inicia la partida 
@@ -32,37 +42,56 @@ public class ControladorMesaJugador {
 	 * @return
 	 */
 	@RequestMapping("/iniciarJuego.html")
-	public String iniciarPartida(Model m, Partida partida, HttpSession sesion){
+	public String iniciarPartida(Model m, HttpSession sesion){
 		
-		partidaInicial = partida;
 		String yo = (String) sesion.getAttribute("jugadorActual");
 		
-		// nos pasan en el Modelo el jugador conectado		
-		// y nos pasan la partida
+				
+		// QUITARRRRRRRRRRRRRRRR  ---------------- < OJO > -----------------------
 		
-		// QUITARRRRRRRRR
-		partida = TestInicializarPartida();
-		yo="Pepito0";		
-		//yo="Juanito1";
-		//yo="Juanito2";
-		//yo="Juanito3";
+		partida.getMesa()[0].añadirCarta(new Carta(Palo.BASTOS, 1, 1));
+		partida.getMesa()[0].añadirCarta(new Carta(Palo.COPAS, 4, 4));
+		partida.getMesa()[0].añadirCarta(new Carta(Palo.OROS, 3, 3));
+		partida.getMesa()[0].añadirCarta(new Carta(Palo.BASTOS, 2, 2));
+		
+		partida.getMesa()[1].añadirCarta(new Carta(Palo.BASTOS, 3, 3));
+		partida.getMesa()[1].añadirCarta(new Carta(Palo.COPAS, 1, 1));
+		partida.getMesa()[1].añadirCarta(new Carta(Palo.OROS, 1, 1));
+		partida.getMesa()[1].añadirCarta(new Carta(Palo.BASTOS, 4, 4));
+		
+		partida.getMesa()[2].añadirCarta(new Carta(Palo.BASTOS, 5, 5));
+		partida.getMesa()[2].añadirCarta(new Carta(Palo.COPAS, 10, 10));
+		partida.getMesa()[2].añadirCarta(new Carta(Palo.OROS, 4, 4));
+		partida.getMesa()[2].añadirCarta(new Carta(Palo.BASTOS, 6, 6));
+		
+		partida.getMesa()[3].añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		partida.getMesa()[3].añadirCarta(new Carta(Palo.COPAS, 12, 12));
+		partida.getMesa()[3].añadirCarta(new Carta(Palo.OROS, 10, 10));
+		partida.getMesa()[3].añadirCarta(new Carta(Palo.BASTOS, 4, 4));
 		
 		//TENEMOS QUE LLAMAR A LOS METODOS PARA OBTENER ESTOS VALORES
-		//  elQueHabla es la posición de la mesa del jugador que habla
-		//  			Si devuelven
-		//  loQueDice es lo que puede decir el jugador que habla (mus, descarte, repartir, apuestas)
-
+		//  turno es la posición de la mesa del jugador que habla
+		//  fase es lo que puede decir el jugador que habla (mus, descarte, repartir, apuestas)
 		
-		int elQueHabla = 0;
-		String loQueDice = "Mus";
 		
-		//partida.getPareja1().getJuegosGanados();
-		//partida.getPareja1().getPiedrasGanadas();
+		int turno = iGestorFaseJuego.turnoJuego();		
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		
+		/* DESASTERISCAR CUANDO SE ACABE LA PRUEBA --------------  < OJO > 
+		int turno;
+		FasesJuego fase;
+		turno = 0;
+		fase = FasesJuego.REPARTO;
+		*/
+		fase = FasesJuego.DESCARTE;
+		//loQueDice = "DESCARTE";
+		//loQueDice = "REPARTO";
+		//loQueDice = "GRANDE";
+		
+		
 		
 		
 		Jugador[] mesa =  partida.getMesa();
-		// pintar pantalla
-		Jugador[] mesaPantalla = new Jugador[4];;
 		 // quien es soy yo
 		// vamos a buscar donde está ese jugador en la mesa
 		int post = 0;
@@ -73,209 +102,490 @@ public class ControladorMesaJugador {
 					break;
 			}
 		}
-		elQueHablaInicial = post;
-		
-		// rellenar el array de mesa
-		for (int i = 0; i < 4; i++) {
-			
-			mesaPantalla[i] = mesa[(post + i)%4];			
-			
-		} 
-		
-		
-		int[] manoPantalla = new int[4];
-		// Buscamos quien es la mano
-		int mano = partida.getMano();
-		
-		// rellenar el array de mano
-		for (int i = 0; i < 4; i++) {
-			if(((post + i)%4) == mano){
-				// hay que pintar el mazo
-				manoPantalla[i]= 1;
-			}else{
-				// NOOO hay que pintar el mazo
-				manoPantalla[i]= 0;
-			}
-			
-		}
-		// Mando el array de cartas que se ven
-		//mesaPantalla[0].getMano()
-		String[] cartasJugador = new String[4];
-		Carta[] cartasYo = mesa[post].getMano();
-		for (int i = 0; i < 4; i++){
-			cartasJugador[i] = cartasYo[i].getPalo() + "" + cartasYo[i].getNumero() + ".jpg"; 
-		}
-			
-		String activarBotones = "";	
-		if (post == elQueHabla){
-			activarBotones = "visible";
-		}else {
-			activarBotones = "hidden";
-		}
-		
-		
-		// PARA PINTAR EL MAZO
-		
-		m.addAttribute("mesaPantalla",mesaPantalla);
-		m.addAttribute("manoPantalla",manoPantalla);
-		m.addAttribute("cartasJugador",cartasJugador);
-		m.addAttribute("activarBotones",activarBotones);
-		m.addAttribute("mesa",mesa);
-		
-		m.addAttribute("loQueDice",loQueDice);
-		
+		intYo = post;		
+		jugadorEnviado = mesa[intYo];
+		construirMesaJuego(m, turno,fase);
 		
 		return "mesaJugador";
 	}
 	
-	@RequestMapping("/accionDarMus.html")
-	public String accionDarMus(Jugador jugador){
+	@RequestMapping("/refrescarMesaPartida.html")
+	public String refrescarMesaPartida(Model m, HttpSession sesion){
+		int turno = iGestorFaseJuego.turnoJuego();		
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
 		
+		construirMesaJuego(m,turno,fase);
+		return "mesaJugador";
+	}
+	
+	
+	@RequestMapping("/accionDarMus.html")
+	public String accionDarMus(Model m){
+		
+		int turno = iGestorFaseJuego.turnoJuego();
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		//Jugador jugador = req.getParameter("jugadorEnviado");
+
+		//MUS
+		switch (fase) {
+		case MUS:{
+			iGestorFaseJuego.pedirMus(jugadorEnviado);
+			break;
+		}
+		default:
+			break;
+		}
+		
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO, DESCARTE, REPARTO 
+		//En estas fases no hay MUS
+			
+		construirMesaJuego(m,turno,fase);
 		
 		return "mesaJugador";
 	}
 	
 	@RequestMapping("/accionNoHayMus.html")
-	public String accionNoHayMus(Jugador jugador){
+	public String accionNoHayMus(Model m){
 		
+		int turno = iGestorFaseJuego.turnoJuego();
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
+
+		//MUS
+		switch (fase) {
+		case MUS:{
+			iGestorFaseJuego.cortarMus(jugadorEnviado);
+			break;
+		}
+		default:
+			break;
+		}
+		
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO, DESCARTE, REPARTO 
+		//En estas fases no hay MUS
+			
+		construirMesaJuego(m,turno,fase);
 		
 		return "mesaJugador";
 	}
 	
 	@RequestMapping("/accionPaso.html")
-	public String accionPaso(Jugador jugador){
+	public String accionPaso(Model m){
 		
+		int turno = iGestorFaseJuego.turnoJuego();
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO
+		switch (fase) {
+		case GRANDE:{
+			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.PASO, 0);
+			break;
+		}			
+		case CHICA:{
+			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.PASO, 0);
+			break;
+		}	
+		case JUEGO:{
+			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.PASO, 0);
+			break;
+		}			
+		case PARES:{
+			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.PASO, 0);
+			break;
+		}			
+		case PUNTO:{
+			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.PASO, 0);
+			break;
+		}			
+		default:
+			break;
+		}
+		
+		//DESCARTE, MUS, REPARTO
+		//En estas fases no hay PASO
+			
+		construirMesaJuego(m,turno,fase);
 		
 		return "mesaJugador";
 	}
 	
 	@RequestMapping("/accionQuiero.html")
-	public String accionQuiero(Jugador jugador){
+	public String accionQuiero(Model m){
 		
+		int turno = iGestorFaseJuego.turnoJuego();
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO
+		switch (fase) {
+		case GRANDE:{
+			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.QUIERO, 0);
+			break;
+		}			
+		case CHICA:{
+			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.QUIERO, 0);
+			break;
+		}	
+		case JUEGO:{
+			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.QUIERO, 0);
+			break;
+		}			
+		case PARES:{
+			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.QUIERO, 0);
+			break;
+		}			
+		case PUNTO:{
+			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.QUIERO, 0);
+			break;
+		}			
+		default:
+			break;
+		}
+		
+		//DESCARTE, MUS, REPARTO
+		//En estas fases no hay QUIERO
+		
+		construirMesaJuego(m,turno,fase);
 		
 		return "mesaJugador";
 	}
+	
 	@RequestMapping("/accionEnvido.html")
-	public String accionEnvido(Jugador jugador){
+	public String accionEnvido(Model m){
 		
+		int turno = iGestorFaseJuego.turnoJuego();
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO
+		switch (fase) {
+		case GRANDE:{
+			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			break;
+		}			
+		case CHICA:{
+			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			break;
+		}	
+		case JUEGO:{
+			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			break;
+		}			
+		case PARES:{
+			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			break;
+		}			
+		case PUNTO:{
+			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			break;
+		}			
+		default:
+			break;
+		}
+		
+		//DESCARTE, MUS, REPARTO
+		//En estas fases no hay ENVIDO
+		
+		construirMesaJuego(m,turno,fase);
 		
 		return "mesaJugador";
 	}
 	
 	@RequestMapping("/accionXMas.html")
-	public String accionXMas(Jugador jugador){
+	public String accionXMas(HttpServletRequest req, Model m){
 		
+		int turno = iGestorFaseJuego.turnoJuego();
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int apuesta = Integer.parseInt(req.getParameter("apuesta"));
+		
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO
+		switch (fase) {
+		case GRANDE:{
+			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			break;
+		}			
+		case CHICA:{
+			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			break;
+		}	
+		case JUEGO:{
+			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			break;
+		}			
+		case PARES:{
+			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			break;
+		}			
+		case PUNTO:{
+			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			break;
+		}			
+		default:
+			break;
+		}
+		
+		//DESCARTE, MUS, REPARTO
+		//En estas fases no hay XMas
+		
+		construirMesaJuego(m,turno,fase);
 		
 		return "mesaJugador";
 	}
 	
-
+	
 	@RequestMapping("/accionDescartar.html")
-	public String accionDescartar(Jugador jugador, HttpServletRequest req, Model m){
+	public String accionDescartar(HttpServletRequest req, Model m){
 		
-		// Cuando damos a descartar primero hay que comprobar que hay por lo menos una seleccionada
-		// sino hay seleccionada damos un mensaje de error y retornamos a la página
+		int turno = iGestorFaseJuego.turnoJuego();		
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
 		
-		//List<Carta> listaDeCartas = new ArrayList<Carta>();
-		int contadorDescartes = 0;
-		//Carta[] lista = new Carta[4]; 
-		//	lista =	jugador.getMano();
-		//System.out.println(jugador.getMano());
-		
-		//Carta[] listaCartas = jugador.getMano();
-		
-			//jugador.quitarCarta(mesa)
-		String valor = req.getParameter("descarte0");
-		if (! (valor==null)){
-			contadorDescartes++;
-			//System.out.println(elQueHablaInicial);
-			//System.out.println(partidaInicial.getMesa());
-			//Carta c = partidaInicial.getMesa()[elQueHablaInicial].getMano()[0];
-			//jugador.quitarCarta(c);
-			
-			//System.out.println("descartado" + c);			
-			//System.out.println("HOLAAAAAA"+ listaCartas[0]);
-			
+		//DESCARTE
+		switch (fase) {
+		case DESCARTE:{
+			mirarDescartes(m, req);
+			break;
 		}
-		valor = req.getParameter("descarte1");
-		if (! (valor==null)){
-			contadorDescartes++;
-			System.out.println("descartado" + valor);
-			
-		}
-		valor = req.getParameter("descarte2");
-		if (! (valor==null)){
-			contadorDescartes++;
-			System.out.println("descartado" + valor);
-			
-		}
-		valor = req.getParameter("descarte3");
-		if (! (valor==null)){
-			contadorDescartes++;
-			System.out.println("descartado" + valor);
-			
+		default:
+			break;
 		}
 		
-		if (contadorDescartes >1){
-			// Se llama a descartar cartas de un jugado
-			// FALTAAAAAA
-			
-		}else {
-			m.addAttribute("mensajeError","Se debe descartar al menos de una carta");
-			
-		}
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO, REPARTO, MUS
+		//En estas fases no hay DESCARTE
 		
+		construirMesaJuego(m, turno, fase);
 		
-		System.out.println("----------------------------------");
 		return "mesaJugador";
 	}
 
 	
 	@RequestMapping("/accionOrdago.html")
-	public String accionOrdago(Jugador jugador){
+	public String accionOrdago(Model m){
 		
+		int turno = iGestorFaseJuego.turnoJuego();
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
 		
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO
+		switch (fase) {
+		case GRANDE:{
+			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			break;
+		}			
+		case CHICA:{
+			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			break;
+		}	
+		case JUEGO:{
+			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			break;
+		}			
+		case PARES:{
+			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			break;
+		}			
+		case PUNTO:{
+			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			break;
+		}			
+		default:
+			break;
+		}
+		
+		//DESCARTE, MUS, REPARTO
+		//En estas fases no hay ORDAGO
+		
+		construirMesaJuego(m,turno,fase);
 		
 		return "mesaJugador";
 	}
 	
-	public Partida TestInicializarPartida(){
-		Partida p = new Partida();
-
-		Jugador j0 = new Jugador("Pepito0");
-		Jugador j1 = new Jugador("Juanito1");
-		Jugador j2 = new Jugador("Juanito2");
-		Jugador j3 = new Jugador("Juanito3");
-		
-		//Metemos cartar a jo
-		
-		j0.añadirCarta(new Carta(Palo.BASTOS, 1, 1));
-		j0.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		j0.añadirCarta(new Carta(Palo.COPAS, 2, 2));
-		j0.añadirCarta(new Carta(Palo.ESPADAS, 1, 1));
-		
-		
-		j1.añadirCarta(new Carta(Palo.BASTOS, 1, 1));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		j1.añadirCarta(new Carta(Palo.COPAS, 2, 2));
-		j1.añadirCarta(new Carta(Palo.ESPADAS, 1, 1));
-		
-		j2.añadirCarta(new Carta(Palo.BASTOS, 1, 1));
-		j2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		j2.añadirCarta(new Carta(Palo.COPAS, 2, 2));
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 1, 1));
 	
-		j3.añadirCarta(new Carta(Palo.BASTOS, 1, 1));
-		j3.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		j3.añadirCarta(new Carta(Palo.COPAS, 2, 2));
-		j3.añadirCarta(new Carta(Palo.ESPADAS, 1, 1));
-		p.setMano(3);
-		p.sentarJugador(j0, 0);
-		p.sentarJugador(j1, 1);
-		p.sentarJugador(j2, 2);
-		p.sentarJugador(j3, 3);
-		
-		return p;
+	
+	public void mirarDescartes(Model m, HttpServletRequest req) {
+
+		// Cuando damos a descartar primero hay que comprobar que hay por lo
+		// menos una seleccionada
+		// sino hay seleccionada damos un mensaje de error y retornamos a la
+		// página
+
+		int contadorDescartes = 0;
+		boolean descartado0 = false;
+		boolean descartado1 = false;
+		boolean descartado2 = false;
+		boolean descartado3 = false;
+		// Contar nuemero de descartes
+		String valor = req.getParameter("descarte0");
+		if (!(valor == null)) {
+			contadorDescartes++;
+			descartado0 = true;
+		}
+		valor = req.getParameter("descarte1");
+		if (!(valor == null)) {
+			contadorDescartes++;
+			descartado1 = true;
+		}
+		valor = req.getParameter("descarte2");
+		if (!(valor == null)) {
+			contadorDescartes++;
+			descartado2 = true;
+		}
+		valor = req.getParameter("descarte3");
+		if (!(valor == null)) {
+			contadorDescartes++;
+			descartado3 = true;
+		}
+		if (contadorDescartes >= 1) {
+			// Ha seleccionado por lo menos 1
+			Carta[] arrayCartasDescarte = new Carta[contadorDescartes];
+
+			// Metemos las cartas en el array
+			// cogemos la carta
+			int contador = 0;
+			if (descartado0) {
+				arrayCartasDescarte[contador] = partida.getMesa()[intYo]
+						.getMano()[0];
+				contador++;
+			}
+			if (descartado1) {
+				arrayCartasDescarte[contador] = partida.getMesa()[intYo]
+						.getMano()[1];
+				contador++;
+			}
+			if (descartado2) {
+				arrayCartasDescarte[contador] = partida.getMesa()[intYo]
+						.getMano()[2];
+				contador++;
+			}
+			if (descartado3) {
+				arrayCartasDescarte[contador] = partida.getMesa()[intYo]
+						.getMano()[3];
+				contador++;
+			}
+
+			// Descartamos las cartas
+			//iGestorFaseJuego.pedirDescarte(partida.getMesa()[intYo], arrayCartasDescarte);
+			iGestorFaseJuego.pedirDescarte(jugadorEnviado, arrayCartasDescarte);
+			
+
+		} else {
+			// no ha seleccionado ninguno
+			m.addAttribute("mensajeError",
+					"Se debe descartar al menos de una carta");
+
+		}
+
 	}
+	
+	@RequestMapping("/accionReparto.html")
+	public String accionReparto(HttpServletRequest req, Model m){
+		
+		int turno = iGestorFaseJuego.turnoJuego();
+		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		
+		//REPARTO
+		switch (fase) {
+		case REPARTO:{
+			iGestorFaseJuego.reparte(jugadorEnviado);
+			break;
+		}	
+		default:
+			break;
+		}
+		
+		//CHICA, GRANDE, JUEGO, PARES, PUNTO, DESCARTE, MUS
+		//En estas fases no hay REPARTO
+		
+		construirMesaJuego(m,turno,fase);
+		
+		return "mesaJugador";
+	}
+	
+
+	
+public void construirMesaJuego(Model m, int elQueHabla, FasesJuego loQueDice){
+		
+		// pintar pantalla
+		Jugador[] mesa =  partida.getMesa();
+		Jugador[] mesaPantalla = new Jugador[4];
+		// rellenar el array de mesa
+				for (int i = 0; i < 4; i++) {
+					
+					mesaPantalla[i] = mesa[(intYo + i)%4];			
+					
+				} 
+				
+				
+				int[] manoPantalla = new int[4];
+				
+				int mano = partida.getMano();
+				
+				// rellenar el array de mano
+				for (int i = 0; i < 4; i++) {
+					if(((intYo + i)%4) == mano){
+						// hay que pintar el mazo
+						manoPantalla[i]= 1;
+					}else{
+						// NOOO hay que pintar el mazo
+						manoPantalla[i]= 0;
+					}
+					
+				}
+				// Mando el array de cartas que se ven
+				//mesaPantalla[0].getMano()
+				int numeroCartas = mesa[intYo].getMano().length;
+				String[] cartasJugador = new String[numeroCartas];
+				Carta[] cartasYo = mesa[intYo].getMano();
+				
+				for (int i = 0; i < numeroCartas; i++){
+					cartasJugador[i] = cartasYo[i].getPalo() + "" + cartasYo[i].getNumero() + ".jpg"; 
+				}
+					
+				String activarBotones = "";	
+				if (intYo == elQueHabla){
+					activarBotones = "visible";
+				}else {
+					activarBotones = "hidden";
+				}
+				
+				boolean hayMus = false;
+				boolean hayDescarte = false;
+				boolean hayReparto = false;
+				boolean hayApuestas = false;
+				
+				if(loQueDice.equals(FasesJuego.MUS)){
+					hayMus = true;
+					
+				} else if(loQueDice.equals(FasesJuego.DESCARTE)){
+					hayDescarte = true;
+					
+				} else if (loQueDice.equals(FasesJuego.REPARTO)){
+					hayReparto = true;
+					
+				} else if (loQueDice.equals(FasesJuego.GRANDE)){
+					hayApuestas = true;
+					
+				}
+				
+				// PARA PINTAR EL MAZO
+				
+				m.addAttribute("mesaPantalla",mesaPantalla);
+				m.addAttribute("manoPantalla",manoPantalla);
+				m.addAttribute("cartasJugador",cartasJugador);
+				m.addAttribute("activarBotones",activarBotones);
+				m.addAttribute("mesa",mesa);
+				
+				m.addAttribute("hayMus",hayMus);
+				m.addAttribute("hayDescarte",hayDescarte);
+				m.addAttribute("hayReparto",hayReparto);
+				m.addAttribute("hayApuestas",hayApuestas);
+				m.addAttribute("loQueDice",loQueDice);
+				
+				boolean esMiTurno = false;
+				// elQueHabla
+				// si elQueHabla no soy yo desactiva todos los botones porque no es su turno
+				if (elQueHabla == intYo){
+					// Se activan los botones correspondientes
+					esMiTurno = true;
+				}
+				m.addAttribute("esMiTurno",esMiTurno);
+		
+	}
+	
 
 }

@@ -16,6 +16,7 @@
   	<module>mus-servicios</module>
   	<module>mus-contratos</module>
   	<module>dominio-cartas</module>
+  	<module>mus-dbinit</module>
   </modules>
   <dependencies>
   	<dependency>
