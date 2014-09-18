@@ -4,5 +4,14 @@ public enum FaseDescartes {
 	MUS,
 	DESCARTE,
 	REPARTO,
-	GRANDE
+	GRANDE,
+	// ESTO DESAPARECE
+	@Deprecated
+	CHICA,
+	@Deprecated
+	PARES,
+	@Deprecated
+	JUEGO,
+	@Deprecated
+	PUNTO
 }
