@@ -1,8 +1,14 @@
 package es.insa.proyecto.dominio.cartas;
 
 public enum Pares {
-PAR,
-MEDIAS,
-DUPLES,
-NO
+	NO(0),
+	PAR(1),
+	MEDIAS(2),
+	DUPLES(3);
+	
+	private int valor;
+	
+	Pares(int valor){
+		this.valor = valor;
+	}
 }

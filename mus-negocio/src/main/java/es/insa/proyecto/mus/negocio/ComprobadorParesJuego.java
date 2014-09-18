@@ -40,7 +40,13 @@ public class ComprobadorParesJuego implements IComprobadorParesJuego {
 			return Juego.PUNTO;
 		}
 	}
-
+	@Override
+	public int  obtenerPuntuacion(Jugador j) {
+		Carta[] manoJugador = j.getMano();
+		return  manoJugador[0].getValor() + manoJugador[1].getValor()
+				+ manoJugador[2].getValor() + manoJugador[3].getValor();
+	}
+	
 	@Override
 	public Pares comprobarPares(Jugador j) {
 		Carta[] manoJugador = j.getMano();
@@ -84,7 +90,6 @@ public class ComprobadorParesJuego implements IComprobadorParesJuego {
 				}
 			}
 		}
-		
 
 		return (Carta[]) manoEmparejadas.toArray(new Carta[0]);
 	}

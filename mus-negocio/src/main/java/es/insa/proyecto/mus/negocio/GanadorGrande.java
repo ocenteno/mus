@@ -3,6 +3,7 @@ package es.insa.proyecto.mus.negocio;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.contratos.IGestorLances;
 import es.insa.proyecto.mus.contratos.IGanadorLance;
@@ -37,9 +38,12 @@ public class GanadorGrande implements IGanadorLance, Comparator<Jugador>{
 		j2.ordenarMano();
 		// 0 indica que son iguales
 		int resultado = 0;
+		// obtengo las manos
+		Carta[] mano1 = j1.getMano();
+		Carta[] mano2 = j2.getMano();
 		
-		for (int i = 4; i > 0 && resultado == 0; i--) {
-			resultado = -j1.getMano()[i-1].compareTo(j2.getMano()[i-1]);			
+		for (int i = mano1.length; i > 0 && resultado == 0; i--) {
+			resultado = -mano1[i-1].compareTo(mano2[i-1]);			
 		}
 		// resultado == -1 indica que j1 tiene las cartas mas altas
 		// resultado ==  1 indica que j2 tiene las cartas mas altas
