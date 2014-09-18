@@ -1,7 +1,7 @@
 package es.insa.proyecto.mus.contratos;
 
 import es.insa.proyecto.dominio.cartas.AccionesLance;
-import es.insa.proyecto.dominio.cartas.FasesJuego;
+import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 
 /**
@@ -11,13 +11,13 @@ import es.insa.proyecto.dominio.cartas.Jugador;
  *
  */
 
-public interface IGestorFasesLance {
+public interface IGestorFaseApuestas {
 	
 	/**
 	 * Recuperamos la fase del juego (Grande, Chicas, Pares etc...)
 	 * @return FasesJuego (Es un Enum con las distintas fases)
 	 */
-	public FasesJuego getFase();
+	public FaseDescartes getFase();
 	
 	/**
 	 * Recuperamos las posibles acciones (Paso, Envido, Quiero, etc....)

@@ -12,10 +12,10 @@ import java.util.Set;
 import javax.swing.JComboBox.KeySelectionManager;
 
 import es.insa.proyecto.dominio.cartas.Carta;
-import es.insa.proyecto.dominio.cartas.FasesJuego;
+import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.contratos.ICrupier;
-import es.insa.proyecto.mus.contratos.IGestorFaseJuego;
+import es.insa.proyecto.mus.contratos.IGestorFaseDescartes;
 import es.insa.proyecto.mus.modelo.Partida;
 
 /**
@@ -26,7 +26,7 @@ import es.insa.proyecto.mus.modelo.Partida;
  * @author Jose y Cristina
  *
  */
-public class GestorFaseJuego implements IGestorFaseJuego{
+public class GestorFaseJuego implements IGestorFaseDescartes{
 	
 	private Set<Jugador> pideMus;
 	private int cortaMus;
@@ -40,11 +40,9 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 	
 	
 	public GestorFaseJuego() {
-		partida = new Partida();
 		pideMus = new HashSet<Jugador>();
 		cortaMus = 0;
 		descarteMus = new HashMap<Jugador, Carta[]>();
-		recuperarMano();
 	}
 
 	@Override
@@ -138,14 +136,14 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 	}
 
 	@Override
-	public FasesJuego faseJuego() {
+	public FaseDescartes faseJuego() {
 		if (pideMus.size() == 4) {
-			return FasesJuego.DESCARTE;
+			return FaseDescartes.DESCARTE;
 		} else {
 			if (cortaMus == 0) {
-				return FasesJuego.MUS;
+				return FaseDescartes.MUS;
 			} else {
-				return FasesJuego.GRANDE;
+				return FaseDescartes.GRANDE;
 			}
 		}
 	}
@@ -153,6 +151,11 @@ public class GestorFaseJuego implements IGestorFaseJuego{
 
 	public void setCrupier(ICrupier crupier) {
 		this.crupier = crupier;
+	}
+
+	public void setPartida(Partida partida) {
+		this.partida = partida;
+		recuperarMano();
 	}
 
 }

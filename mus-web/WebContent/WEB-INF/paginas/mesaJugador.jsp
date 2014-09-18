@@ -76,12 +76,18 @@
 			<td bgcolor="green">
 				<table>
 					<tr>
-						<td width="5%"><c:if test="${manoPantalla[3] == 1}">
+						<td width="5%">1111111
+						<c:if test="${mesa[mano] == mesa[yo+2]}">
+							<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
+									width="25px" height="25px">
+						</c:if>
+						
+						<c:if test="${manoPantalla[3] == 1}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
 									width="25px" height="25px">
 							</c:if></td>
 						<td width="90%"></td>
-						<td width="5%"><c:if test="${manoPantalla[2] == 1}">
+						<td width="5%">2222222<c:if test="${manoPantalla[2] == 1}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
 									width="25px" height="25px">
 							</c:if></td>
@@ -92,12 +98,12 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td><c:if test="${manoPantalla[0] == 1}">
+						<td>3333333<c:if test="${manoPantalla[0] == 1}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
 									width="25px" height="25px">
 							</c:if></td>
 						<td></td>
-						<td><c:if test="${manoPantalla[1] == 1}">
+						<td>44444444<c:if test="${manoPantalla[1] == 1}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
 									width="25px" height="25px">
 							</c:if></td>
@@ -204,12 +210,14 @@
 									<form action="./accionDarMus.html">
 										<input id="mus" type="submit" value="Mus" />
 										
+										
 									</form>
 								</td>
 
 								<td>
 									<form action="./accionNoHayMus.html">
 										<input id="noMus" type="submit" value="No hay Mus" />
+										
 										
 									</form>
 								</td>
@@ -221,58 +229,79 @@
 
 					<c:if test="${esMiTurno}">
 						<c:if test="${hayApuestas}">
-
-
-							<tr>
-								<td colspan="3"></td>
-							</tr>
-
-							<tr>
-								<td>
-									<form action="./accionPaso.html">
-										<input id="paso" type="submit" value="Paso" />
-										
-									</form>
-								</td>
-
-								<!-- Si es la primera vez no tiene que salir este -->
-								<td>
-									<form action="./accionQuiero.html">
-										<input id="veo" type="submit" value="Quiero" />
-										
-									</form>
-								</td>
-
-								<td></td>
-							</tr>
-
-							<tr>
-								<td colspan="3"></td>
-							</tr>
-
-							<tr>
-								<td>
-									<form action="./accionEnvido.html">
-										<input id="envido" type="submit" value="Envido" />
-										
-									</form>
-								</td>
-
-								<td>
-									<form action="./accionXMas.html">
-										<input id="apuesta" size="1" maxlength="1" /> 
-										<input id="subo" type="submit" value="Más" />
-										
-									</form>
-								</td>
-
-								<td>
-									<form action="./accionOrdago.html">
-										<input id="ordago" type="submit" value="!Órdago!" />
-										
-									</form>
-								</td>
-							</tr>
+							
+							<!-- DINAAAAAAMICO -->
+							<c:forEach var="accion" items="${arrayAcciones}">
+								
+								<c:if test="${accion == 'PASO'}">
+									
+									<tr>
+										<td>
+											<form action="./accionPaso.html">
+												<input id="paso" type="submit" value="Paso" />
+												
+											</form>
+										</td>
+									</tr>
+								</c:if>
+								
+								<c:if test="${accion == 'QUIERO'}">
+									<tr>
+										<td>
+											<form action="./accionQuiero.html">
+												<input id="veo" type="submit" value="Quiero" />
+												
+											</form>
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${accion == 'ENVIDO'}">
+									<tr>
+										<td>
+											<form action="./accionEnvido.html">
+												<input id="envido" type="submit" value="Envido" />
+												
+											</form>
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${accion == 'APUESTA'}">
+									<tr>
+										<td>
+											<form action="./accionXMas.html">
+												<input id="apuesta" size="1" maxlength="1" /> 
+												<input id="subo" type="submit" value="Más" />
+												
+											</form>
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${accion == 'NOQUIERO'}">
+									<tr>
+										<td>
+											<form action="./accionNoQuiero.html">
+												<input id="noQuiero" type="submit" value="No quiero" />
+												
+											</form>
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${accion == 'ORDAGO'}">
+									<tr>
+										<td>
+											<form action="./accionOrdago.html">
+												<input id="ordago" type="submit" value="!Órdago!" />
+												
+											</form>
+										</td>
+									</tr>
+								</c:if>							
+								
+							
+							</c:forEach>
+							
+							
+							<!-- DINAAAAAAMICO -->
 
 						</c:if>
 					</c:if>
@@ -281,8 +310,9 @@
 
 			</td>
 		</tr>
+		
 	</table>
 	<!--  </div> -->
-	
+	<h3> Es el turno de : ${elTurno}</h3>
 </body>
 </html>

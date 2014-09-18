@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-<!--  <hibernate-mapping package="es.insa.proyecto.dominio">-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- <hibernate-mapping package="es.insa.proyecto.dominio"> -->
 <hibernate-mapping package="es.insa.proyecto.dominio.cartas">
-	<class table="TABLA_CARTAS"
-			name="Carta" discriminator-value="CA">
-		<id name="id" column="ID">
-			<generator class="native"></generator>
-		</id>	
-		<discriminator column="TIPO" type="string" length="2" not-null="true"
-				force="false" insert="true"/>		  
-		<property name="palo" column="PALO" not-null="false">
+	<class discriminator-value="CA" name="Carta" table="TABLA_CARTAS">
+		<id column="ID" name="id">
+			<generator class="native" />
+		</id>
+		<discriminator column="TIPO" length="2" type="string" />
+		<property column="PALO" name="palo">
 			<type name="org.hibernate.type.EnumType">
 				<param name="enumClass">es.insa.proyecto.dominio.cartas.Palo</param>
-				<param name="type">12</param> 
+				<param name="type">12</param>
 			</type>
 		</property>
-		<property name="numero" column="NUMERO" not-null="false"/>		
-		<property name="valor" column="VALOR" not-null="false"/>
-		<subclass name="Gocho" discriminator-value="GO"/>
-		<subclass name="Pito" discriminator-value="PI"/>
+		<property column="NUMERO" name="numero" />
+		<property column="VALOR" name="valor" />
+		<subclass discriminator-value="GO" name="Gocho" />
+		<subclass discriminator-value="PI" name="Pito" />
 	</class>
-	  
-	<class table="TABLA_MAZOS"
-			name="Mazo">
-		<id name="id" column="ID">
-			<generator class="native"/>
+	<class name="Mazo" table="TABLA_MAZOS">
+		<id column="ID" name="id">
+			<generator class="native" />
 		</id>
-		<property name="nombre" column="NOMBRE"
-				  length="100" not-null="false"/>
-		<array name="listaDeCartasDelMazo" cascade="save-update">
-			  <key column="FK_MAZO"/>
-			  <index column="i" type="integer" length="3"/>
-			  <one-to-many class="Carta"/>
+		<property column="NOMBRE" length="100" name="nombre" />
+		<array cascade="save-update" name="listaDeCartasDelMazo">
+			<key column="FK_MAZO" />
+			<index column="I" length="3" type="integer" />
+			<one-to-many class="Carta" />
 		</array>
 	</class>
-	
 </hibernate-mapping>

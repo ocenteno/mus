@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import es.insa.proyecto.dominio.cartas.Carta;
-import es.insa.proyecto.dominio.cartas.FasesJuego;
+import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
@@ -122,8 +122,8 @@ public class TestGestorFaseJuego {
 		miGestor.pedirMus(j3);
 		Jugador j4 = new Jugador("Jugador4");
 		miGestor.pedirMus(j4);
-		FasesJuego resultado = miGestor.faseJuego();
-		Assert.assertEquals("Fase :", FasesJuego.DESCARTE, resultado);
+		FaseDescartes resultado = miGestor.faseJuego();
+		Assert.assertEquals("Fase :", FaseDescartes.DESCARTE, resultado);
 	}
 	
 	@Test
@@ -134,8 +134,8 @@ public class TestGestorFaseJuego {
 		miGestor2.pedirMus(j5);
 		Jugador j6 = new Jugador("Jugador6");
 		miGestor2.pedirMus(j6);
-		FasesJuego resultado2 = miGestor2.faseJuego();
-		Assert.assertEquals("Fase :", FasesJuego.MUS, resultado2);
+		FaseDescartes resultado2 = miGestor2.faseJuego();
+		Assert.assertEquals("Fase :", FaseDescartes.MUS, resultado2);
 	}
 		
 	@Test
@@ -148,8 +148,8 @@ public class TestGestorFaseJuego {
 		miGestor3.pedirMus(j8);
 		Jugador j9 = new Jugador("Jugador9");
 		miGestor3.cortarMus(j9);
-		FasesJuego resultado3 = miGestor3.faseJuego();
-		Assert.assertEquals("Fase :", FasesJuego.GRANDE, resultado3);
+		FaseDescartes resultado3 = miGestor3.faseJuego();
+		Assert.assertEquals("Fase :", FaseDescartes.GRANDE, resultado3);
 	}
 	
 	@Test

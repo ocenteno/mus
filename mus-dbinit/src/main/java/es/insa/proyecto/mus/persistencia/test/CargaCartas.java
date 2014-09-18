@@ -72,7 +72,10 @@ public class CargaCartas {
 				seisBastos,sieteBastos,sotaBastos,caballoBastos,reyBastos);
 		
 		DaoMazoHibernate daoMazo = new DaoMazoHibernate();
+		
+		daoMazo.abrirSesion();
 		daoMazo.insertar(mazo);
+		daoMazo.cerrarSesion();
 		
 	}
 }
