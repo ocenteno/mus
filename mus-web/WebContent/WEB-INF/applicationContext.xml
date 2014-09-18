@@ -7,12 +7,21 @@
 	<bean name="partida" scope="singleton" 
 		 class="es.insa.proyecto.mus.modelo.Partida"/>
 		 
-	
+	<!--  AUTOWARE DEL ControladorGestorFasesLance -->
+	<bean name="gestorFaseApuestas" scope="singleton" 
+		 class="es.insa.proyecto.mus.negocio.GestorFasesLance"/>
 	
 	<!--  GESTOR CONTEO  -->
 	<bean name="gestorConteo" scope="singleton" 
 		 class="es.insa.proyecto.mus.negocio.GestorConteo">
 		<property name="comprobadorParesJuego" ref="comprobadorParesJuego"/>
+  	</bean>
+  	
+  	<!--  GESTOR FASESLANCE  -->
+	<bean name="gestorFasesLance" scope="singleton" 
+		 class="es.insa.proyecto.mus.negocio.GestorFasesLance">
+		<property name="gestorApuestas" ref="gestorApuestas"/>
+		<property name="paresJuegos" ref="comprobadorParesJuego"/>
   	</bean>
   	
   	<!--  GESTOR FASEJUEGO -->
