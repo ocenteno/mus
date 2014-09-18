@@ -13,7 +13,7 @@ import es.insa.proyecto.dominio.cartas.Pares;
 import es.insa.proyecto.mus.contratos.IComprobadorParesJuego;
 import es.insa.proyecto.mus.contratos.ICrupier;
 import es.insa.proyecto.mus.contratos.IGestorDeApuestas;
-import es.insa.proyecto.mus.contratos.IGestorFasesLance;
+import es.insa.proyecto.mus.contratos.IGestorFaseApuestas;
 import es.insa.proyecto.mus.modelo.Lances;
 import es.insa.proyecto.mus.modelo.Partida;
 
@@ -26,7 +26,7 @@ import es.insa.proyecto.mus.modelo.Partida;
  * 
  */
 
-public class GestorFasesLance implements IGestorFasesLance {
+public class GestorFasesLance implements IGestorFaseApuestas {
 
 	private List<AccionesLance> listaAcciones;
 	private Lances faseActual;

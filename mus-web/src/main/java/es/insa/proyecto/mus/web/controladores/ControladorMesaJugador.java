@@ -10,11 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import es.insa.proyecto.dominio.cartas.AccionesLance;
 import es.insa.proyecto.dominio.cartas.Carta;
-import es.insa.proyecto.dominio.cartas.FasesJuego;
+import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
-import es.insa.proyecto.mus.contratos.IGestorFaseJuego;
-import es.insa.proyecto.mus.contratos.IGestorFasesLance;
+import es.insa.proyecto.mus.contratos.IGestorFaseDescartes;
+import es.insa.proyecto.mus.contratos.IGestorFaseApuestas;
 import es.insa.proyecto.mus.modelo.Partida;
 
 
@@ -28,8 +28,8 @@ public class ControladorMesaJugador {
 	private Jugador jugadorEnviado;
 	int intYo;
 	@Autowired
-	private IGestorFaseJuego iGestorFaseJuego;
-	private IGestorFasesLance iGestorFasesLance;
+	private IGestorFaseDescartes gestorFaseDescartes;
+	private IGestorFaseApuestas gestorFaseApuestas;
 		
 	
 	/**
@@ -74,8 +74,8 @@ public class ControladorMesaJugador {
 		//  fase es lo que puede decir el jugador que habla (mus, descarte, repartir, apuestas)
 		
 		
-		int turno = iGestorFaseJuego.turnoJuego();		
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();		
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		
 		/* DESASTERISCAR CUANDO SE ACABE LA PRUEBA --------------  < OJO > 
 		int turno;
@@ -83,7 +83,7 @@ public class ControladorMesaJugador {
 		turno = 0;
 		fase = FasesJuego.REPARTO;
 		*/
-		fase = FasesJuego.DESCARTE;
+		fase = FaseDescartes.DESCARTE;
 		//loQueDice = "DESCARTE";
 		//loQueDice = "REPARTO";
 		//loQueDice = "GRANDE";
@@ -111,8 +111,8 @@ public class ControladorMesaJugador {
 	
 	@RequestMapping("/refrescarMesaPartida.html")
 	public String refrescarMesaPartida(Model m, HttpSession sesion){
-		int turno = iGestorFaseJuego.turnoJuego();		
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();		
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		
 		construirMesaJuego(m,turno,fase);
 		return "mesaJugador";
@@ -122,14 +122,14 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionDarMus.html")
 	public String accionDarMus(Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		//Jugador jugador = req.getParameter("jugadorEnviado");
 
 		//MUS
 		switch (fase) {
 		case MUS:{
-			iGestorFaseJuego.pedirMus(jugadorEnviado);
+			gestorFaseDescartes.pedirMus(jugadorEnviado);
 			break;
 		}
 		default:
@@ -147,13 +147,13 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionNoHayMus.html")
 	public String accionNoHayMus(Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 
 		//MUS
 		switch (fase) {
 		case MUS:{
-			iGestorFaseJuego.cortarMus(jugadorEnviado);
+			gestorFaseDescartes.cortarMus(jugadorEnviado);
 			break;
 		}
 		default:
@@ -171,29 +171,29 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionPaso.html")
 	public String accionPaso(Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		
 		//CHICA, GRANDE, JUEGO, PARES, PUNTO
 		switch (fase) {
 		case GRANDE:{
-			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.PASO, 0);
+			gestorFaseApuestas.faseGrande(jugadorEnviado, AccionesLance.PASO, 0);
 			break;
 		}			
 		case CHICA:{
-			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.PASO, 0);
+			gestorFaseApuestas.faseChica(jugadorEnviado, AccionesLance.PASO, 0);
 			break;
 		}	
 		case JUEGO:{
-			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.PASO, 0);
+			gestorFaseApuestas.faseJuego(jugadorEnviado, AccionesLance.PASO, 0);
 			break;
 		}			
 		case PARES:{
-			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.PASO, 0);
+			gestorFaseApuestas.fasePares(jugadorEnviado, AccionesLance.PASO, 0);
 			break;
 		}			
 		case PUNTO:{
-			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.PASO, 0);
+			gestorFaseApuestas.fasePunto(jugadorEnviado, AccionesLance.PASO, 0);
 			break;
 		}			
 		default:
@@ -211,29 +211,29 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionQuiero.html")
 	public String accionQuiero(Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		
 		//CHICA, GRANDE, JUEGO, PARES, PUNTO
 		switch (fase) {
 		case GRANDE:{
-			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.QUIERO, 0);
+			gestorFaseApuestas.faseGrande(jugadorEnviado, AccionesLance.QUIERO, 0);
 			break;
 		}			
 		case CHICA:{
-			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.QUIERO, 0);
+			gestorFaseApuestas.faseChica(jugadorEnviado, AccionesLance.QUIERO, 0);
 			break;
 		}	
 		case JUEGO:{
-			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.QUIERO, 0);
+			gestorFaseApuestas.faseJuego(jugadorEnviado, AccionesLance.QUIERO, 0);
 			break;
 		}			
 		case PARES:{
-			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.QUIERO, 0);
+			gestorFaseApuestas.fasePares(jugadorEnviado, AccionesLance.QUIERO, 0);
 			break;
 		}			
 		case PUNTO:{
-			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.QUIERO, 0);
+			gestorFaseApuestas.fasePunto(jugadorEnviado, AccionesLance.QUIERO, 0);
 			break;
 		}			
 		default:
@@ -251,29 +251,29 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionEnvido.html")
 	public String accionEnvido(Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		
 		//CHICA, GRANDE, JUEGO, PARES, PUNTO
 		switch (fase) {
 		case GRANDE:{
-			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			gestorFaseApuestas.faseGrande(jugadorEnviado, AccionesLance.ENVIDO, 2);
 			break;
 		}			
 		case CHICA:{
-			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			gestorFaseApuestas.faseChica(jugadorEnviado, AccionesLance.ENVIDO, 2);
 			break;
 		}	
 		case JUEGO:{
-			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			gestorFaseApuestas.faseJuego(jugadorEnviado, AccionesLance.ENVIDO, 2);
 			break;
 		}			
 		case PARES:{
-			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			gestorFaseApuestas.fasePares(jugadorEnviado, AccionesLance.ENVIDO, 2);
 			break;
 		}			
 		case PUNTO:{
-			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.ENVIDO, 2);
+			gestorFaseApuestas.fasePunto(jugadorEnviado, AccionesLance.ENVIDO, 2);
 			break;
 		}			
 		default:
@@ -291,30 +291,30 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionXMas.html")
 	public String accionXMas(HttpServletRequest req, Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		int apuesta = Integer.parseInt(req.getParameter("apuesta"));
 		
 		//CHICA, GRANDE, JUEGO, PARES, PUNTO
 		switch (fase) {
 		case GRANDE:{
-			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			gestorFaseApuestas.faseGrande(jugadorEnviado, AccionesLance.APUESTA, apuesta);
 			break;
 		}			
 		case CHICA:{
-			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			gestorFaseApuestas.faseChica(jugadorEnviado, AccionesLance.APUESTA, apuesta);
 			break;
 		}	
 		case JUEGO:{
-			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			gestorFaseApuestas.faseJuego(jugadorEnviado, AccionesLance.APUESTA, apuesta);
 			break;
 		}			
 		case PARES:{
-			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			gestorFaseApuestas.fasePares(jugadorEnviado, AccionesLance.APUESTA, apuesta);
 			break;
 		}			
 		case PUNTO:{
-			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.APUESTA, apuesta);
+			gestorFaseApuestas.fasePunto(jugadorEnviado, AccionesLance.APUESTA, apuesta);
 			break;
 		}			
 		default:
@@ -333,8 +333,8 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionDescartar.html")
 	public String accionDescartar(HttpServletRequest req, Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();		
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();		
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		
 		//DESCARTE
 		switch (fase) {
@@ -358,29 +358,29 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionOrdago.html")
 	public String accionOrdago(Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		
 		//CHICA, GRANDE, JUEGO, PARES, PUNTO
 		switch (fase) {
 		case GRANDE:{
-			iGestorFasesLance.faseGrande(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			gestorFaseApuestas.faseGrande(jugadorEnviado, AccionesLance.ORDAGO, 40);
 			break;
 		}			
 		case CHICA:{
-			iGestorFasesLance.faseChica(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			gestorFaseApuestas.faseChica(jugadorEnviado, AccionesLance.ORDAGO, 40);
 			break;
 		}	
 		case JUEGO:{
-			iGestorFasesLance.faseJuego(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			gestorFaseApuestas.faseJuego(jugadorEnviado, AccionesLance.ORDAGO, 40);
 			break;
 		}			
 		case PARES:{
-			iGestorFasesLance.fasePares(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			gestorFaseApuestas.fasePares(jugadorEnviado, AccionesLance.ORDAGO, 40);
 			break;
 		}			
 		case PUNTO:{
-			iGestorFasesLance.fasePunto(jugadorEnviado, AccionesLance.ORDAGO, 40);
+			gestorFaseApuestas.fasePunto(jugadorEnviado, AccionesLance.ORDAGO, 40);
 			break;
 		}			
 		default:
@@ -460,7 +460,7 @@ public class ControladorMesaJugador {
 
 			// Descartamos las cartas
 			//iGestorFaseJuego.pedirDescarte(partida.getMesa()[intYo], arrayCartasDescarte);
-			iGestorFaseJuego.pedirDescarte(jugadorEnviado, arrayCartasDescarte);
+			gestorFaseDescartes.pedirDescarte(jugadorEnviado, arrayCartasDescarte);
 			
 
 		} else {
@@ -475,13 +475,13 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionReparto.html")
 	public String accionReparto(HttpServletRequest req, Model m){
 		
-		int turno = iGestorFaseJuego.turnoJuego();
-		FasesJuego fase = iGestorFaseJuego.faseJuego();
+		int turno = gestorFaseDescartes.turnoJuego();
+		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		
 		//REPARTO
 		switch (fase) {
 		case REPARTO:{
-			iGestorFaseJuego.reparte(jugadorEnviado);
+			gestorFaseDescartes.reparte(jugadorEnviado);
 			break;
 		}	
 		default:
@@ -498,7 +498,7 @@ public class ControladorMesaJugador {
 	
 
 	
-public void construirMesaJuego(Model m, int elQueHabla, FasesJuego loQueDice){
+public void construirMesaJuego(Model m, int elQueHabla, FaseDescartes loQueDice){
 		
 		// pintar pantalla
 		Jugador[] mesa =  partida.getMesa();
@@ -548,16 +548,16 @@ public void construirMesaJuego(Model m, int elQueHabla, FasesJuego loQueDice){
 				boolean hayReparto = false;
 				boolean hayApuestas = false;
 				
-				if(loQueDice.equals(FasesJuego.MUS)){
+				if(loQueDice.equals(FaseDescartes.MUS)){
 					hayMus = true;
 					
-				} else if(loQueDice.equals(FasesJuego.DESCARTE)){
+				} else if(loQueDice.equals(FaseDescartes.DESCARTE)){
 					hayDescarte = true;
 					
-				} else if (loQueDice.equals(FasesJuego.REPARTO)){
+				} else if (loQueDice.equals(FaseDescartes.REPARTO)){
 					hayReparto = true;
 					
-				} else if (loQueDice.equals(FasesJuego.GRANDE)){
+				} else if (loQueDice.equals(FaseDescartes.GRANDE)){
 					hayApuestas = true;
 					
 				}

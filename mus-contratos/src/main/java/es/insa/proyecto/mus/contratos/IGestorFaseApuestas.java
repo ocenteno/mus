@@ -1,7 +1,7 @@
 package es.insa.proyecto.mus.contratos;
 
 import es.insa.proyecto.dominio.cartas.AccionesLance;
-import es.insa.proyecto.dominio.cartas.FasesJuego;
+import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.modelo.Lances;
 
@@ -12,7 +12,7 @@ import es.insa.proyecto.mus.modelo.Lances;
  *
  */
 
-public interface IGestorFasesLance {
+public interface IGestorFaseApuestas {
 	
 	/**
 	 * Recuperamos la fase del juego (Grande, Chicas, Pares etc...)

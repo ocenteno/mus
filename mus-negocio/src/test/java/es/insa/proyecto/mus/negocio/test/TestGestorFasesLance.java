@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import es.insa.proyecto.dominio.cartas.AccionesLance;
 import es.insa.proyecto.dominio.cartas.Carta;
-import es.insa.proyecto.dominio.cartas.FasesJuego;
+import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;

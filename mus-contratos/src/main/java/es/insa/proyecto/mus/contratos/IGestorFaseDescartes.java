@@ -1,7 +1,7 @@
 package es.insa.proyecto.mus.contratos;
 
 import es.insa.proyecto.dominio.cartas.Carta;
-import es.insa.proyecto.dominio.cartas.FasesJuego;
+import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 
 /**
@@ -11,7 +11,7 @@ import es.insa.proyecto.dominio.cartas.Jugador;
  * @author Jose y Cristina
  * 
  */
-public interface IGestorFaseJuego {
+public interface IGestorFaseDescartes {
 	
 	/**
 	 * Devuelve el jugador al que le toca jugar respecto
@@ -24,7 +24,7 @@ public interface IGestorFaseJuego {
 	 * Devuelve la fase de juego en la que se encuentra la mano
 	 * @return Fase del Juego (MUS, DESCARTE, REPARTO, GRANDE)
 	 */
-	public FasesJuego faseJuego();
+	public FaseDescartes faseJuego();
 	
 	/**
 	 * Controla si se puede pedir mus o no.
