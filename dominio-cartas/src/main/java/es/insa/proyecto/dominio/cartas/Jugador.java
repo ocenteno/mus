@@ -14,7 +14,7 @@ import java.util.Set;
  * @author Cristina y Javier
  * 
  */
-public class Jugador {
+public class Jugador implements Comparable<Jugador> {
 
 	// nombre del jugador a tratar
 	private String nombre;
@@ -107,6 +107,11 @@ public class Jugador {
 	 */
 	public boolean tieneEnMano(Carta... cartas){
 		return this.manoJugador.containsAll(Arrays.asList(cartas));
+	}
+
+	@Override
+	public int compareTo(Jugador otro) {
+		return nombre.compareTo(otro.nombre);
 	}
 	
 }
