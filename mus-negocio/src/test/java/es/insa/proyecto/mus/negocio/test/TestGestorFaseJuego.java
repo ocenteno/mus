@@ -2,6 +2,7 @@ package es.insa.proyecto.mus.negocio.test;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,8 +11,7 @@ import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
-import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
-import es.insa.proyecto.mus.negocio.GestorConteo;
+import es.insa.proyecto.mus.modelo.Partida;
 import es.insa.proyecto.mus.negocio.GestorFaseJuego;
 
 public class TestGestorFaseJuego {
@@ -20,9 +20,11 @@ public class TestGestorFaseJuego {
 	private static Jugador j2;
 	private static Jugador j3;
 	private static Jugador j4;
+	private static Partida p;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		p = new Partida();
 		j1 = new Jugador("Jugador1");
 		j1.añadirCarta(new Carta(Palo.BASTOS, 10, 10));
 		j1.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
@@ -43,6 +45,12 @@ public class TestGestorFaseJuego {
 		j4.añadirCarta(new Carta(Palo.COPAS, 11, 10));
 		j4.añadirCarta(new Carta(Palo.COPAS, 12, 10));
 		j4.añadirCarta(new Carta(Palo.COPAS, 7, 7));
+		p.sentarJugador(j1, 0);
+		p.sentarJugador(j2, 1);
+		p.sentarJugador(j3, 2);
+		p.sentarJugador(j4, 3);
+		p.empezarPartida();
+		
 	}
 
 	@Test
@@ -97,17 +105,26 @@ public class TestGestorFaseJuego {
 	@Test
 	public void testTurnoJuego() {
 		GestorFaseJuego miGestor = new GestorFaseJuego();
+		miGestor.setPartida(p);
+		
+		int mano = p.getMano();
 		int resultado = miGestor.turnoJuego();
-		Assert.assertEquals("Le toca jugar a la posicion: ",0, resultado);
+		Assert.assertEquals("La primera vez el turno tiene que ser igual a la mano ",mano, resultado);
+		
+		Jugador[] jugadores = p.getMesa();
+		miGestor.pedirMus(jugadores[mano]);
+	
 		resultado = miGestor.turnoJuego();
-		Assert.assertEquals("Le toca jugar a la posicion: ",1, resultado);
+		Assert.assertEquals("Le toca jugar a la posicion: ",(mano + 1)%4, resultado);
+		
 		resultado = miGestor.turnoJuego();
-		Assert.assertEquals("Le toca jugar a la posicion: ",2, resultado);
+		Assert.assertEquals("Le toca jugar a la posicion: ",(mano + 1)%4, resultado);
+		
+		miGestor.pedirMus(jugadores[resultado]);
 		resultado = miGestor.turnoJuego();
-		Assert.assertEquals("Le toca jugar a la posicion: ",3, resultado);
+		miGestor.pedirMus(jugadores[resultado]);
 		resultado = miGestor.turnoJuego();
-		System.out.println(resultado);
-		Assert.assertEquals("Le toca jugar a la posicion: ",0, resultado);	
+		Assert.assertEquals("Le toca jugar a la posicion: ",(mano + 3)%4, resultado);
 	}
 	
 	@Test
