@@ -1,21 +1,21 @@
 package  es.insa.proyecto.mus.web.controladores;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import es.insa.proyecto.dominio.cartas.AccionesLance;
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.contratos.IGestorFaseDescartes;
 import es.insa.proyecto.mus.contratos.IGestorFaseApuestas;
+import es.insa.proyecto.mus.modelo.Lances;
 import es.insa.proyecto.mus.modelo.Partida;
-
 
 @Controller("controladorMesaJugador")
 public class ControladorMesaJugador {
@@ -36,10 +36,8 @@ public class ControladorMesaJugador {
 		
 	//private HttpSession sesion;
 	
-	
 	/**
 	 * Este método inicia la partida 
-	 * 
 	 * 
 	 * @param m
 	 * @param partida
@@ -154,6 +152,13 @@ public class ControladorMesaJugador {
 		
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
+		/////////////////////////////////////////////////////
+		// Hay que coger los datos del gestor de apuestas
+		/////////////////////////////////////////////////////
+		Lances lance = gestorFaseApuestas.getFase();
+		int t = gestorFaseApuestas.getTurno();
+		gestorFaseApuestas.ejecutar(jugadorEnviado, lance, AccionesLance.PASO);
+		/////////////////////////////////////////////////////
 		
 		//CHICA, GRANDE, JUEGO, PARES, PUNTO
 		switch (fase) {
