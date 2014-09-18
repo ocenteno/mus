@@ -18,6 +18,8 @@ public class ControladorMesaInicial {
 	//Partida partida = new Partida();
 	@Autowired(required=true)
 	private Partida partida;
+	@Autowired(required=true)
+	private ICrupier icrupier;
 	
 	
 	@RequestMapping("/buscarMesa.html")
@@ -47,23 +49,29 @@ public class ControladorMesaInicial {
 			if(miMesa[x]== null) lleno=false;
 		}
 		if(lleno){
-			// iniciar la partida
-			partida.empezarPartida();
-			// llamar al gestor inicializarMazo, barajar, repartirCartas
-			ICrupier icrupier = new Crupier();
-			
-			icrupier.inicializarMazo();
-			icrupier.barajar();
-			
-			icrupier.repartirCartas(4, miMesa[0]);
-			icrupier.repartirCartas(4, miMesa[1]);
-			icrupier.repartirCartas(4, miMesa[2]);
-			icrupier.repartirCartas(4, miMesa[3]);			
-			
+			if(!partida.isEmpezada()){
+				iniciarPartida(m, miMesa);
+			}
 			return "iniciar";
 		}else{
 			return "mesaInicial";
 		}
+	}
+
+	private void iniciarPartida(Model m, Jugador[] miMesa) {
+		// iniciar la partida
+		partida.empezarPartida();
+		// llamar al gestor inicializarMazo, barajar, repartirCartas
+		
+		icrupier.inicializarMazo();
+		icrupier.barajar();
+		
+		icrupier.repartirCartas(4, miMesa[0]);
+		icrupier.repartirCartas(4, miMesa[1]);
+		icrupier.repartirCartas(4, miMesa[2]);
+		icrupier.repartirCartas(4, miMesa[3]);			
+		
+		m.addAttribute("mesa", miMesa);
 	}
 
 }

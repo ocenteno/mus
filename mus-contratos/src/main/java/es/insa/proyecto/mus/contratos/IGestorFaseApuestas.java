@@ -1,7 +1,6 @@
 package es.insa.proyecto.mus.contratos;
 
 import es.insa.proyecto.dominio.cartas.AccionesLance;
-import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.modelo.Lances;
 

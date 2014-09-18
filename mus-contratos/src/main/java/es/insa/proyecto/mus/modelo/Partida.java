@@ -20,6 +20,8 @@ public class Partida {
 	 */
 	private Jugador[] mesa;
 	
+	private boolean empezada;
+	
 	/**
 	 * Las parejas que componen la partida
 	 */
@@ -94,6 +96,10 @@ public class Partida {
 	
 	// ZONA DE MÉTODOS
 	
+	public boolean isEmpezada() {
+		return empezada;
+	}
+
 	/**
 	 * Resetea las piedras ganadas de las dos parejas
 	 */
@@ -129,6 +135,7 @@ public class Partida {
 			// Inicializamos los puntos de cada pareja
 			nuevoJuego();
 		}
+		empezada = empezar;
 		return empezar;
 	}
 	

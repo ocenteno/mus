@@ -136,4 +136,15 @@ public class TestDaoMazoHibernate {
 		dmh.eliminar(m3);
 	}
 
+	/**
+	 * Se busca un Mazo en BD
+	 */
+	@Test
+	public void testBuscar() {
+		// 2º TEST
+		Mazo m = dmh.buscar(1); 
+
+		// 3º VERIFICAR (ASERCIÓN)
+		Assert.assertNotNull("Debería devolver una longitud de 3", m);
+	}
 }

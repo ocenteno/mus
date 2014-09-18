@@ -92,7 +92,7 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 	public G buscar(K id) {
 		sf.getCurrentSession().beginTransaction();
 		Object resultado = sf.getCurrentSession().get(claseG, id);
-		sf.getCurrentSession().getTransaction().commit();
+		sf.getCurrentSession().getTransaction().rollback();
 		return (G) resultado;
 	}
 

@@ -152,4 +152,9 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 		this.crupier = crupier;
 	}
 
+	public void setPartida(Partida partida) {
+		this.partida = partida;
+		recuperarMano();
+	}
+
 }
