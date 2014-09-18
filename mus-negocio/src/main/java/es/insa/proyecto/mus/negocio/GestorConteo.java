@@ -41,7 +41,7 @@ public class GestorConteo implements IGestorConteo{
 	}
 
 	/**
-	 * Controlamos los puntos obtenidos a Juego/Punto
+	 * Controlamos los puntos obtenidos a Juego
 	 */
 	@Override
 	public int contarPiedrasPorJuego(Jugador j) {
