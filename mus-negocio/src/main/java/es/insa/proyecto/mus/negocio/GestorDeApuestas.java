@@ -18,7 +18,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * Se utiliza un Map para que cada lance tenga su propio bote, para acceder al bote de Chicas
 	 * por ejemplo haremos "bote = apuestas.get(apuesta)" siendo apuesta "Chica".
 	 */
-	private Map<Enum, Integer> apuestas;
+	private Map<Lances, Integer> apuestas;
 	
 	/**
 	 * La última apuesta se guarda por si no se acepta, se sumará
@@ -31,7 +31,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * En el constructor se inicializan las claves del mapa de apuestas.
 	 */
 	public GestorDeApuestas() {
-		apuestas = new HashMap<Enum, Integer>();
+		apuestas = new HashMap<Lances, Integer>();
 		apuestas.put(Lances.GRANDE,0);
 		apuestas.put(Lances.CHICA,0);
 		apuestas.put(Lances.PARES,0);
