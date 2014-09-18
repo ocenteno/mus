@@ -30,5 +30,7 @@ public interface IComprobadorParesJuego {
 	public Pares comprobarPares(Jugador j);
 
 	public Carta[] obtenerEmparejadas(Jugador j);
+
+	public int obtenerPuntuacion(Jugador j);
 	
 }	
