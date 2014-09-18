@@ -32,19 +32,16 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 	private int cortaMus;
 	private Map<Jugador, Carta[]> descarteMus;
 	private Partida partida;
-	private int siguiente;
+	private int turno;
 	private int mano;
-	private int manoJuego;
 	private ICrupier crupier;
 
 	
 	
 	public GestorFaseJuego() {
-		partida = new Partida();
 		pideMus = new HashSet<Jugador>();
 		cortaMus = 0;
 		descarteMus = new HashMap<Jugador, Carta[]>();
-		recuperarMano();
 	}
 
 	@Override
@@ -52,6 +49,7 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 		
 		if (pideMus.size()< 4 && cortaMus==0) {
 			pideMus.add(j); 
+			actualizarTurnoJuego();
 			return true;
 		}
 		return false;
@@ -63,6 +61,7 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 			return false;
 		}else {if (cortaMus==0) {
 			cortaMus = +1;
+			actualizarTurnoJuego();
 			return true;
 			}
 		}
@@ -86,6 +85,7 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 					return false;
 				}else{
 					descarteMus.put(j, cartas);
+					actualizarTurnoJuego();
 					return true;
 				}
 			}
@@ -114,27 +114,19 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 		for (Jugador jugador : descarteMus.keySet()) {
 			Carta[] numDescartes = descarteMus.get(jugador);
 			crupier.repartirCartas(numDescartes.length, jugador);
+			actualizarTurnoJuego();
 		}
 		return false;
 	}
 
-	public void recuperarMano() {
-		manoJuego = partida.getMano();
-		mano = manoJuego;
-		siguiente = manoJuego;
-		
+
+	public void actualizarTurnoJuego() {
+		turno = (turno+1)%4;
 	}
 
 	@Override
 	public int turnoJuego() {
-	
-		mano = siguiente;
-		if (mano == 3){
-		siguiente = 0;
-		}else {
-			siguiente += 1;
-		}
-		return mano;
+		return turno;
 	}
 
 	@Override
@@ -150,7 +142,12 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 		}
 	}
 
-
+	public void setPartida(Partida partidaActual) {
+		this.partida = partidaActual;
+		this.mano = partida.getMano();
+		this.turno = mano;
+	}
+	
 	public void setCrupier(ICrupier crupier) {
 		this.crupier = crupier;
 	}
