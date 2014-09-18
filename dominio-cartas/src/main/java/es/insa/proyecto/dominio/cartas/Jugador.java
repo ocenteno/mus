@@ -3,9 +3,7 @@ package es.insa.proyecto.dominio.cartas;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Esta clase contiene los métodos que interactúan con el Jugador. Las

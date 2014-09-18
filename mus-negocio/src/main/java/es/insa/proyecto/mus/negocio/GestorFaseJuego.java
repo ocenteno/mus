@@ -1,15 +1,9 @@
 package es.insa.proyecto.mus.negocio;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
-
-import javax.swing.JComboBox.KeySelectionManager;
 
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.FaseDescartes;
@@ -150,11 +144,6 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 	
 	public void setCrupier(ICrupier crupier) {
 		this.crupier = crupier;
-	}
-
-	public void setPartida(Partida partida) {
-		this.partida = partida;
-		recuperarMano();
 	}
 
 }

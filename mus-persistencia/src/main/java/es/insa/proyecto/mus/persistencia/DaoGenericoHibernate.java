@@ -40,6 +40,7 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 			sf = sesFact;
 	}
 
+	@SuppressWarnings("unchecked")
 	public DaoGenericoHibernate() {
 		
 		if (sf == null) {

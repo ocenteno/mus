@@ -6,6 +6,7 @@ public enum Pares {
 	MEDIAS(2),
 	DUPLES(3);
 	
+	@SuppressWarnings("unused")
 	private int valor;
 	
 	Pares(int valor){

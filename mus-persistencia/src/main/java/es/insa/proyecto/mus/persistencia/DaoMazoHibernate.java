@@ -2,10 +2,8 @@ package es.insa.proyecto.mus.persistencia;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Mazo;

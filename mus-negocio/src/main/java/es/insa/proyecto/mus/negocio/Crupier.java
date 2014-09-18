@@ -1,7 +1,5 @@
 package es.insa.proyecto.mus.negocio;
 
-import java.util.Arrays;
-
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Mazo;

@@ -10,7 +10,6 @@ import es.insa.proyecto.dominio.cartas.Gocho;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;
-import es.insa.proyecto.mus.contratos.IComprobadorParesJuego;
 import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
 import es.insa.proyecto.mus.negocio.GestorConteo;
 

@@ -3,17 +3,12 @@ package es.insa.proyecto.dominio.cartas.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Gocho;
-import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Mazo;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;

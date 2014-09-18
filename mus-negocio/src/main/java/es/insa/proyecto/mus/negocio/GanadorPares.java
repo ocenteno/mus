@@ -7,10 +7,8 @@ import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Pares;
 import es.insa.proyecto.mus.contratos.IGanadorLance;
-import es.insa.proyecto.mus.contratos.IGestorLances;
 
 public class GanadorPares implements IGanadorLance, Comparator<Jugador>{
-	private IGestorLances gestorLances;
 	private ComprobadorParesJuego comprobadorPares;
 	private GanadorGrande comparadorGrande;
 
@@ -32,14 +30,6 @@ public class GanadorPares implements IGanadorLance, Comparator<Jugador>{
 		Arrays.sort(jugadores, this);
 		// EL QUE GANA ES EL 0
 		return jugadores[0];
-	}
-
-	/**
-	 * @param gestorLances
-	 *            the gestorLances to set
-	 */
-	public void setGestorLances(IGestorLances gestorLances) {
-		this.gestorLances = gestorLances;
 	}
 
 	public void setComparadorGrande(GanadorGrande comparadorGrande) {

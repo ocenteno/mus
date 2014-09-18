@@ -49,7 +49,7 @@ public class TestCrupier {
 			
 			@Override
 			public void eliminar(Mazo c) {
-				// TODO Auto-generated method stub
+				// TODO CREAR EL TEST
 				
 			}
 			/**

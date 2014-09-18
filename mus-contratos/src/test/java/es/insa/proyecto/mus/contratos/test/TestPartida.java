@@ -31,7 +31,7 @@ public class TestPartida {
 		p.sentarJugador(j1, 1);
 		boolean respuesta = p.empezarPartida();
 		assertEquals("La silla uno de la mesa debe contener al jugador j1 ", j1, p.getMesa()[1]);
-
+		assertFalse("Si se sienta un único jugador la partida no ha empezado", respuesta);
 	}
 
 	/**

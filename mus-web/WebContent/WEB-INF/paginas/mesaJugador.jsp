@@ -19,13 +19,13 @@
 						<td width="25%">Puntos</td>
 					</tr>
 					<tr>
-						<td>${mesa[0].nombre}</br>${mesa[2].nombre}
+						<td>${mesa[0].nombre}<br/>${mesa[2].nombre}
 						</td>
 						<td align="center">1xxx</td>
 						<td align="center">10xxx</td>
 					</tr>
 					<tr>
-						<td>${mesa[1].nombre}</br>${mesa[3].nombre}
+						<td>${mesa[1].nombre}<br/>${mesa[3].nombre}
 						</td>
 						<td align="center">0xxx</td>
 						<td align="center">22xxx</td>

@@ -5,7 +5,6 @@ import es.insa.proyecto.dominio.cartas.Gocho;
 import es.insa.proyecto.dominio.cartas.Mazo;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;
-import es.insa.proyecto.mus.contratos.DaoMazo;
 import es.insa.proyecto.mus.persistencia.DaoMazoHibernate;
 
 public class CargaCartas {

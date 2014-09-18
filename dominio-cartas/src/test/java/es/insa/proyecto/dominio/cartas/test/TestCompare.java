@@ -2,9 +2,7 @@ package es.insa.proyecto.dominio.cartas.test;
 
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import org.junit.BeforeClass;

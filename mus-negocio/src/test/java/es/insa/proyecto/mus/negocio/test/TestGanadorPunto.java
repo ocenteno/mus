@@ -9,9 +9,6 @@ import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
-import es.insa.proyecto.mus.negocio.GanadorGrande;
-import es.insa.proyecto.mus.negocio.GanadorJuego;
-import es.insa.proyecto.mus.negocio.GanadorPares;
 import es.insa.proyecto.mus.negocio.GanadorPunto;
 import es.insa.proyecto.mus.negocio.GestorLances;
 

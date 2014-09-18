@@ -1,17 +1,13 @@
 package es.insa.proyecto.mus.negocio.test;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import es.insa.proyecto.dominio.cartas.AccionesLance;
 import es.insa.proyecto.dominio.cartas.Carta;
-import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
-import es.insa.proyecto.dominio.cartas.Pito;
 import es.insa.proyecto.mus.modelo.Lances;
 import es.insa.proyecto.mus.modelo.Partida;
 import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;

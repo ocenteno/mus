@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import es.insa.proyecto.mus.contratos.IGestorDeApuestas;
 import es.insa.proyecto.mus.modelo.Lances;
 import es.insa.proyecto.mus.negocio.GestorDeApuestas;
 
