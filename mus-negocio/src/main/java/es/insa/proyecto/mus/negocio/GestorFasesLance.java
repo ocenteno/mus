@@ -50,6 +50,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 		faseActual = Lances.GRANDE;
 		contadorDePaso = new TreeSet<Jugador>();
 		faseOrdago = false;
+		listaAcciones = new LinkedList<AccionesLance>();
 		cargarAccionesQueSePuedenRealizarCuandoNadieHaApostado();
 	}
 
