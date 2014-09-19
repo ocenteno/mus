@@ -43,22 +43,15 @@ public class GestorTanteoParcial implements IGestorTanteoParcial{
 		default:
 			break;
 	}
-		int bote = gestorApuestas.getApuestas(lance);
+		int boteLance = gestorApuestas.getApuestas(lance);
 		if (partida.getPareja1().comprobarPertenece(jugador)){
-			partida.getPareja1().setPiedrasGanadas(bote);
+			partida.sumarPuntosPareja1(boteLance);
 		}else{
-			partida.getPareja2().setPiedrasGanadas(bote);
+			partida.sumarPuntosPareja2(boteLance);
 		}
 		
 		return jugador;
 		
 	}
-
-
-	public void añadirBoteAPareja(int bote) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }
