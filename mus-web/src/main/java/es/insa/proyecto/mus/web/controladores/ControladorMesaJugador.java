@@ -118,7 +118,9 @@ public class ControladorMesaJugador {
 	 */
 	@RequestMapping("/accionDarMus.html")
 	public String accionDarMus(String mus,Model m, HttpSession sesion) {
-		
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
@@ -151,6 +153,9 @@ public class ControladorMesaJugador {
 	 */
 	@RequestMapping("/accionNoHayMus.html")
 	public String accionNoHayMus(String noMus,Model m, HttpSession sesion) {
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		if (fase == FaseDescartes.MUS) {
@@ -177,6 +182,9 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionDescartar.html")
 	public String accionDescartar(String descartar,HttpServletRequest req, Model m,
 			HttpSession sesion) {
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		Carta[] arrayDescartado;
@@ -215,6 +223,9 @@ public class ControladorMesaJugador {
 	@RequestMapping("/accionReparto.html")
 	public String accionReparto(String reparto,HttpServletRequest req, Model m,
 			HttpSession sesion) {
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		if (fase == FaseDescartes.REPARTO) {
@@ -239,6 +250,9 @@ public class ControladorMesaJugador {
 	 */
 	@RequestMapping("/accionPaso.html")
 	public String accionPaso(String paso,Model m, HttpSession sesion) {
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + paso;
@@ -267,6 +281,9 @@ public class ControladorMesaJugador {
 	 */
 	@RequestMapping("/accionQuiero.html")
 	public String accionQuiero(String veo,Model m, HttpSession sesion) {
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + veo;
@@ -296,6 +313,9 @@ public class ControladorMesaJugador {
 	 */
 	@RequestMapping("/accionEnvido.html")
 	public String accionEnvido(String envido,Model m, HttpSession sesion) {
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + envido;
@@ -325,6 +345,9 @@ public class ControladorMesaJugador {
 	 */
 	@RequestMapping("/accionXMas.html")
 	public String accionXMas(String subo,HttpServletRequest req, Model m, HttpSession sesion) {
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + subo;
@@ -355,6 +378,9 @@ public class ControladorMesaJugador {
 	 */
 	@RequestMapping("/accionOrdago.html")
 	public String accionOrdago(Model m, HttpSession sesion) {
+		// primero buscamos quien soy
+		intYo = buscarYo(sesion);
+		jugadorEnviado = partida.getMesa()[intYo];
 		int turno = gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		if (fase == FaseDescartes.GRANDE) {
