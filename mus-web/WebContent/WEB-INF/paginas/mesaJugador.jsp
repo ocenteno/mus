@@ -73,14 +73,14 @@
 				<table>
 					<tr>
 						<td width="5%">
-							<c:if test="${mesa[mano] == mesa[(yo+2)%4]}">
+							<c:if test="${mesa[mano] == mesa[(yo+3)%4]}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
 										width="25px" height="25px">
 							</c:if>						
 						</td>
 						<td width="90%"></td>
 						<td width="5%">
-							<c:if test="${mesa[mano] == mesa[(yo+1)%4]}">
+							<c:if test="${mesa[mano] == mesa[(yo+2)%4]}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
 										width="25px" height="25px">
 							</c:if>						
@@ -93,14 +93,14 @@
 					</tr>
 					<tr>
 						<td>
-							<c:if test="${mesa[mano] == mesa[(yo+3)%4]}">
+							<c:if test="${mesa[mano] == mesa[yo]}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
 										width="25px" height="25px">
 							</c:if>						
 						</td>
 						<td></td>
-						<td>
-							<c:if test="${mesa[mano] == mesa[yo]}">
+						<td>						
+							<c:if test="${mesa[mano] == mesa[(yo+1)%4]}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
 										width="25px" height="25px">
 							</c:if>						
@@ -195,6 +195,7 @@
 								<td>
 									<form action="./accionDarMus.html">
 										<input id="mus" type="submit" value="Mus" />
+										
 									</form>
 								</td>
 								<td>
@@ -272,5 +273,6 @@
 		</tr>
 	</table>
 	<h3> Es el turno de : ${elTurno}</h3>
+	<h3> ${accionAnterior}</h3>
 </body>
 </html>
