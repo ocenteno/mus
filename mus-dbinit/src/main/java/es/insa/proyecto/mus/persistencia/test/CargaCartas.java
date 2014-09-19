@@ -10,7 +10,7 @@ import es.insa.proyecto.mus.persistencia.DaoMazoHibernate;
 public class CargaCartas {
 
 	public static void main(String[] args) {
-	
+		System.out.println("Inicializando BD");
 		Carta unoOros = new Pito(Palo.OROS, 1, 1);
 		Carta dosOros = new Pito(Palo.OROS, 2, 1);
 		Carta tresOros = new Gocho(Palo.OROS, 3, 10);
@@ -33,7 +33,6 @@ public class CargaCartas {
 		Carta caballoCopas = new Carta(Palo.COPAS, 11, 10);
 		Carta reyCopas = new Gocho(Palo.COPAS, 12, 10);
 	
-		
 		Carta unoBastos = new Pito(Palo.BASTOS, 1, 1);
 		Carta dosBastos = new Pito(Palo.BASTOS, 2, 1);
 		Carta tresBastos = new Gocho(Palo.BASTOS, 3, 10);
@@ -56,7 +55,7 @@ public class CargaCartas {
 		Carta caballoEspadas = new Carta(Palo.ESPADAS, 11, 10);
 		Carta reyEspadas = new Gocho(Palo.ESPADAS, 12, 10);
 		
-		
+		System.out.println("Creando mazo");
 		Mazo mazo = new Mazo("BarajaMus");
 		mazo.añadir(unoOros,dosOros,tresOros,cuatroOros,cincoOros,
 				seisOros,sieteOros,sotaOros,caballoOros,reyOros); 
@@ -75,6 +74,6 @@ public class CargaCartas {
 		daoMazo.abrirSesion();
 		daoMazo.insertar(mazo);
 		daoMazo.cerrarSesion();
-		
+		System.out.println("BD inicialziada");
 	}
 }
