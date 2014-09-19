@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<script type="text/javascript">
-
-
-</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+	<title>Mesa inicial</title>
+	<script type="text/javascript" src="js/recargaMesa.js"></script>
+<c:if test="${jugadorActual != null}">
+	<script type="text/javascript">
+		setInterval(recargaMesaInicial, 2000);
+	</script>
+</c:if>
 </head>
 <body>
 	<a href="./index.jsp">Página Inicial</a>
@@ -20,12 +21,12 @@
 			<td></td>
 			<td>
 				<c:if test="${mesa[0] == null}">
-					<c:if test="${jugadorActual == null }">
+					<c:if test="${jugadorActual == null}">
 						<a href="./sentarJugador.html?silla=0&nombre=${param.nombre}">
 						<img src='imagenes/sillaIzq.jpg' width='100px' height='150px'/>
 						</a>
 					</c:if>
-					<c:if test="${jugadorActual != null }">
+					<c:if test="${jugadorActual != null}">
 						<img src='imagenes/sillaIzq.jpg' width='100px' height='150px'/>
 					</c:if>
 				</c:if>
@@ -52,7 +53,7 @@
 				</c:if>
 			</td>
 			
-			<td><img id="imagen" alt="" src="imagenes/mesa.jpg" width="100px" height="150px"></td>
+			<td><img id="imagen" alt="" src="imagenes/mesa.jpg" width="100px" height="150px" /></td>
 			
 			<td>
 				<c:if test="${mesa[1] == null}">
