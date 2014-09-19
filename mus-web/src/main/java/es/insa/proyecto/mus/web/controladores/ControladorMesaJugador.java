@@ -16,6 +16,7 @@ import es.insa.proyecto.dominio.cartas.FaseDescartes;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.contratos.IGestorFaseDescartes;
 import es.insa.proyecto.mus.contratos.IGestorFaseApuestas;
+import es.insa.proyecto.mus.contratos.IGestorTanteoParcial;
 import es.insa.proyecto.mus.modelo.Lances;
 import es.insa.proyecto.mus.modelo.Partida;
 
@@ -46,6 +47,11 @@ public class ControladorMesaJugador {
 	 */
 	@Autowired
 	private IGestorFaseApuestas gestorFaseApuestas;
+	/**
+	 * Se utiliza para ver si estamos en la fase de conteo.
+	 */
+	@Autowired
+	private IGestorTanteoParcial gestorTanteo;
 
 	/**
 	 * Este método inicia la partida
@@ -535,27 +541,28 @@ public class ControladorMesaJugador {
 			cartasJugador[i] = cartasYo[i].getPalo() + ""
 					+ cartasYo[i].getNumero() + ".jpg";
 		}
-		boolean hayMus = false;
-		boolean hayDescarte = false;
-		boolean hayReparto = false;
-		boolean hayApuestas = false;
-		if (loQueDice.equals(FaseDescartes.MUS)) {
-			hayMus = true;
-		} else if (loQueDice.equals(FaseDescartes.DESCARTE)) {
-			hayDescarte = true;
-		} else if (loQueDice.equals(FaseDescartes.REPARTO)) {
-			hayReparto = true;
-		} else if (loQueDice.equals(FaseDescartes.GRANDE)) {
-			hayApuestas = true;
+		String quéToca=loQueDice.toString();
+		
+		// SI TOCA CONTEO, llamamos al gestor de conteo
+		if(loQueDice == Lances.CONTEO){
+			m.addAttribute("ganaGrande",
+					gestorTanteo.sacarPiedrasLance(Lances.GRANDE));
+			m.addAttribute("ganaChica", 
+					gestorTanteo.sacarPiedrasLance(Lances.CHICA));
+			m.addAttribute("ganaPares", 
+					gestorTanteo.sacarPiedrasLance(Lances.PARES));
+			m.addAttribute("ganaJuego", 
+					gestorTanteo.sacarPiedrasLance(Lances.JUEGO));
+			m.addAttribute("ganaPunto", 
+					gestorTanteo.sacarPiedrasLance(Lances.PUNTO));
 		}
+		
 		String elTurno = mesa[elQueHabla].getNombre();
 		m.addAttribute("cartasJugador", cartasJugador);
 		m.addAttribute("mesa", mesa);
 		m.addAttribute("partida", partida);
-		m.addAttribute("hayMus", hayMus);
-		m.addAttribute("hayDescarte", hayDescarte);
-		m.addAttribute("hayReparto", hayReparto);
-		m.addAttribute("hayApuestas", hayApuestas);
+		m.addAttribute("queToca", quéToca);
+
 		m.addAttribute("loQueDice", loQueDice);
 		m.addAttribute("elTurno", elTurno);
 		// acciones

@@ -10,7 +10,6 @@ import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
 import es.insa.proyecto.mus.negocio.GanadorPunto;
-import es.insa.proyecto.mus.negocio.GestorLances;
 
 public class TestGanadorPunto {
 
@@ -20,7 +19,6 @@ public class TestGanadorPunto {
 	public static void setUpBeforeClass() throws Exception {
 		gp = new GanadorPunto();
 		gp.setComprobadorJuego(new ComprobadorParesJuego());
-		gp.setGestorLances(new GestorLances());
 		
 	//	gg.setGestorLances(new GestorLances());
 	}

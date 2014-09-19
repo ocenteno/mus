@@ -14,7 +14,9 @@ public interface IGestorTanteoParcial {
 	/**
 	 * Buscamos al jugador que ha ganado el lance
 	 */
-	public Jugador sacarPiedrasLance( Lances lance, Jugador... jugadores);
+	public Jugador sacarPiedrasLance(Lances lance);
+
+	public void sacarPiedras(int turnoSiguiente, int piedras);
 	
 }
 

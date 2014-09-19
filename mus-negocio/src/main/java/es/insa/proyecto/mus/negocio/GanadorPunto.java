@@ -6,10 +6,10 @@ import java.util.Comparator;
 import es.insa.proyecto.dominio.cartas.Juego;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.mus.contratos.IGanadorLance;
-import es.insa.proyecto.mus.contratos.IGestorLances;
+import es.insa.proyecto.mus.modelo.Partida;
 
 public class GanadorPunto implements IGanadorLance, Comparator<Jugador> {
-	private IGestorLances gestorLances;
+	private Partida partida;
 	private ComprobadorParesJuego comprobadorJuego;
 	
 	/**
@@ -39,7 +39,7 @@ public class GanadorPunto implements IGanadorLance, Comparator<Jugador> {
 		int v1 =comprobadorJuego.obtenerPuntuacion(j1); 
 		int v2 =comprobadorJuego.obtenerPuntuacion(j2);
 		if (v1 == v2) {
-			if (j1 == gestorLances.ordenJugadoresSegunMano(j1, j2)[0]) {
+			if (j1 == partida.jugadorMásCercaDeLaMano(j1, j2)) {
 				orden = 1;
 			} else {
 				orden = -1;
@@ -49,8 +49,8 @@ public class GanadorPunto implements IGanadorLance, Comparator<Jugador> {
 		return -Integer.compare(v1, v2);
 	}
 
-	public void setGestorLances(IGestorLances gestorLances) {
-		this.gestorLances = gestorLances;
+	public void setPartida(Partida partida) {
+		this.partida = partida;
 	}
 
 	public void setComprobadorJuego(ComprobadorParesJuego comprobadorJuego) {

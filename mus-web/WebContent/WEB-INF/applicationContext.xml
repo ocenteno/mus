@@ -11,6 +11,18 @@
 	<bean name="gestorFaseApuestas" scope="singleton" 
 		 class="es.insa.proyecto.mus.negocio.GestorFasesLance"/>
 	
+	<!--  GESTOR TANTEO  -->
+	<bean name="gestorTanteo" scope="singleton" 
+		 class="es.insa.proyecto.mus.negocio.GestorTanteoParcial">
+		<property name="ganadorGrande" ref="ganadorGrande" />
+		<property name="ganadorChica" ref="ganadorChica" />
+		<property name="ganadorPares" ref="ganadorPares" />
+		<property name="ganadorJuego" ref="ganadorJuego" />
+		<property name="ganadorPunto" ref="ganadorPunto" />
+		<property name="partida" ref="partida" />
+		<property name="gestorApuestas" ref="gestorApuestas" />
+  	</bean>
+  	
 	<!--  GESTOR CONTEO  -->
 	<bean name="gestorConteo" scope="singleton" 
 		 class="es.insa.proyecto.mus.negocio.GestorConteo">
@@ -22,6 +34,7 @@
 		 class="es.insa.proyecto.mus.negocio.GestorFasesLance">
 		<property name="gestorApuestas" ref="gestorApuestas"/>
 		<property name="paresJuegos" ref="comprobadorParesJuego"/>
+		<property name="gestorTanteo" ref="gestorTanteo" />
   	</bean>
   	
   	<!--  GESTOR FASEJUEGO -->
@@ -30,8 +43,6 @@
   		<property name="crupier" ref="crupier"/>
   		<property name="partida" ref="partida" />
   	</bean>
-  	
-  	  	
 	
 	<!--  GESTOR APUESTAS  -->
 	<bean name="gestorApuestas" scope="singleton" 
@@ -47,6 +58,35 @@
 	<bean name="crupier" scope="singleton" 
 		 class="es.insa.proyecto.mus.negocio.Crupier">
 		<property name="daoMazo" ref="daoMazo"/>
+	</bean>
+	
+	<!-- CLASES DE COMPROBACIÓN DE GANADOR -->
+	<bean name="ganadorGrande"
+		class="es.insa.proyecto.mus.negocio.GanadorGrande">
+		<property name="partida" ref="partida" />
+	</bean>
+	
+	<bean name="ganadorChica"
+		class="es.insa.proyecto.mus.negocio.GanadorChica">
+		<property name="partida" ref="partida" />
+	</bean>
+
+	<bean name="ganadorPares"
+		class="es.insa.proyecto.mus.negocio.GanadorPares">
+		<property name="comparadorGrande" ref="ganadorGrande" />
+		<property name="comprobadorPares" ref="comprobadorParesJuego" />
+	</bean>
+
+	<bean name="ganadorJuego"
+		class="es.insa.proyecto.mus.negocio.GanadorJuego">
+		<property name="partida" ref="partida" />
+		<property name="comprobadorJuego" ref="comprobadorParesJuego" />
+	</bean>
+
+	<bean name="ganadorPunto"
+		class="es.insa.proyecto.mus.negocio.GanadorPunto">
+		<property name="partida" ref="partida" />
+		<property name="comprobadorJuego" ref="comprobadorParesJuego" />
 	</bean>
 	
 	<!--  DAO CARTA -->

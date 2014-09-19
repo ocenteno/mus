@@ -5,12 +5,12 @@ import java.util.Comparator;
 
 import es.insa.proyecto.dominio.cartas.Carta;
 import es.insa.proyecto.dominio.cartas.Jugador;
-import es.insa.proyecto.mus.contratos.IGestorLances;
 import es.insa.proyecto.mus.contratos.IGanadorLance;
+import es.insa.proyecto.mus.modelo.Partida;
 
 public class GanadorGrande implements IGanadorLance, Comparator<Jugador>{
 	
-	private IGestorLances gestorLances;
+	private Partida partida;
 
 	public GanadorGrande() {
 		
@@ -48,7 +48,7 @@ public class GanadorGrande implements IGanadorLance, Comparator<Jugador>{
 		// resultado == -1 indica que j1 tiene las cartas mas altas
 		// resultado ==  1 indica que j2 tiene las cartas mas altas
 		if (resultado == 0) {
-			if (j1 == gestorLances.ordenJugadoresSegunMano(j1, j2)[0]){
+			if (j1 == partida.jugadorMásCercaDeLaMano(j1, j2)){
 				resultado = 1;
 			}else {
 				resultado = -1;
@@ -58,11 +58,8 @@ public class GanadorGrande implements IGanadorLance, Comparator<Jugador>{
 		return resultado;
 	}
 	
-	/**
-	 * @param gestorLances the gestorLances to set
-	 */
-	public void setGestorLances(IGestorLances gestorLances) {
-		this.gestorLances = gestorLances;
+	public void setPartida(Partida partida) {
+		this.partida = partida;
 	}
 	
 

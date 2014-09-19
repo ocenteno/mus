@@ -12,6 +12,7 @@ import es.insa.proyecto.dominio.cartas.Pares;
 import es.insa.proyecto.mus.contratos.IComprobadorParesJuego;
 import es.insa.proyecto.mus.contratos.IGestorDeApuestas;
 import es.insa.proyecto.mus.contratos.IGestorFaseApuestas;
+import es.insa.proyecto.mus.contratos.IGestorTanteoParcial;
 import es.insa.proyecto.mus.modelo.Lances;
 import es.insa.proyecto.mus.modelo.Partida;
 
@@ -39,6 +40,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	private Partida partida;
 	private int turno;
 	private int mano;
+	private IGestorTanteoParcial gestorTanteo;
 
 	/**
 	 * Constructor donde inicializamos la faseActual, el contador de paso y le
@@ -218,7 +220,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	 * @param
 	 */
 	private void noQuiero() {
-		gestorApuestas.noQuiero(faseActual);
+		int piedras = gestorApuestas.noQuiero(faseActual);
 		// Si soy el primero que no ha querido
 		if(noQuiero==0){
 			// pasa el turno a mi pareja
@@ -232,6 +234,8 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 			cargarAccionesQueSePuedenRealizarCuandoNadieHaApostado();
 			// reseteamos el noQuiero
 			noQuiero = 0;
+			// La pareja que apostó se lleva las piedras
+			gestorTanteo.sacarPiedras(turnoSiguiente(), piedras);
 			// y el turno pasa a la mano
 			turno = mano;
 		}
@@ -262,9 +266,11 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 
 	/**
 	 * Este método se encarga de avanzar el turno al jugador siguiente
+	 * @return El índice de turno actual
 	 */
-	private void turnoSiguiente() {
+	private int turnoSiguiente() {
 		turno = (turno+1)%4;
+		return turno;
 	}
 	
 	/**
@@ -428,6 +434,10 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 		this.jugadorPartida = partida.getMesa();
 		this.mano = partida.getMano();
 		this.turno = mano;
+	}
+
+	public void setGestorTanteo(IGestorTanteoParcial gestorTanteo) {
+		this.gestorTanteo = gestorTanteo;
 	}
 
 	public void setGestorApuestas(IGestorDeApuestas gestorApuestas) {

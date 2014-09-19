@@ -10,7 +10,6 @@ import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
 import es.insa.proyecto.mus.negocio.GanadorJuego;
-import es.insa.proyecto.mus.negocio.GestorLances;
 
 public class TestGanadorJuego {
 
@@ -20,13 +19,11 @@ public class TestGanadorJuego {
 	public static void setUpBeforeClass() throws Exception {
 		gj = new GanadorJuego();
 		gj.setComprobadorJuego(new ComprobadorParesJuego());
-		gj.setGestorLances(new GestorLances());
-		
-	//	gg.setGestorLances(new GestorLances());
 	}
-/**
- * comprueba el funcionamiento del metodo compare
- */
+	
+	/**
+	 * comprueba el funcionamiento del metodo compare
+	 */
 	@Test
 	public void testCompare31YPunto() {
 		Jugador j1=new Jugador("A");

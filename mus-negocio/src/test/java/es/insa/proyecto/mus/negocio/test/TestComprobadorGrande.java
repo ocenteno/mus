@@ -9,7 +9,7 @@ import es.insa.proyecto.dominio.cartas.Gocho;
 import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.dominio.cartas.Pito;
-import es.insa.proyecto.mus.contratos.IGestorLances;
+import es.insa.proyecto.mus.modelo.Partida;
 import es.insa.proyecto.mus.negocio.GanadorGrande;
 
 public class TestComprobadorGrande {
@@ -29,51 +29,111 @@ public class TestComprobadorGrande {
 	 */
 	@Test
 	public void testGanadorCartaContraCarta() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador1, 0);
+		p.sentarJugador(jugador2, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador1, jugador2);
 		Assert.assertEquals("Debe ganar el jugador2", jugador2, ganadorGrande);
 	}
 	@Test
 	public void testGanadorCartaContraPito() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador2, 0);
+		p.sentarJugador(jugador3, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador2, jugador3);
 		Assert.assertEquals("Debe ganar el jugador2", jugador2, ganadorGrande);
 	}
 	@Test
 	public void testGanadorCartaContraGocho() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador1, 0);
+		p.sentarJugador(jugador4, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador1, jugador4);
 		Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorGrande);
 	}
 	@Test
 	public void testGanadorCartaContraGochoIguales() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador2, 0);
+		p.sentarJugador(jugador5, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador2, jugador5);
 		Assert.assertEquals("Debe ganar el jugador5", jugador5, ganadorGrande);
 	}
 	@Test
 	public void testGanadorGochoContraGocho() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador4, 0);
+		p.sentarJugador(jugador5, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador4, jugador5);
 		Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorGrande);
 	}
 	@Test
 	public void testGanadorPitoContraGocho() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador3, 0);
+		p.sentarJugador(jugador4, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador3, jugador4);
 		Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorGrande);
 	}
 	@Test
 	public void testGanadorCartaContraGochoDistintos() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador2, 0);
+		p.sentarJugador(jugador6, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador2, jugador6);
 		Assert.assertEquals("Debe ganar el jugador6", jugador6, ganadorGrande);
 	}
 	@Test
 	public void testGanadorGochoContraGochoIguales() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador4, 0);
+		p.sentarJugador(jugador6, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador4, jugador6);
 		Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorGrande);
 	}
 	@Test
 	public void testGanadorGochoContraGochoMano() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador6, 0);
+		p.sentarJugador(jugador7, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador6, jugador7);
 		Assert.assertEquals("Debe ganar el jugador6", jugador6, ganadorGrande);
 	}
 	@Test
 	public void testGanadorGochoContraGochoOtraMano() {
+		Partida p = new Partida();
+		p.sentarJugador(jugador7, 0);
+		p.sentarJugador(jugador6, 1);
+		p.setMano(0);
+		grande.setPartida(p);
+		
 		Jugador ganadorGrande = grande.ganador(jugador7, jugador6);
 		Assert.assertEquals("Debe ganar el jugador7", jugador7, ganadorGrande);
 	}
@@ -119,16 +179,6 @@ public class TestComprobadorGrande {
 		jugador7.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
 		
 		grande = new GanadorGrande();
-		grande.setGestorLances(new IGestorLances() {
-			@Override
-			public Jugador[] ordenJugadoresSegunMano(Jugador... jugadores) {
-				return jugadores;
-			}
-			@Override
-			public Jugador ganadorLance(Jugador... jugadores) {
-				return null;
-			}
-		});
 	}
 
 }

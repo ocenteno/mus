@@ -214,6 +214,24 @@ public class Partida {
 		return true;
 	}
 
+	/**
+	 * Devuelve el jugador más cercano a la mano de entre 2 jugadores
+	 * @param j1 Primer jugador a comparar
+	 * @param j2 Segundo jugador a comparar
+	 * @return El jugador más cercano a la mano
+	 */
+	public Jugador jugadorMásCercaDeLaMano(Jugador j1, Jugador j2) {
+		for (int i=0; i< mesa.length; i++) {
+			// Busco el jugador en la mesa
+			Jugador j = mesa[(mano+i)%4];
+			// Si encuentro antes el j1
+			if(j == j1) return j1;
+			// Si encuentro antes el j2
+			if(j == j2) return j2;			
+		}
+		return null;
+	}
+
 	
 	
 	

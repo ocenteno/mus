@@ -81,6 +81,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 		if (bote == 0){
 			return 1;
 		}else{
+			apuestas.put(apuesta, 0);
 			return bote;
 		}
 	}
