@@ -12,7 +12,7 @@
 	</script>
 </c:if>
 </head>
-<body>
+<body id="mesaInicio">
 	<a href="./index.jsp">Página Inicial</a>
 	<h3>Para unirte a la partida, elige una  silla libre y aguarda que se complete la mesa</h3>
 	<a href="./refrescarMesa.html">Ver al resto de jugadores</a>

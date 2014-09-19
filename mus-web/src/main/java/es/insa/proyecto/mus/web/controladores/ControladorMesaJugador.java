@@ -74,16 +74,19 @@ public class ControladorMesaJugador {
 	 */
 	private int buscarYo(HttpSession sesion) {
 		String yo = (String) sesion.getAttribute("jugadorActual");
-		Jugador[] mesa = partida.getMesa();
-		// quien es el jugador de cada vista para buscarlo en la mesa.
-		int post = 0;
-		for (int i = 0; i < mesa.length; i++) {
-			if (mesa[i].getNombre().equals(yo)) {
-				post = i;
-				break;
+		if (yo != null){
+			Jugador[] mesa = partida.getMesa();
+			// quien es el jugador de cada vista para buscarlo en la mesa.
+			int post = 0;
+			for (int i = 0; i < mesa.length; i++) {
+				if (yo.equals(mesa[i].getNombre())) {
+					post = i;
+					break;
+				}
 			}
-		}
-		return post;
+			return post;
+			}
+		return 0;
 	}
 
 	/**
@@ -132,10 +135,11 @@ public class ControladorMesaJugador {
 				// m. Angeles dice MUS
 				String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + mus;
 				m.addAttribute("accionAnterior", mensajeJugador);
-				fase = gestorFaseDescartes.faseJuego();
-				turno = gestorFaseDescartes.turnoJuego();
+				
 				
 			}
+				fase = gestorFaseDescartes.faseJuego();
+				turno = gestorFaseDescartes.turnoJuego();
 				construirMesaJuego(m, turno, fase, sesion);
 			
 		}
@@ -166,6 +170,7 @@ public class ControladorMesaJugador {
 		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + noMus;
 		m.addAttribute("accionAnterior", mensajeJugador);
 		fase = gestorFaseDescartes.faseJuego();
+		turno = gestorFaseDescartes.turnoJuego();
 		
 		construirMesaJuego(m, turno, fase, sesion);
 		return "mesaJugador";
@@ -207,7 +212,8 @@ public class ControladorMesaJugador {
 		}
 		// Si estamos en fase CHICA, GRANDE, JUEGO, PARES,
 		// PUNTO, DESCARTE, REPARTO no hay DESCARTE.
-		
+		fase = gestorFaseDescartes.faseJuego();
+		turno = gestorFaseDescartes.turnoJuego();
 		construirMesaJuego(m, turno, fase, sesion);
 		return "mesaJugador";
 	}
@@ -236,6 +242,7 @@ public class ControladorMesaJugador {
 		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + reparto;
 		m.addAttribute("accionAnterior", mensajeJugador);
 		fase = gestorFaseDescartes.faseJuego();
+		turno = gestorFaseDescartes.turnoJuego();
 		construirMesaJuego(m, turno, fase, sesion);
 		return "mesaJugador";
 	}
@@ -266,6 +273,7 @@ public class ControladorMesaJugador {
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
 			fase = gestorFaseDescartes.faseJuego();
+			turno = gestorFaseDescartes.turnoJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
 		return "mesaJugador";
@@ -297,6 +305,7 @@ public class ControladorMesaJugador {
 			lance = gestorFaseApuestas.getFase();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
+			turno = gestorFaseDescartes.turnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -329,6 +338,7 @@ public class ControladorMesaJugador {
 			lance = gestorFaseApuestas.getFase();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
+			turno = gestorFaseDescartes.turnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -362,6 +372,7 @@ public class ControladorMesaJugador {
 			lance = gestorFaseApuestas.getFase();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
+			turno = gestorFaseDescartes.turnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -392,6 +403,7 @@ public class ControladorMesaJugador {
 			lance = gestorFaseApuestas.getFase();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
+			turno = gestorFaseDescartes.turnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -492,6 +504,7 @@ public class ControladorMesaJugador {
 			lance = gestorFaseApuestas.getFase();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
+			turno = gestorFaseDescartes.turnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}

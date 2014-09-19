@@ -3,6 +3,7 @@ var ajax;
 function recargaMesaDeJuego() {
 	ajax = new XMLHttpRequest();
 	ajax.open("POST", "./refrescarMesaPartida.html");
+	ajax.responseURL = "./refrescarMesaPartida.html";
 	// tengo que preparar la respuesta
 	ajax.onreadystatechange = procesarRespuesta;
 	// tengo que hacer la peticion
@@ -12,6 +13,7 @@ function recargaMesaDeJuego() {
 function recargaMesaInicial() {
 	ajax = new XMLHttpRequest();
 	ajax.open("POST", "./refrescarMesa.html");
+	ajax.responseURL = "./refrescarMesa.html";
 	// tengo que preparar la respuesta
 	ajax.onreadystatechange = procesarRespuesta;
 	// tengo que hacer la peticion
@@ -27,11 +29,17 @@ function procesarRespuesta() {
 		// Cambio el body del document
 		if(resultadoXML){
 			var nuevoBody = resultadoXML.getElementsByTagName("body")[0];
-			document.body.innerHTML =
-				// Para todos, menos IExplorer
-				nuevoBody.innerHTML ||
-				// Para IExplorer
-				nuevoBody.xml;
+			// Si canbia el ID del body redirijo la página
+			var nuevoId = nuevoBody.id || nuevoBody.getAttribute("id");
+			if(nuevoId != document.body.id){
+				location.href = ajax.responseURL;
+			}else{
+				document.body.innerHTML =
+					// Para todos, menos IExplorer
+					nuevoBody.innerHTML ||
+					// Para IExplorer
+					nuevoBody.xml;
+			}
 		}
 	}
 }

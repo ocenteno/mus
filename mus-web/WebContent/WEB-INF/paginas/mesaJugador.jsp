@@ -8,11 +8,11 @@
 	<script type="text/javascript" src="js/recargaMesa.js"></script>
 <c:if test="${jugadorActual != null}">
 	<script type="text/javascript">
-		setInterval(recargaMesaDeJuego, 2000);
+		setInterval(recargaMesaDeJuego, 5000);
 	</script>
 </c:if>
 </head>
-<body>
+<body id="mesaJuego">
 <a href="./refrescarMesaPartida.html">Refrescar turno</a>
 	<table width="100%">
 		<tr height="25%">
@@ -44,13 +44,13 @@
 					</tr>
 					<tr>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 					</tr>
 				</table>
 			</td>
@@ -64,13 +64,13 @@
 					</tr>
 					<tr>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 					</tr>
 				</table>
 			</td>
@@ -80,14 +80,14 @@
 						<td width="5%">
 							<c:if test="${mesa[mano] == mesa[(yo+3)%4]}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
-										width="25px" height="25px">
+										width="25px" height="25px" />
 							</c:if>						
 						</td>
 						<td width="90%"></td>
 						<td width="5%">
 							<c:if test="${mesa[mano] == mesa[(yo+2)%4]}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
-										width="25px" height="25px">
+										width="25px" height="25px" />
 							</c:if>						
 						</td>
 					</tr>
@@ -100,14 +100,14 @@
 						<td>
 							<c:if test="${mesa[mano] == mesa[yo]}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
-										width="25px" height="25px">
+										width="25px" height="25px" />
 							</c:if>						
 						</td>
 						<td></td>
 						<td>						
 							<c:if test="${mesa[mano] == mesa[(yo+1)%4]}">
 								<img id="imagen" alt="" src="imagenes/mazoCartas.jpg"
-										width="25px" height="25px">
+										width="25px" height="25px" />
 							</c:if>						
 						</td>
 					</tr>
@@ -120,13 +120,13 @@
 					</tr>
 					<tr>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 						<td><img id="imagen" alt="" src="imagenes/reversoCarta.jpg"
-							width="50px" height="75px"></td>
+							width="50px" height="75px" /></td>
 					</tr>
 
 				</table>
@@ -142,7 +142,7 @@
 					<tr>
 						<c:forEach var="i" items="${cartasJugador}">
 							<td><img id="imagen" alt="" src="barajas/${i}" width="50px"
-								height="75px"></td>
+								height="75px" /></td>
 						</c:forEach>
 					</tr>
 					<c:if test="${esMiTurno}">
@@ -150,16 +150,16 @@
 							<form action="./accionDescartar.html">
 								<tr>
 									<td><c:if test="${cartasJugador[0] != null}">
-											<input name="descarte0" type="checkbox">
+											<input name="descarte0" type="checkbox" />
 										</c:if></td>
 									<td><c:if test="${cartasJugador[1] != null}">
-											<input name="descarte1" type="checkbox">
+											<input name="descarte1" type="checkbox" />
 										</c:if></td>
 									<td><c:if test="${cartasJugador[2] != null}">
-											<input name="descarte2" type="checkbox">
+											<input name="descarte2" type="checkbox" />
 										</c:if></td>
 									<td><c:if test="${cartasJugador[3] != null}">
-											<input name="descarte3" type="checkbox">
+											<input name="descarte3" type="checkbox" />
 										</c:if></td>
 								</tr>
 								<tr></tr>
