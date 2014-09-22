@@ -41,13 +41,13 @@ public class GanadorChica implements IGanadorLance, Comparator<Jugador>{
 		for (int i = 0; i < 4 && resultado == 0; i++) {
 			resultado = j1.getMano()[i].compareTo(j2.getMano()[i]);			
 		}
-		// resultado == -1 indica que j1 tiene las cartas mas altas
-		// resultado ==  1 indica que j2 tiene las cartas mas altas
+		// resultado == -1 indica que j1 tiene las cartas mas bajas
+		// resultado ==  1 indica que j2 tiene las cartas mas bajas
 		if (resultado == 0) {
 			if (j1 == partida.jugadorMásCercaDeLaMano(j1, j2)){
-				resultado = 1;
-			}else {
 				resultado = -1;
+			}else {
+				resultado = 1;
 			}
 		} 
 		// devuelvo -1, 0 (no se puede dar en este caso), 1

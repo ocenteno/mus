@@ -4,33 +4,28 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-
-
-
-
 import org.hibernate.service.ServiceRegistry;
-import org.junit.After;
-import org.junit.Before;
-
 import es.insa.proyecto.mus.contratos.DAO;
 
 public abstract class DaoGenericoHibernate<G, K extends Serializable> 
 				implements DAO<G, K> {
 	
-	
 	protected static SessionFactory sf;
 	private Class<G> claseG;
 	
-	
-	@Before
+	/**
+	 * Método para abrir una sesión de Hibernate considerando que esta no esté ya abierta
+	 */
 	public void abrirSesion(){
 		sf.openSession();
 	}
-	@After
+	
+	/**
+	 * Método para cerrar una sesión de Hibernate que esté abierta
+	 */
 	public void cerrarSesion(){
 		sf.getCurrentSession().disconnect();
 		sf.getCurrentSession().close();
@@ -105,7 +100,11 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 						.createCriteria(claseG).list();
 		sf.getCurrentSession().getTransaction().commit();
 		return lista;
-
 	}
 
+	@Override
+	protected void finalize() throws Throwable {
+		sf.close();
+		super.finalize();
+	}
 }

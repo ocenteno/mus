@@ -22,7 +22,7 @@ public class GanadorPunto implements IGanadorLance, Comparator<Jugador> {
 	 */
 	@Override
 	public Jugador ganador(Jugador... jugadores) {
-		// ORDENO LOS JUGADORES EN BASE AL COMPRADOR
+		// ORDENO LOS JUGADORES EN BASE AL COMPARADOR
 		Arrays.sort(jugadores, this);
 		// EL QUE GANA ES EL 0
 		if(comprobadorJuego.comprobarJuego(jugadores[0]) != Juego.PUNTO)
@@ -40,9 +40,9 @@ public class GanadorPunto implements IGanadorLance, Comparator<Jugador> {
 		int v2 =comprobadorJuego.obtenerPuntuacion(j2);
 		if (v1 == v2) {
 			if (j1 == partida.jugadorMásCercaDeLaMano(j1, j2)) {
-				orden = 1;
-			} else {
 				orden = -1;
+			} else {
+				orden = 1;
 			}
 			return orden;
 		}

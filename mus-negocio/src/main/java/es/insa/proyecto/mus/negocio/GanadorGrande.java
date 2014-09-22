@@ -49,9 +49,9 @@ public class GanadorGrande implements IGanadorLance, Comparator<Jugador>{
 		// resultado ==  1 indica que j2 tiene las cartas mas altas
 		if (resultado == 0) {
 			if (j1 == partida.jugadorMásCercaDeLaMano(j1, j2)){
-				resultado = 1;
-			}else {
 				resultado = -1;
+			}else {
+				resultado = 1;
 			}
 		} 
 		// devuelvo -1, 0 (no se puede dar en este caso), 1

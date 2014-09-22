@@ -39,6 +39,7 @@ public class TestComprobadorChica {
 			Jugador ganadorChica = chica.ganador(jugador1, jugador2);
 			Assert.assertEquals("Debe ganar el jugador1", jugador1, ganadorChica);
 		}
+		
 		@Test
 		public void testGanadorCartaContraGocho() {
 			Partida p = new Partida();
@@ -50,6 +51,7 @@ public class TestComprobadorChica {
 			Jugador ganadorChica = chica.ganador(jugador2, jugador3);
 			Assert.assertEquals("Debe ganar el jugador2", jugador2, ganadorChica);
 		}
+		
 		@Test
 		public void testGanadorCartaContraPito() {
 			Partida p = new Partida();
@@ -61,6 +63,7 @@ public class TestComprobadorChica {
 			Jugador ganadorChica = chica.ganador(jugador1, jugador4);
 			Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorChica);
 		}
+		
 		@Test
 		public void testGanadorCartaContraPitoDistintos() {
 			Partida p = new Partida();
@@ -72,6 +75,7 @@ public class TestComprobadorChica {
 			Jugador ganadorChica = chica.ganador(jugador2, jugador5);
 			Assert.assertEquals("Debe ganar el jugador5", jugador5, ganadorChica);
 		}
+		
 		@Test
 		public void testGanadorPitoContraPitoDistintos() {
 			Partida p = new Partida();
@@ -83,6 +87,7 @@ public class TestComprobadorChica {
 			Jugador ganadorChica = chica.ganador(jugador4, jugador5);
 			Assert.assertEquals("Debe ganar el jugador5", jugador5, ganadorChica);
 		}
+		
 		@Test
 		public void testGanadorGochoContraPito() {
 			Partida p = new Partida();
@@ -94,6 +99,7 @@ public class TestComprobadorChica {
 			Jugador ganadorChica = chica.ganador(jugador3, jugador4);
 			Assert.assertEquals("Debe ganar el jugador4", jugador4, ganadorChica);
 		}
+		
 		@Test
 		public void testGanadorCartaContraPitoYGocho() {
 			Partida p = new Partida();
@@ -105,6 +111,7 @@ public class TestComprobadorChica {
 			Jugador ganadorChica = chica.ganador(jugador2, jugador6);
 			Assert.assertEquals("Debe ganar el jugador6", jugador6, ganadorChica);
 		}
+		
 		@Test
 		public void testGanadorPitoContraPitoYGocho() {
 			Partida p = new Partida();
@@ -125,8 +132,9 @@ public class TestComprobadorChica {
 			chica.setPartida(p);
 			
 			Jugador ganadorChica = chica.ganador(jugador7, jugador6);
-			Assert.assertEquals("Debe ganar el jugador7", jugador7, ganadorChica);
+			Assert.assertEquals("Debe ganar el jugador7 por la mano", jugador7, ganadorChica);
 		}
+		
 		@Test
 		public void testGanadorPitoYGochoContraPitoYGochoOtraMano() {
 			Partida p = new Partida();
@@ -136,12 +144,13 @@ public class TestComprobadorChica {
 			chica.setPartida(p);
 			
 			Jugador ganadorChica = chica.ganador(jugador6, jugador7);
-			Assert.assertEquals("Debe ganar el jugador6", jugador6, ganadorChica);
+			Assert.assertEquals("Debe ganar el jugador6 por la mano", jugador6, ganadorChica);
 		}
-		@BeforeClass
+		
 		/**
 		 * j4 > j3 = j1 > j2
 		 */
+		@BeforeClass
 		public static void inicializar() {
 			jugador1 = new Jugador("Jugador1");
 			jugador1.añadirCarta(new Carta(Palo.BASTOS, 1, 1));

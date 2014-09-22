@@ -117,6 +117,7 @@ public class TestDaoMazoHibernate {
 	@Test
 	public void testListarTodos() {
 		// 1º PREPARAR	
+		int longitudListaAntes = dmh.listarTodos().size(); 
 		// 1º PREPARAR	
 		Mazo m1 = new Mazo("barajaEspañola");	
 		Mazo m2 = new Mazo("barajaFrancesa");
@@ -129,7 +130,7 @@ public class TestDaoMazoHibernate {
 		int longitudLista = dmh.listarTodos().size(); 
 
 		// 3º VERIFICAR (ASERCIÓN)
-		Assert.assertEquals("Debería devolver una longitud de 3", 3, longitudLista);
+		Assert.assertEquals("Debería tener 3 mazos más", longitudListaAntes+3, longitudLista);
 		// 4º REPARAR
 		dmh.eliminar(m1);
 		dmh.eliminar(m2);
@@ -145,6 +146,6 @@ public class TestDaoMazoHibernate {
 		Mazo m = dmh.buscar(1); 
 
 		// 3º VERIFICAR (ASERCIÓN)
-		Assert.assertNotNull("Debería devolver una longitud de 3", m);
+		Assert.assertNotNull("Debería existir un mazo", m);
 	}
 }

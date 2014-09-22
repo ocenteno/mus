@@ -43,9 +43,9 @@ public class GanadorJuego implements IGanadorLance, Comparator<Jugador> {
 		int v2 =comprobadorJuego.obtenerPuntuacion(j2);
 		if (v1 == v2) {
 			if (j1 == partida.jugadorMásCercaDeLaMano(j1, j2)) {
-				orden = 1;
-			} else {
 				orden = -1;
+			} else {
+				orden = 1;
 			}
 			return orden;
 		}

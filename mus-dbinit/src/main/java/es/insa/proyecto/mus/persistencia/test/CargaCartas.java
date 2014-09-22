@@ -74,6 +74,7 @@ public class CargaCartas {
 		daoMazo.abrirSesion();
 		daoMazo.insertar(mazo);
 		daoMazo.cerrarSesion();
-		System.out.println("BD inicialziada");
+		System.out.println("BD inicializada");
+		System.exit(0);
 	}
 }

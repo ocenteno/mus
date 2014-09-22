@@ -14,6 +14,7 @@ import es.insa.proyecto.mus.modelo.Partida;
 import es.insa.proyecto.mus.negocio.ComprobadorParesJuego;
 import es.insa.proyecto.mus.negocio.GestorDeApuestas;
 import es.insa.proyecto.mus.negocio.GestorFasesLance;
+import es.insa.proyecto.mus.negocio.GestorTanteoParcial;
 
 /**
  * Pruebas de los métodos de la Interfaces IGestorFasesLances
@@ -27,7 +28,6 @@ public class TestGestorFasesLance {
 	private static Jugador j3;
 	private static Jugador j4;
 	private static GestorFasesLance miGestor;
-	private static GestorDeApuestas gestorApuestas;
 	private static Partida p;
 	
 	@BeforeClass
@@ -68,6 +68,10 @@ public class TestGestorFasesLance {
 		miGestor = new GestorFasesLance();
 		miGestor.setPartida(p);
 		miGestor.setParesJuegos(new ComprobadorParesJuego());
+		GestorTanteoParcial gtp = new GestorTanteoParcial();
+		gtp.setPartida(p);
+		miGestor.setGestorTanteo(gtp);
+		miGestor.setGestorApuestas(new GestorDeApuestas());
 	}
 	
 	/**
@@ -129,11 +133,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testEnvidoNoQuiero() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -145,11 +146,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testEnvidoQuiero() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -161,11 +159,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testEnvidoNoQuieroNoQuiero() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -179,11 +174,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testEnvidoNoQuieroQuiero() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -197,11 +189,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testPasoPasoPasoEnvido() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.PASO, 0);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -217,11 +206,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testEnvidoNoQuieroSubo() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -235,11 +221,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testPasoEnvidoSuboNoQuiero() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.PASO, 0);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -255,11 +238,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testTurnoEnvidoSuboQuiero() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -273,11 +253,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testFaseEnvidoSuboQuiero() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		int mano = turno;
 		turno = miGestor.getTurno();
@@ -291,11 +268,8 @@ public class TestGestorFasesLance {
 	
 	@Test
 	public void testMismoPasoEnvido() {
-		gestorApuestas = new GestorDeApuestas();
-		miGestor.setPartida(p);
 		int turno = miGestor.getTurno();
 		Jugador[] jugadores = p.getMesa();
-		miGestor.setGestorApuestas(gestorApuestas);
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		boolean resultado = miGestor.faseGrande(jugadores[turno], AccionesLance.PASO, 0);
 		Assert.assertEquals("No se permite PASO al jugador que ya envidó",false, resultado);
