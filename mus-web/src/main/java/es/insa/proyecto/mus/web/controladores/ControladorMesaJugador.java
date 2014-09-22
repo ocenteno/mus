@@ -298,7 +298,7 @@ public class ControladorMesaJugador {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno= gestorFaseDescartes.turnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + veo;
 		m.addAttribute("accionAnterior", mensajeJugador);
@@ -309,6 +309,7 @@ public class ControladorMesaJugador {
 			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,
 					AccionesLance.QUIERO);
 			lance = gestorFaseApuestas.getFase();
+			turnoDescarte = gestorFaseApuestas.getTurno();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
 			turno = gestorFaseDescartes.turnoJuego();
@@ -342,6 +343,7 @@ public class ControladorMesaJugador {
 			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,
 					AccionesLance.ENVIDO);
 			lance = gestorFaseApuestas.getFase();
+			turnoDescarte = gestorFaseApuestas.getTurno();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
 			turno = gestorFaseDescartes.turnoJuego();
@@ -376,6 +378,7 @@ public class ControladorMesaJugador {
 			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,
 					AccionesLance.APUESTA, apuesta);
 			lance = gestorFaseApuestas.getFase();
+			turnoDescarte = gestorFaseApuestas.getTurno();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
 			turno = gestorFaseDescartes.turnoJuego();
@@ -407,6 +410,7 @@ public class ControladorMesaJugador {
 			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,
 					AccionesLance.ORDAGO);
 			lance = gestorFaseApuestas.getFase();
+			turnoDescarte = gestorFaseApuestas.getTurno();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
 			turno = gestorFaseDescartes.turnoJuego();
@@ -508,6 +512,7 @@ public class ControladorMesaJugador {
 			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,
 					AccionesLance.NOQUIERO);
 			lance = gestorFaseApuestas.getFase();
+			turnoDescarte = gestorFaseApuestas.getTurno();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
 			turno = gestorFaseDescartes.turnoJuego();
