@@ -52,6 +52,7 @@ public class ControladorMesaJugador {
 	 */
 	@Autowired
 	private IGestorTanteoParcial gestorTanteo;
+	private String mensajeJugador;
 
 	/**
 	 * Este método inicia la partida
@@ -66,7 +67,7 @@ public class ControladorMesaJugador {
 		intYo = buscarYo(sesion);
 		jugadorEnviado = mesa[intYo];
 		// turno de la partida
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes lance = gestorFaseDescartes.faseJuego();
 		construirMesaJuego(m, turno, lance, sesion);
 		return "mesaJugador";
@@ -80,7 +81,7 @@ public class ControladorMesaJugador {
 	 */
 	private int buscarYo(HttpSession sesion) {
 		String yo = (String) sesion.getAttribute("jugadorActual");
-		if (yo != null){
+		if (yo != null) {
 			Jugador[] mesa = partida.getMesa();
 			// quien es el jugador de cada vista para buscarlo en la mesa.
 			int post = 0;
@@ -91,7 +92,7 @@ public class ControladorMesaJugador {
 				}
 			}
 			return post;
-			}
+		}
 		return 0;
 	}
 
@@ -112,7 +113,7 @@ public class ControladorMesaJugador {
 		if (fase == FaseDescartes.GRANDE) {
 			turno = gestorFaseApuestas.getTurno();
 		} else {
-			turno = gestorFaseDescartes.turnoJuego();
+			turno = gestorFaseDescartes.getTurnoJuego();
 		}
 		construirMesaJuego(m, turno, fase, sesion);
 		return "mesaJugador";
@@ -126,31 +127,25 @@ public class ControladorMesaJugador {
 	 * @return pantalla mesa jugador
 	 */
 	@RequestMapping("/accionDarMus.html")
-	public String accionDarMus(String mus,Model m, HttpSession sesion) {
+	public String accionDarMus(Model m, HttpSession sesion) {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		
-		int turno = gestorFaseDescartes.turnoJuego();
+
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		if (fase == FaseDescartes.MUS) {
-			
-			if(gestorFaseDescartes.pedirMus(jugadorEnviado)){
+			if (gestorFaseDescartes.pedirMus(jugadorEnviado)) {
 				// Si estamos en fase CHICA, GRANDE, JUEGO, PARES,
 				// PUNTO, DESCARTE, REPARTO no hay MUS.
 				// m. Angeles dice MUS
-				String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + mus;
-				m.addAttribute("accionAnterior", mensajeJugador);
-				
-				
+				mensajeJugador = jugadorEnviado.getNombre() + " pide MUS";
 			}
-				fase = gestorFaseDescartes.faseJuego();
-				turno = gestorFaseDescartes.turnoJuego();
-				construirMesaJuego(m, turno, fase, sesion);
-			
+			fase = gestorFaseDescartes.faseJuego();
+			turno = gestorFaseDescartes.getTurnoJuego();
+			construirMesaJuego(m, turno, fase, sesion);
 		}
-		
-		
+
 		return "mesaJugador";
 	}
 
@@ -162,22 +157,21 @@ public class ControladorMesaJugador {
 	 * @return pantalla mesa jugador
 	 */
 	@RequestMapping("/accionNoHayMus.html")
-	public String accionNoHayMus(String noMus,Model m, HttpSession sesion) {
+	public String accionNoHayMus(Model m, HttpSession sesion) {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		if (fase == FaseDescartes.MUS) {
 			gestorFaseDescartes.cortarMus(jugadorEnviado);
 		}
 		// Si estamos en fase CHICA, GRANDE, JUEGO, PARES,
 		// PUNTO, DESCARTE, REPARTO no hay MUS.
-		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + noMus;
-		m.addAttribute("accionAnterior", mensajeJugador);
+		mensajeJugador = jugadorEnviado.getNombre() + " corta el MUS";
 		fase = gestorFaseDescartes.faseJuego();
-		turno = gestorFaseDescartes.turnoJuego();
-		
+		turno = gestorFaseDescartes.getTurnoJuego();
+
 		construirMesaJuego(m, turno, fase, sesion);
 		return "mesaJugador";
 	}
@@ -191,35 +185,33 @@ public class ControladorMesaJugador {
 	 * @return pantalla mesa jugador
 	 */
 	@RequestMapping("/accionDescartar.html")
-	public String accionDescartar(String descartar,HttpServletRequest req, Model m,
-			HttpSession sesion) {
+	public String accionDescartar(Model m, HttpServletRequest req, HttpSession sesion) {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		Carta[] arrayDescartado;
 		if (fase == FaseDescartes.DESCARTE) {
 			arrayDescartado = mirarDescartes(m, req);
-			if(arrayDescartado.length > 0){
+			if (arrayDescartado.length > 0) {
 				// hay cartas para descartar
-				if(gestorFaseDescartes.pedirDescarte(jugadorEnviado, arrayDescartado)){
-					String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + descartar;
-					m.addAttribute("accionAnterior", mensajeJugador);
+				if (gestorFaseDescartes.pedirDescarte(jugadorEnviado,
+						arrayDescartado)) {
+					mensajeJugador = jugadorEnviado.getNombre() + " descarta " + arrayDescartado.length;
 					fase = gestorFaseDescartes.faseJuego();
-					turno = gestorFaseDescartes.turnoJuego();
+					turno = gestorFaseDescartes.getTurnoJuego();
 				}
-				
 			} else {
 				// no hay cartas para descartar
-				m.addAttribute("mensajeError","Se debe descartar al menos de una carta");
+				m.addAttribute("mensajeError", "Se debe descartar al menos de una carta");
 			}
-			
+
 		}
 		// Si estamos en fase CHICA, GRANDE, JUEGO, PARES,
 		// PUNTO, DESCARTE, REPARTO no hay DESCARTE.
 		fase = gestorFaseDescartes.faseJuego();
-		turno = gestorFaseDescartes.turnoJuego();
+		turno = gestorFaseDescartes.getTurnoJuego();
 		construirMesaJuego(m, turno, fase, sesion);
 		return "mesaJugador";
 	}
@@ -233,22 +225,20 @@ public class ControladorMesaJugador {
 	 * @return pantalla mesa jugador
 	 */
 	@RequestMapping("/accionReparto.html")
-	public String accionReparto(String reparto,HttpServletRequest req, Model m,
-			HttpSession sesion) {
+	public String accionReparto(Model m, HttpServletRequest req, HttpSession sesion) {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		if (fase == FaseDescartes.REPARTO) {
-			gestorFaseDescartes.reparte(jugadorEnviado);
+			int n = gestorFaseDescartes.reparte(jugadorEnviado);
+			// Si estamos en fase CHICA, GRANDE, JUEGO, PARES, PUNTO,
+			// DESCARTE, MUS no hay REPARTO
+			mensajeJugador = jugadorEnviado.getNombre() + " recibe " + n + " cartas";
 		}
-		// Si estamos en fase CHICA, GRANDE, JUEGO, PARES, PUNTO,
-		// DESCARTE, MUS no hay REPARTO
-		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + reparto;
-		m.addAttribute("accionAnterior", mensajeJugador);
 		fase = gestorFaseDescartes.faseJuego();
-		turno = gestorFaseDescartes.turnoJuego();
+		turno = gestorFaseDescartes.getTurnoJuego();
 		construirMesaJuego(m, turno, fase, sesion);
 		return "mesaJugador";
 	}
@@ -262,24 +252,23 @@ public class ControladorMesaJugador {
 	 * @return pantalla mesa jugador.
 	 */
 	@RequestMapping("/accionPaso.html")
-	public String accionPaso(String paso,Model m, HttpSession sesion) {
+	public String accionPaso(Model m, HttpSession sesion) {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
-		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + paso;
-		m.addAttribute("accionAnterior", mensajeJugador);
+		mensajeJugador = jugadorEnviado.getNombre() + " pasa";
 		if (fase == FaseDescartes.GRANDE) {
 			// Hay que coger los datos del gestor de apuestas
 			Lances lance = gestorFaseApuestas.getFase();
 			int turnoDescarte = gestorFaseApuestas.getTurno();
-			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,AccionesLance.PASO);
+			gestorFaseApuestas.ejecutar(jugadorEnviado, lance, AccionesLance.PASO);
 			lance = gestorFaseApuestas.getFase();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
 			fase = gestorFaseDescartes.faseJuego();
-			turno = gestorFaseDescartes.turnoJuego();
+			turno = gestorFaseDescartes.getTurnoJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
 		return "mesaJugador";
@@ -294,14 +283,13 @@ public class ControladorMesaJugador {
 	 * @return pantalla mesa jugador.
 	 */
 	@RequestMapping("/accionQuiero.html")
-	public String accionQuiero(String veo,Model m, HttpSession sesion) {
+	public String accionQuiero(Model m, HttpSession sesion) {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno= gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
-		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + veo;
-		m.addAttribute("accionAnterior", mensajeJugador);
+		mensajeJugador = jugadorEnviado.getNombre() + " ve la apuesta";
 		if (fase == FaseDescartes.GRANDE) {
 			// Hay que coger los datos del gestor de apuestas
 			Lances lance = gestorFaseApuestas.getFase();
@@ -312,7 +300,7 @@ public class ControladorMesaJugador {
 			turnoDescarte = gestorFaseApuestas.getTurno();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
-			turno = gestorFaseDescartes.turnoJuego();
+			turno = gestorFaseDescartes.getTurnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -328,14 +316,13 @@ public class ControladorMesaJugador {
 	 * @return pantalla mesa jugador.
 	 */
 	@RequestMapping("/accionEnvido.html")
-	public String accionEnvido(String envido,Model m, HttpSession sesion) {
+	public String accionEnvido(Model m, HttpSession sesion) {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
-		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + envido;
-		m.addAttribute("accionAnterior", mensajeJugador);
+		mensajeJugador = jugadorEnviado.getNombre() + " envida";
 		if (fase == FaseDescartes.GRANDE) {
 			// Hay que coger los datos del gestor de apuestas
 			Lances lance = gestorFaseApuestas.getFase();
@@ -346,7 +333,7 @@ public class ControladorMesaJugador {
 			turnoDescarte = gestorFaseApuestas.getTurno();
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
-			turno = gestorFaseDescartes.turnoJuego();
+			turno = gestorFaseDescartes.getTurnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -362,26 +349,24 @@ public class ControladorMesaJugador {
 	 * @return pantalla mesa jugador.
 	 */
 	@RequestMapping("/accionXMas.html")
-	public String accionXMas(String subo,HttpServletRequest req, Model m, HttpSession sesion) {
+	public String accionXMas(Model m, HttpServletRequest req, HttpSession sesion) {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
-		String mensajeJugador = jugadorEnviado.getNombre() + " dice : " + subo;
-		m.addAttribute("accionAnterior", mensajeJugador);
 		if (fase == FaseDescartes.GRANDE) {
 			int apuesta = Integer.parseInt(req.getParameter("apuesta"));
 			// Hay que coger los datos del gestor de apuestas
 			Lances lance = gestorFaseApuestas.getFase();
 			int turnoDescarte = gestorFaseApuestas.getTurno();
-			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,
-					AccionesLance.APUESTA, apuesta);
+			gestorFaseApuestas.ejecutar(jugadorEnviado, lance, AccionesLance.APUESTA, apuesta);
 			lance = gestorFaseApuestas.getFase();
 			turnoDescarte = gestorFaseApuestas.getTurno();
+			mensajeJugador = jugadorEnviado.getNombre() + " sube " + apuesta;
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
-			turno = gestorFaseDescartes.turnoJuego();
+			turno = gestorFaseDescartes.getTurnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -401,19 +386,19 @@ public class ControladorMesaJugador {
 		// primero buscamos quien soy
 		intYo = buscarYo(sesion);
 		jugadorEnviado = partida.getMesa()[intYo];
-		int turno = gestorFaseDescartes.turnoJuego();
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		if (fase == FaseDescartes.GRANDE) {
 			// Hay que coger los datos del gestor de apuestas
 			Lances lance = gestorFaseApuestas.getFase();
 			int turnoDescarte = gestorFaseApuestas.getTurno();
-			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,
-					AccionesLance.ORDAGO);
+			gestorFaseApuestas.ejecutar(jugadorEnviado, lance, AccionesLance.ORDAGO);
 			lance = gestorFaseApuestas.getFase();
 			turnoDescarte = gestorFaseApuestas.getTurno();
+			mensajeJugador = jugadorEnviado.getNombre() + " lanza órdago";
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
-			turno = gestorFaseDescartes.turnoJuego();
+			turno = gestorFaseDescartes.getTurnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -457,9 +442,9 @@ public class ControladorMesaJugador {
 			descartado3 = true;
 		}
 		Carta[] arrayCartasDescarte = new Carta[contadorDescartes];
-		
+
 		if (contadorDescartes >= 1) {
-			// Ha seleccionado por lo menos 1			
+			// Ha seleccionado por lo menos 1
 			// Cogemos la carta y la metemos en el array
 			int contador = 0;
 			if (descartado0) {
@@ -482,15 +467,11 @@ public class ControladorMesaJugador {
 						.getMano()[3];
 				contador++;
 			}
-			
-			
-			 
 
-		} 
+		}
 		// Descartamos las cartas
 		return arrayCartasDescarte;
-				
-				
+
 	}
 
 	/**
@@ -501,21 +482,20 @@ public class ControladorMesaJugador {
 	 * @return
 	 */
 	@RequestMapping("/accionNoQuiero.html")
-	public String accionNoQuiero(HttpServletRequest req, Model m,
-			HttpSession sesion) {
-		int turno = gestorFaseDescartes.turnoJuego();
+	public String accionNoQuiero(Model m, HttpServletRequest req, HttpSession sesion) {
+		int turno = gestorFaseDescartes.getTurnoJuego();
 		FaseDescartes fase = gestorFaseDescartes.faseJuego();
 		if (fase == FaseDescartes.GRANDE) {
 			// Hay que coger los datos del gestor de apuestas
 			Lances lance = gestorFaseApuestas.getFase();
 			int turnoDescarte = gestorFaseApuestas.getTurno();
-			gestorFaseApuestas.ejecutar(jugadorEnviado, lance,
-					AccionesLance.NOQUIERO);
+			gestorFaseApuestas.ejecutar(jugadorEnviado, lance, AccionesLance.NOQUIERO);
 			lance = gestorFaseApuestas.getFase();
 			turnoDescarte = gestorFaseApuestas.getTurno();
+			mensajeJugador = jugadorEnviado.getNombre() + " no quiere la apuesta";
 			construirMesaJuegoLances(m, turnoDescarte, lance, sesion);
 		} else {
-			turno = gestorFaseDescartes.turnoJuego();
+			turno = gestorFaseDescartes.getTurnoJuego();
 			fase = gestorFaseDescartes.faseJuego();
 			construirMesaJuego(m, turno, fase, sesion);
 		}
@@ -533,7 +513,7 @@ public class ControladorMesaJugador {
 	 *            es la fase en la que estamos
 	 * @param sesion
 	 */
-	
+
 	public void construirMesaJuegoLances(Model m, int elQueHabla,
 			Lances loQueDice, HttpSession sesion) {
 		intYo = buscarYo(sesion);
@@ -546,22 +526,22 @@ public class ControladorMesaJugador {
 			cartasJugador[i] = cartasYo[i].getPalo() + ""
 					+ cartasYo[i].getNumero() + ".jpg";
 		}
-		String quéToca=loQueDice.toString();
-		
+		String quéToca = loQueDice.toString();
+
 		// SI TOCA CONTEO, llamamos al gestor de conteo
-		if(loQueDice == Lances.CONTEO){
+		if (loQueDice == Lances.CONTEO) {
 			m.addAttribute("ganaGrande",
 					gestorTanteo.sacarPiedrasLance(Lances.GRANDE));
-			m.addAttribute("ganaChica", 
+			m.addAttribute("ganaChica",
 					gestorTanteo.sacarPiedrasLance(Lances.CHICA));
-			m.addAttribute("ganaPares", 
+			m.addAttribute("ganaPares",
 					gestorTanteo.sacarPiedrasLance(Lances.PARES));
-			m.addAttribute("ganaJuego", 
+			m.addAttribute("ganaJuego",
 					gestorTanteo.sacarPiedrasLance(Lances.JUEGO));
-			m.addAttribute("ganaPunto", 
+			m.addAttribute("ganaPunto",
 					gestorTanteo.sacarPiedrasLance(Lances.PUNTO));
 		}
-		
+
 		String elTurno = mesa[elQueHabla].getNombre();
 		m.addAttribute("cartasJugador", cartasJugador);
 		m.addAttribute("mesa", mesa);
@@ -581,9 +561,9 @@ public class ControladorMesaJugador {
 			esMiTurno = true;
 		}
 		m.addAttribute("esMiTurno", esMiTurno);
-		
 
 	}
+
 	public void construirMesaJuego(Model m, int elQueHabla,
 			FaseDescartes loQueDice, HttpSession sesion) {
 		intYo = buscarYo(sesion);
@@ -619,6 +599,7 @@ public class ControladorMesaJugador {
 		m.addAttribute("hayApuestas", hayApuestas);
 		m.addAttribute("loQueDice", loQueDice);
 		m.addAttribute("elTurno", elTurno);
+		m.addAttribute("accionAnterior", mensajeJugador);
 		// acciones
 		m.addAttribute("arrayAcciones", gestorFaseApuestas.getAcciones());
 		m.addAttribute("yo", intYo);
@@ -630,7 +611,6 @@ public class ControladorMesaJugador {
 			esMiTurno = true;
 		}
 		m.addAttribute("esMiTurno", esMiTurno);
-		
 
 	}
 

@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.insa.proyecto.dominio.cartas.Jugador;
-import es.insa.proyecto.mus.contratos.ICrupier;
+import es.insa.proyecto.mus.contratos.IGestorFaseDescartes;
 import es.insa.proyecto.mus.modelo.Partida;
 
 @Controller
@@ -18,7 +18,7 @@ public class ControladorMesaInicial {
 	@Autowired(required=true)
 	private Partida partida;
 	@Autowired(required=true)
-	private ICrupier icrupier;
+	private IGestorFaseDescartes gestorDescartes;
 	
 	
 	@RequestMapping("/buscarMesa.html")
@@ -61,14 +61,7 @@ public class ControladorMesaInicial {
 		// iniciar la partida
 		partida.empezarPartida();
 		// llamar al gestor inicializarMazo, barajar, repartirCartas
-		
-		icrupier.inicializarMazo();
-		icrupier.barajar();
-		
-		icrupier.repartirCartas(4, miMesa[0]);
-		icrupier.repartirCartas(4, miMesa[1]);
-		icrupier.repartirCartas(4, miMesa[2]);
-		icrupier.repartirCartas(4, miMesa[3]);			
+		gestorDescartes.inicializar();
 		
 		m.addAttribute("mesa", miMesa);
 	}

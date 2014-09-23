@@ -18,7 +18,7 @@ public interface IGestorFaseDescartes {
 	 * a su posición en la mesa de juego.
 	 * @return posición
 	 */
-	public int turnoJuego();
+	public int getTurnoJuego();
 
 	/**
 	 * Devuelve la fase de juego en la que se encuentra la mano
@@ -62,8 +62,13 @@ public interface IGestorFaseDescartes {
 	 * Se encarga de controlar el reparto de cargas teniendo en cuenta los
 	 * descartes realizados.
 	 * @param j
-	 * @return boolean
+	 * @return El número de cartas recibidas o -1 en caso de error
 	 */
-	public boolean reparte(Jugador j);
+	public int reparte(Jugador j);
+
+	/**
+	 * Inicializa los contadores del gestor
+	 */
+	public void inicializar();
 	
 }

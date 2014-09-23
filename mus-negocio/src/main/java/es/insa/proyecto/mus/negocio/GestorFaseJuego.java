@@ -103,23 +103,35 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 	}
 
 	@Override
-	public boolean reparte(Jugador j) {
+	public int reparte(Jugador j) {
 		//Por cada jugador se recupera (get) sus cartas (de las que se ha descartado) 
 		for (Jugador jugador : descarteMus.keySet()) {
 			Carta[] numDescartes = descarteMus.get(jugador);
-			crupier.repartirCartas(numDescartes.length, jugador);
-			actualizarTurnoJuego();
+			if (numDescartes != null && numDescartes.length > 0) {
+				crupier.repartirCartas(numDescartes.length, jugador);
+				actualizarTurnoJuego();
+				return numDescartes.length;
+			}
 		}
-		return false;
+		return -1;
 	}
-
+	
+	@Override
+	public void inicializar(){
+		this.mano = partida.getMano();
+		this.turno = mano;
+		this.crupier.inicializarMazo();
+		this.crupier.barajar();
+		// Reparto de 4 cartas a cada jugador de una en una
+		repartirDeUnaEnUna();
+	}
 
 	public void actualizarTurnoJuego() {
 		turno = (turno+1)%4;
 	}
 
 	@Override
-	public int turnoJuego() {
+	public int getTurnoJuego() {
 		return turno;
 	}
 
@@ -136,10 +148,17 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 		}
 	}
 
+	private void repartirDeUnaEnUna() {
+		Jugador[] jugadores = this.partida.getMesa();
+		for (int j = 0; j < 4; j++) {
+			for (int i = 0; i < 4; i++) {
+				this.crupier.repartirCartas(1, jugadores[(mano + i) % 4]);
+			}
+		}
+	}
+
 	public void setPartida(Partida partidaActual) {
 		this.partida = partidaActual;
-		this.mano = partida.getMano();
-		this.turno = mano;
 	}
 	
 	public void setCrupier(ICrupier crupier) {

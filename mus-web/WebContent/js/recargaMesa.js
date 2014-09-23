@@ -29,7 +29,7 @@ function procesarRespuesta() {
 		// Cambio el body del document
 		if(resultadoXML){
 			var nuevoBody = resultadoXML.getElementsByTagName("body")[0];
-			// Si canbia el ID del body redirijo la p�gina
+			// Si canbia el ID del body redirijo la p�gina
 			var nuevoId = nuevoBody.id || nuevoBody.getAttribute("id");
 			if(nuevoId != document.body.id){
 				location.href = ajax.responseURL;
@@ -44,9 +44,17 @@ function procesarRespuesta() {
 	}
 }
 
+/**
+ * Procesa un texto con contenido XML y devuelve el resultado en formato DOM.
+ * Dependiendo del navegador el procesamiento se hará mediante DOMParser (navegadores compatibles)
+ * o mediante ActiveX (InternetExplorer)
+ * @param {String} Texto a procesar
+ * @return Documento DOM tras procesar el texto enviado por parámetro o null si se ha producido algún error
+ */
 function procesar(resultadoTxt) {
+	var resultadoXML = null;
 	if (resultadoTxt != null) {
-		if (window.DOMParser) {
+		if (window.DOMParser && !esIExplorer10()) {
 			// Para todos menos IExplorer
 			parser = new DOMParser();
 			resultadoXML = parser.parseFromString(resultadoTxt, "text/xml");
@@ -58,5 +66,13 @@ function procesar(resultadoTxt) {
 		}
 	}
 	return resultadoXML;
+}
+
+/**
+ * Comprueba si el navegador es IExplorer 10
+ * @return {Boolean} true si es IE10 y false en caso contrario
+ */ 
+function esIExplorer10(){
+	return navigator.userAgent.toLowerCase().indexOf('trident') > -1;
 }
 
