@@ -9,15 +9,8 @@ import es.insa.proyecto.mus.contratos.DaoJugador;
  * @author Nazaret y Jose Antonio
  *
  */
-public class DaoJugadorHibernate  extends DaoGenericoHibernate<Jugador, Integer>
-	implements DaoJugador{
-
-	public DaoJugadorHibernate() {
-		super();
-	}
-
-	
-
-	
+public class DaoJugadorHibernate  
+	 extends DaoGenericoHibernate<Jugador, Integer>
+  implements DaoJugador{
 
 }

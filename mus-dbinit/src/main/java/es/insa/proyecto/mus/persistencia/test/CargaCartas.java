@@ -70,7 +70,8 @@ public class CargaCartas {
 				seisBastos,sieteBastos,sotaBastos,caballoBastos,reyBastos);
 		
 		DaoMazoHibernate daoMazo = new DaoMazoHibernate();
-		
+//		DaoMazoHibernate daoMazo = new DaoMazoHibernate("cfg/mariadb-hibernate.cfg.xml");
+
 		daoMazo.abrirSesion();
 		daoMazo.insertar(mazo);
 		daoMazo.cerrarSesion();

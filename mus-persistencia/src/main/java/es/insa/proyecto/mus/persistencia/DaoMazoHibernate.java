@@ -16,14 +16,24 @@ import es.insa.proyecto.mus.contratos.DaoMazo;
  *
  */
 public class DaoMazoHibernate
-	extends DaoGenericoHibernate<Mazo, Integer>
-	implements DaoMazo{
+	 extends DaoGenericoHibernate<Mazo, Integer>
+  implements DaoMazo{
 	
+	/**
+	 * Constructor que carga un fichero de configuración de hibernate pasado por parámetro
+	 * @param fichero Ubicación del fichero de configuración de hibernate
+	 */
+	public DaoMazoHibernate(String fichero) {
+		super(fichero);
+	}
 	
+	/**
+	 * Constructor que carga el fichero de configuración por defecto de hibernate
+	 * en el directorio cfg/hibernate.cfg.xml
+	 */
 	public DaoMazoHibernate() {
 		super();
 	}
-
 	/**
 	 * Llenar Mazo de cartas
 	 * dado un mazo m, va a las Cartas y recoge todas las que pertenezcan a ese mazo

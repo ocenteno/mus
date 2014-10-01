@@ -9,13 +9,8 @@ import es.insa.proyecto.mus.modelo.Partida;
  * @author Nazaret y Jose Antonio
  *
  */
-public class DaoPartidaHibernate extends DaoGenericoHibernate<Partida, Integer>
-			implements DaoPartida{
-
-	public DaoPartidaHibernate() {
-		super();
-	}
-
-	
+public class DaoPartidaHibernate 
+	 extends DaoGenericoHibernate<Partida, Integer>
+  implements DaoPartida{
 
 }

@@ -10,13 +10,7 @@ import es.insa.proyecto.mus.contratos.DaoCarta;
  *
  */
 public class DaoCartaHibernate 
-	extends DaoGenericoHibernate<Carta, Integer>
-	implements DaoCarta {
-
-	public DaoCartaHibernate() {
-		super();
-	}
-
-	
+	 extends DaoGenericoHibernate<Carta, Integer>
+  implements DaoCarta {
 
 }

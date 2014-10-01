@@ -35,12 +35,23 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 			sf = sesFact;
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * Constructor que carga el fichero de configuración por defecto de hibernate
+	 * en el directorio cfg/hibernate.cfg.xml
+	 */
 	public DaoGenericoHibernate() {
-		
+		this("cfg/hibernate.cfg.xml");
+	}
+	
+	/**
+	 * Constructor que carga un fichero de configuración de hibernate pasado por parámetro
+	 * @param fichero Ubicación del fichero de configuración de hibernate
+	 */
+	@SuppressWarnings("unchecked")
+	public DaoGenericoHibernate(String fichero) {
 		if (sf == null) {
 			Configuration cfg = new Configuration()
-					.configure("cfg/hibernate.cfg.xml");
+					.configure(fichero);
 			ServiceRegistry sr = 
 					new StandardServiceRegistryBuilder()
 					.applySettings(cfg.getProperties()).build();
