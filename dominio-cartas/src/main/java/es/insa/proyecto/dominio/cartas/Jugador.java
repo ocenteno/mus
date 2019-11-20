@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Esta clase contiene los métodos que interactúan con el Jugador. Las
+ * Esta clase contiene los mÃˆtodos que interactË™an con el Jugador. Las
  * operaciones que se pueden realizar son las siguientes:
  * 
  * @author Cristina y Javier
@@ -18,7 +18,7 @@ public class Jugador implements Comparable<Jugador> {
 	private String nombre;
 	// cartas que tiene el jugador
 	private List<Carta> manoJugador;
-	// Booleano para devolver un error en la operación
+	// Booleano para devolver un error en la operaciÃ›n
 	private boolean errorMano = false;
 
 	public Jugador() {
@@ -33,16 +33,16 @@ public class Jugador implements Comparable<Jugador> {
 	}
 
 	/**
-	 * Método para añadir una Carta a la mano del jugador controlando que
-	 * no exista y no se tenga ya 4 cartas, en ambos casos devolverá erroMano a true.
+	 * MÃˆtodo para aÃ’adir una Carta a la mano del jugador controlando que
+	 * no exista y no se tenga ya 4 cartas, en ambos casos devolverÂ· erroMano a true.
 	 * 
-	 * @param cartaAAñadir
-	 *            --> la carta que se pretende añadir
+	 * @param cartaAAÃ’adir
+	 *            --> la carta que se pretende aÃ’adir
 	 * @return 
 	 */
-	public boolean añadirCarta(Carta cartaAAñadir) {
+	public boolean aÃ’adirCarta(Carta cartaAAÃ’adir) {
 		if (this.manoJugador.size() < 4) {
-			this.manoJugador.add(cartaAAñadir);
+			this.manoJugador.add(cartaAAÃ’adir);
 		}else {
 			errorMano = true;
 		}
@@ -50,8 +50,8 @@ public class Jugador implements Comparable<Jugador> {
 	}
 
 	/**
-	 * Método para quitar una Carta de la mano del jugador controlando que
-	 * ya exista, devolverá erroMano a true si no existe.
+	 * MÃˆtodo para quitar una Carta de la mano del jugador controlando que
+	 * ya exista, devolverÂ· erroMano a true si no existe.
 	 * 
 	 * @param cartaAQuitar
 	 *            --> la carta que se pretende quitar

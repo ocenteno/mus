@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Mazo de cartas de mus de la baraja española
+ * Mazo de cartas de mus de la baraja espaÃ’ola
  * 
  * @author insa05
  * 
@@ -20,14 +20,14 @@ public class Mazo {
 	
 
 	/**
-	 * Constructor vacío de la clase Mazo
+	 * Constructor vacÃŒo de la clase Mazo
 	 */
 	public Mazo() {
 		listaDeCartasDelMazo = new LinkedList<Carta>();
 	}
 
 	/**
-	 * Constructor con parámetros
+	 * Constructor con parÂ·metros
 	 * 
 	 * @param nombre
 	 */
@@ -52,10 +52,10 @@ public class Mazo {
 	 */
 	public Carta sacarCarta() {
 		if (listaDeCartasDelMazo.size() > 0) {
-			// 1º queremos devolver la primera carta de la lista
+			// 1âˆ« queremos devolver la primera carta de la lista
 			// y quitarla de la lista
 			Carta cartaADevolver = listaDeCartasDelMazo.remove(0);
-			// 2º devolverla
+			// 2âˆ« devolverla
 			return cartaADevolver;
 		} else {
 			return null;
@@ -63,13 +63,13 @@ public class Mazo {
 	}
 
 	/**
-	 * Añadimos una carta al mazo
+	 * AÃ’adimos una carta al mazo
 	 * 
 	 * @param c
 	 */
-	public void añadir(Carta c) {
+	public void aÃ’adir(Carta c) {
 
-		// 1º queremos añadir una Carta
+		// 1âˆ« queremos aÃ’adir una Carta
 		listaDeCartasDelMazo.add(c);
 	}
 
@@ -78,16 +78,16 @@ public class Mazo {
 	 * 
 	 * @param l
 	 */
-	public void añadir(List<Carta> l) {
+	public void aÃ’adir(List<Carta> l) {
 
-		// 1º queremos añadir una lista de Carta
+		// 1âˆ« queremos aÃ’adir una lista de Carta
 		listaDeCartasDelMazo.addAll(l);
 
 	}
 	
-	public void añadir(Carta...arrayCartas) {
+	public void aÃ’adir(Carta...arrayCartas) {
 
-		// 1º queremos añadir una array de Carta previa conversión a lista 
+		// 1âˆ« queremos aÃ’adir una array de Carta previa conversiÃ›n a lista 
 		// Arrays.asList(arrayCartas);
 		listaDeCartasDelMazo.addAll(Arrays.asList(arrayCartas));
 

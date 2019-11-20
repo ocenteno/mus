@@ -3,7 +3,7 @@ package es.insa.proyecto.dominio.cartas;
 /**
  * Enumerado que contiene todas las acciones que se pueden
  * realizar en cada lance.
- * @author Cristina y José Antonio
+ * @author Cristina y JosÃˆ Antonio
  *
  */
 public enum AccionesLance {
