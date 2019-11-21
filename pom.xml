@@ -4,20 +4,17 @@
   <artifactId>mus-proyecto</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+
   <modules>
-  	<module>mus-negocio</module>
-  	
+  	<module>mus-negocio</module>  	
   	<module>mus-persistencia</module>
-  	
-  	<module>mus-web</module>
-  	
-  	
-  	
+  	<module>mus-web</module>  	
   	<module>mus-servicios</module>
   	<module>mus-contratos</module>
   	<module>dominio-cartas</module>
   	<module>mus-dbinit</module>
   </modules>
+
   <dependencies>
   	<dependency>
   		<groupId>junit</groupId>
@@ -26,9 +23,22 @@
   		<scope>test</scope>
   	</dependency>
   </dependencies>
+
   <build>
-  	<plugins>
-  		<plugin>
+    <plugins>
+      <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+        <version>2.11.0</version>
+        <configuration>
+          <skipFormatting>false</skipFormatting>
+          <compilerSource>1.7</compilerSource>
+          <compilerCompliance>1.7</compilerCompliance>
+          <compilerTargetPlatform>1.7</compilerTargetPlatform>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
@@ -37,6 +47,6 @@
           <target>1.7</target>
         </configuration>
       </plugin>
-  	</plugins>
+    </plugins>
   </build>
 </project>
