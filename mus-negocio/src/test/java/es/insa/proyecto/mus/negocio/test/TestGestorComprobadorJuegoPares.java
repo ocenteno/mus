@@ -38,25 +38,25 @@ public class TestGestorComprobadorJuegoPares {
 	@Test
 	public void testTieneJuego() {
 		Jugador jugador1 = new Jugador("Jugador1");
-		jugador1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		jugador1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		jugador1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		jugador1.añadirCarta(new Carta(Palo.BASTOS, 1, 1));
-		// 2º ejecución
+		jugador1.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador1.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador1.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador1.aÃ±adirCarta(new Carta(Palo.BASTOS, 1, 1));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Juego juego = miGestor.comprobarJuego(jugador1);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		assertEquals(" Tiene Juego de 31 puntos ", Juego.TREINTAYUNA, juego);
 
 		Jugador jugador3 = new Jugador("Jugador3");
-		jugador3.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		jugador3.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
-		jugador3.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
-		jugador3.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		// 2º ejecución
-		// 3º aserción
+		jugador3.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador3.aÃ±adirCarta(new Carta(Palo.BASTOS, 3, 10));
+		jugador3.aÃ±adirCarta(new Carta(Palo.BASTOS, 3, 10));
+		jugador3.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		// 2Âº ejecuciÃ³n
+		// 3Âº aserciÃ³n
 		juego = miGestor.comprobarJuego(jugador3);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		assertEquals(" Juego ",Juego.JUEGO, juego);
 		
 	}
@@ -69,14 +69,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testNoTieneJuego() {
 
 		Jugador jugador2 = new Jugador("Jugador2");
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		jugador2.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		// 2º ejecución
+		jugador2.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador2.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
+		jugador2.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		jugador2.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Juego juego = miGestor.comprobarJuego(jugador2);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		assertEquals(" No tiene Juego, es Punto ",Juego.PUNTO, juego);
 		
 	}
@@ -89,14 +89,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testDuplesGochoyPito() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
-		jugador.añadirCarta(new Gocho(Palo.OROS, 3, 10));
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 2, 2));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Gocho(Palo.BASTOS, 12, 10));
+		jugador.aÃ±adirCarta(new Gocho(Palo.OROS, 3, 10));
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 1, 1));
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 2, 2));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Duples", Pares.DUPLES, respuesta);
 
 		
@@ -109,14 +109,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void test2Pares() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		jugador.añadirCarta(new Carta(Palo.OROS, 5, 5));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
-		jugador.añadirCarta(new Carta(Palo.ESPADAS, 11, 10));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		jugador.aÃ±adirCarta(new Carta(Palo.OROS, 5, 5));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 11, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.ESPADAS, 11, 10));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Duples", Pares.DUPLES, respuesta);
 
 		
@@ -129,14 +129,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testDuples() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
-		jugador.añadirCarta(new Carta(Palo.OROS, 4, 4));
-		jugador.añadirCarta(new Carta(Palo.ESPADAS, 4, 4));
-		jugador.añadirCarta(new Carta(Palo.COPAS, 4, 4));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
+		jugador.aÃ±adirCarta(new Carta(Palo.OROS, 4, 4));
+		jugador.aÃ±adirCarta(new Carta(Palo.ESPADAS, 4, 4));
+		jugador.aÃ±adirCarta(new Carta(Palo.COPAS, 4, 4));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Duples", Pares.DUPLES, respuesta);
 
 		
@@ -149,14 +149,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testDuplesGocho() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
-		jugador.añadirCarta(new Gocho(Palo.OROS, 3, 10));
-		jugador.añadirCarta(new Gocho(Palo.COPAS, 12, 10));
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Gocho(Palo.BASTOS, 12, 10));
+		jugador.aÃ±adirCarta(new Gocho(Palo.OROS, 3, 10));
+		jugador.aÃ±adirCarta(new Gocho(Palo.COPAS, 12, 10));
+		jugador.aÃ±adirCarta(new Gocho(Palo.BASTOS, 3, 10));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Esperamos que lleguen DUPLES ", Pares.DUPLES, respuesta);
 
 		
@@ -169,14 +169,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void test1Pareja() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
-		jugador.añadirCarta(new Carta(Palo.OROS, 4, 4));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 6, 6));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
+		jugador.aÃ±adirCarta(new Carta(Palo.OROS, 4, 4));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 11, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 6, 6));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Esperamos reconozca un PAR ", Pares.PAR, respuesta);
 
 	}
@@ -188,14 +188,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void test1ParejaPito() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
-		jugador.añadirCarta(new Pito(Palo.OROS, 2, 1));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 6, 6));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 1, 1));
+		jugador.aÃ±adirCarta(new Pito(Palo.OROS, 2, 1));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 11, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 6, 6));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Esperamos reconozca un PAR ", Pares.PAR, respuesta);
 
 	}
@@ -207,14 +207,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void test1ParejaGocho() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
-		jugador.añadirCarta(new Gocho(Palo.OROS, 3, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 6, 6));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Gocho(Palo.BASTOS, 12, 10));
+		jugador.aÃ±adirCarta(new Gocho(Palo.OROS, 3, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 11, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 6, 6));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Esperamos reconozca un PAR ", Pares.PAR, respuesta);
 
 	}
@@ -226,14 +226,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testSinParejas() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		jugador.añadirCarta(new Gocho(Palo.OROS, 3, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 2, 2));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador.aÃ±adirCarta(new Gocho(Palo.OROS, 3, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 2, 2));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 
 		assertEquals("Esperamos sin PAR", Pares.NO, respuesta);
 	}
@@ -245,14 +245,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testMedias() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
-		jugador.añadirCarta(new Carta(Palo.OROS, 4, 4));
-		jugador.añadirCarta(new Carta(Palo.ESPADAS, 4, 4));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 2, 2));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
+		jugador.aÃ±adirCarta(new Carta(Palo.OROS, 4, 4));
+		jugador.aÃ±adirCarta(new Carta(Palo.ESPADAS, 4, 4));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 2, 2));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Debe devolver MEDIAS", Pares.MEDIAS, respuesta);
 
 	}
@@ -264,14 +264,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testMediasGochos() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
-		jugador.añadirCarta(new Gocho(Palo.OROS, 3, 10));
-		jugador.añadirCarta(new Gocho(Palo.ESPADAS, 12, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Gocho(Palo.BASTOS, 12, 10));
+		jugador.aÃ±adirCarta(new Gocho(Palo.OROS, 3, 10));
+		jugador.aÃ±adirCarta(new Gocho(Palo.ESPADAS, 12, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Debe devolver MEDIAS", Pares.MEDIAS, respuesta);
 
 	}
@@ -283,14 +283,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testMediasPitos() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
-		jugador.añadirCarta(new Pito(Palo.OROS, 1, 1));
-		jugador.añadirCarta(new Pito(Palo.ESPADAS, 2, 1));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 1, 1));
+		jugador.aÃ±adirCarta(new Pito(Palo.OROS, 1, 1));
+		jugador.aÃ±adirCarta(new Pito(Palo.ESPADAS, 2, 1));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Pares respuesta = miGestor.comprobarPares(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Debe devolver MEDIAS", Pares.MEDIAS, respuesta);
 
 	}
@@ -302,14 +302,14 @@ public class TestGestorComprobadorJuegoPares {
 	public void testObtenerEmparejadas() {
 
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 2, 2));
-		jugador.añadirCarta(new Gocho(Palo.OROS, 3, 10));
-		jugador.añadirCarta(new Carta(Palo.COPAS, 2, 2));
-		jugador.añadirCarta(new Carta(Palo.ESPADAS, 3, 10));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 2, 2));
+		jugador.aÃ±adirCarta(new Gocho(Palo.OROS, 3, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.COPAS, 2, 2));
+		jugador.aÃ±adirCarta(new Carta(Palo.ESPADAS, 3, 10));
+		// 2Âº ejecuciÃ³n
 		ComprobadorParesJuego miGestor = new ComprobadorParesJuego();
 		Carta[] respuesta = miGestor.obtenerEmparejadas(jugador);
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("Debe devolver pareja de 2", 2, respuesta.length);
 	}
 }

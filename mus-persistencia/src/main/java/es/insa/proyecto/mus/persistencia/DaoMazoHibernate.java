@@ -20,15 +20,15 @@ public class DaoMazoHibernate
   implements DaoMazo{
 	
 	/**
-	 * Constructor que carga un fichero de configuraci髇 de hibernate pasado por par醡etro
-	 * @param fichero Ubicaci髇 del fichero de configuraci髇 de hibernate
+	 * Constructor que carga un fichero de configuraci贸n de hibernate pasado por par谩metro
+	 * @param fichero Ubicaci贸n del fichero de configuraci贸n de hibernate
 	 */
 	public DaoMazoHibernate(String fichero) {
 		super(fichero);
 	}
 	
 	/**
-	 * Constructor que carga el fichero de configuraci髇 por defecto de hibernate
+	 * Constructor que carga el fichero de configuraci贸n por defecto de hibernate
 	 * en el directorio cfg/hibernate.cfg.xml
 	 */
 	public DaoMazoHibernate() {
@@ -55,7 +55,7 @@ public class DaoMazoHibernate
 		List<Carta> resul = (List<Carta>) query2.list();
 		
 		// Metemos la lista en el Mazo
-		m.a馻dir(resul);
+		m.a帽adir(resul);
 		sf.getCurrentSession().getTransaction().commit();
 		
 	}

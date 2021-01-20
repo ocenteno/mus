@@ -7,7 +7,7 @@ import es.insa.proyecto.mus.modelo.Lances;
 /**
  * Esta interfaces se encarga de la Gestion de las distintas
  * Fases por las que pasa cada Lance de una mano determinada.
- * @author Cristina y JosÈ Antonio
+ * @author Cristina y Jos√© Antonio
  *
  */
 
@@ -27,7 +27,7 @@ public interface IGestorFaseApuestas {
 	public AccionesLance[] getAcciones();
 		
 	/**
-	 * Intenta ejecutar una acciÛn en fase de GRANDE.
+	 * Intenta ejecutar una acci√≥n en fase de GRANDE.
 	 * @param jugador jugador que tiene el turno
 	 * @param accion Enumerado con la accion realizada por dicho jugador
 	 * @param piedras piedras apostadas
@@ -36,7 +36,7 @@ public interface IGestorFaseApuestas {
 	public boolean faseGrande(Jugador jugador, AccionesLance accion, int piedras);
 	
 	/**
-	 * Intenta ejecutar una acciÛn en fase de CHICA.
+	 * Intenta ejecutar una acci√≥n en fase de CHICA.
 	 * @param j (jugador que tiene el turno)
 	 * @param a (Enumerado con la accion realizada por dicho jugador)
 	 * @param p (piedras apostadas)
@@ -45,7 +45,7 @@ public interface IGestorFaseApuestas {
 	public boolean faseChica(Jugador j, AccionesLance a, int p);
 	
 	/**
-	 * Intenta ejecutar una acciÛn en fase de PARES.
+	 * Intenta ejecutar una acci√≥n en fase de PARES.
 	 * @param j (jugador que tiene el turno)
 	 * @param a (Enumerado con la accion realizada por dicho jugador)
 	 * @param p (piedras apostadas)
@@ -54,7 +54,7 @@ public interface IGestorFaseApuestas {
 	public boolean fasePares(Jugador j, AccionesLance a, int p);
 	
 	/**
-	 * Intenta ejecutar una acciÛn en fase de JUEGO.
+	 * Intenta ejecutar una acci√≥n en fase de JUEGO.
 	 * @param j (jugador que tiene el turno)
 	 * @param a (Enumerado con la accion realizada por dicho jugador)
 	 * @param p (piedras apostadas)
@@ -63,7 +63,7 @@ public interface IGestorFaseApuestas {
 	public boolean faseJuego(Jugador j, AccionesLance a, int p);
 	
 	/**
-	 * Intenta ejecutar una acciÛn en fase de PUNTO.
+	 * Intenta ejecutar una acci√≥n en fase de PUNTO.
 	 * @param j (jugador que tiene el turno)
 	 * @param a (Enumerado con la accion realizada por dicho jugador)
 	 * @param p (piedras apostadas)
@@ -72,8 +72,8 @@ public interface IGestorFaseApuestas {
 	public boolean fasePunto(Jugador j, AccionesLance a, int p);
 
 	/**
-	 * Intenta ejecutar una acciÛn que incluye una apuesta en una fase dada
-	 * @param jugador jugador que intenta ejecutar la acciÛn
+	 * Intenta ejecutar una acci√≥n que incluye una apuesta en una fase dada
+	 * @param jugador jugador que intenta ejecutar la acci√≥n
 	 * @param accion Accion realizada por dicho jugador
 	 * @param piedras piedras apostadas
 	 * @return boolean true si se ha podido realizar, false en caso contrario
@@ -81,16 +81,16 @@ public interface IGestorFaseApuestas {
 	public boolean ejecutar(Jugador jugador, Lances fase, AccionesLance accion, int piedras);
 	
 	/**
-	 * Intenta ejecutar una acciÛn en una fase dada
-	 * @param jugador jugador que intenta ejecutar la acciÛn
+	 * Intenta ejecutar una acci√≥n en una fase dada
+	 * @param jugador jugador que intenta ejecutar la acci√≥n
 	 * @param accion Accion realizada por dicho jugador
 	 * @return boolean true si se ha podido realizar, false en caso contrario
 	 */
 	public boolean ejecutar(Jugador jugador, Lances fase, AccionesLance accion);
 	
 	/**
-	 * Recupera la posiciÛn de la mesa del jugador al que le toca hablar.
-	 * @return Õndice del jugador que actualmente tiene el turno
+	 * Recupera la posici√≥n de la mesa del jugador al que le toca hablar.
+	 * @return √çndice del jugador que actualmente tiene el turno
 	 */
 	int getTurno();
 	

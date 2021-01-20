@@ -25,7 +25,7 @@ public class TestComprobadorGrande {
 
 	/**
 	 * Test que comprueba si ha ordenado bien los ganadores de los lances a Grande
-	 * teniendo en cuenta su posición en la mesa (mano, ..., postre)
+	 * teniendo en cuenta su posiciÃ³n en la mesa (mano, ..., postre)
 	 */
 	@Test
 	public void testGanadorCartaContraCarta() {
@@ -143,40 +143,40 @@ public class TestComprobadorGrande {
 	 */
 	public static void inicializar() {
 		j1ReyCuatroTresDos = new Jugador("Jugador1");
-		j1ReyCuatroTresDos.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		j1ReyCuatroTresDos.añadirCarta(new Carta(Palo.BASTOS, 3, 3));
-		j1ReyCuatroTresDos.añadirCarta(new Carta(Palo.BASTOS, 2, 2));
-		j1ReyCuatroTresDos.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
+		j1ReyCuatroTresDos.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		j1ReyCuatroTresDos.aÃ±adirCarta(new Carta(Palo.BASTOS, 3, 3));
+		j1ReyCuatroTresDos.aÃ±adirCarta(new Carta(Palo.BASTOS, 2, 2));
+		j1ReyCuatroTresDos.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
 		j2ReyCincoCuatroTres = new Jugador("Jugador2");
-		j2ReyCincoCuatroTres.añadirCarta(new Carta(Palo.OROS, 12, 10));
-		j2ReyCincoCuatroTres.añadirCarta(new Carta(Palo.OROS, 3, 3));
-		j2ReyCincoCuatroTres.añadirCarta(new Carta(Palo.OROS, 5, 5));
-		j2ReyCincoCuatroTres.añadirCarta(new Carta(Palo.OROS, 4, 4));
+		j2ReyCincoCuatroTres.aÃ±adirCarta(new Carta(Palo.OROS, 12, 10));
+		j2ReyCincoCuatroTres.aÃ±adirCarta(new Carta(Palo.OROS, 3, 3));
+		j2ReyCincoCuatroTres.aÃ±adirCarta(new Carta(Palo.OROS, 5, 5));
+		j2ReyCincoCuatroTres.aÃ±adirCarta(new Carta(Palo.OROS, 4, 4));
 		j3ReyCuatroTresPito = new Jugador("Jugador3");
-		j3ReyCuatroTresPito.añadirCarta(new Carta(Palo.COPAS, 12, 10));
-		j3ReyCuatroTresPito.añadirCarta(new Carta(Palo.COPAS, 3, 3));
-		j3ReyCuatroTresPito.añadirCarta(new Pito(Palo.COPAS, 2, 1));
-		j3ReyCuatroTresPito.añadirCarta(new Carta(Palo.COPAS, 4, 4));
+		j3ReyCuatroTresPito.aÃ±adirCarta(new Carta(Palo.COPAS, 12, 10));
+		j3ReyCuatroTresPito.aÃ±adirCarta(new Carta(Palo.COPAS, 3, 3));
+		j3ReyCuatroTresPito.aÃ±adirCarta(new Pito(Palo.COPAS, 2, 1));
+		j3ReyCuatroTresPito.aÃ±adirCarta(new Carta(Palo.COPAS, 4, 4));
 		j4ReyReyCincoCuatro = new Jugador("Jugador4");
-		j4ReyReyCincoCuatro.añadirCarta(new Carta(Palo.OROS, 12, 10));
-		j4ReyReyCincoCuatro.añadirCarta(new Gocho(Palo.OROS, 3, 10));
-		j4ReyReyCincoCuatro.añadirCarta(new Carta(Palo.OROS, 5, 5));
-		j4ReyReyCincoCuatro.añadirCarta(new Carta(Palo.OROS, 4, 4));
+		j4ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.OROS, 12, 10));
+		j4ReyReyCincoCuatro.aÃ±adirCarta(new Gocho(Palo.OROS, 3, 10));
+		j4ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.OROS, 5, 5));
+		j4ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.OROS, 4, 4));
 		j5ReyReyCuatroDos = new Jugador("Jugador5");
-		j5ReyReyCuatroDos.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		j5ReyReyCuatroDos.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
-		j5ReyReyCuatroDos.añadirCarta(new Carta(Palo.BASTOS, 2, 2));
-		j5ReyReyCuatroDos.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
+		j5ReyReyCuatroDos.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		j5ReyReyCuatroDos.aÃ±adirCarta(new Gocho(Palo.BASTOS, 3, 10));
+		j5ReyReyCuatroDos.aÃ±adirCarta(new Carta(Palo.BASTOS, 2, 2));
+		j5ReyReyCuatroDos.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
 		j6ReyReyCincoCuatro = new Jugador("Jugador6");
-		j6ReyReyCincoCuatro.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		j6ReyReyCincoCuatro.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
-		j6ReyReyCincoCuatro.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		j6ReyReyCincoCuatro.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
+		j6ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		j6ReyReyCincoCuatro.aÃ±adirCarta(new Gocho(Palo.BASTOS, 3, 10));
+		j6ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		j6ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
 		j7ReyReyCincoCuatro = new Jugador("Jugador7");
-		j7ReyReyCincoCuatro.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		j7ReyReyCincoCuatro.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
-		j7ReyReyCincoCuatro.añadirCarta(new Carta(Palo.BASTOS, 5, 4));
-		j7ReyReyCincoCuatro.añadirCarta(new Carta(Palo.BASTOS, 4, 4));
+		j7ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		j7ReyReyCincoCuatro.aÃ±adirCarta(new Gocho(Palo.BASTOS, 3, 10));
+		j7ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 4));
+		j7ReyReyCincoCuatro.aÃ±adirCarta(new Carta(Palo.BASTOS, 4, 4));
 		
 		grande = new GanadorGrande();
 	}

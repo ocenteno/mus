@@ -25,9 +25,9 @@ public class TestCrupier {
 	private Crupier crupier;
 	
 /**
- * Tenemos que trucar los datos que nos darÌa el DaoMazo ya que no tenemos
- * acceso a Persistencia, por eso se despliegan los mÈtodos y se rellenan
- * solo los que necesitamos, los dem·s se dejan.	
+ * Tenemos que trucar los datos que nos dar√≠a el DaoMazo ya que no tenemos
+ * acceso a Persistencia, por eso se despliegan los m√©todos y se rellenan
+ * solo los que necesitamos, los dem√°s se dejan.	
  * @throws Exception
  */
 	@Before
@@ -74,9 +74,9 @@ public class TestCrupier {
 			 */
 			@Override
 			public void llenarMazo(Mazo m) {
-				m.aÒadir( new Carta(Palo.BASTOS, 4, 4));
-				m.aÒadir( new Carta(Palo.COPAS, 4, 4));		
-				m.aÒadir( new Carta(Palo.ESPADAS, 4, 4));
+				m.a√±adir( new Carta(Palo.BASTOS, 4, 4));
+				m.a√±adir( new Carta(Palo.COPAS, 4, 4));		
+				m.a√±adir( new Carta(Palo.ESPADAS, 4, 4));
 			}
 		};
 		
@@ -141,8 +141,8 @@ public class TestCrupier {
 	
 	/**
 	 * Inicializamos el mazo con 3 cartas, repartimos 3, nos descartamos de 3,
-	 * por lo tanto el mazo de reparto est· a cero y el de descartes tiene 3.
-	 * Al recoger los descartes, se dan la vuelta a los mazos, si despuÈs podemos 
+	 * por lo tanto el mazo de reparto est√° a cero y el de descartes tiene 3.
+	 * Al recoger los descartes, se dan la vuelta a los mazos, si despu√©s podemos 
 	 * repartir una es que se han cambiado bien.
 	 */
 	@Test

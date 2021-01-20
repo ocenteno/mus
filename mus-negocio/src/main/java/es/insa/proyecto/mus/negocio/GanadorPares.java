@@ -17,7 +17,7 @@ public class GanadorPares implements IGanadorLance, Comparator<Jugador>{
 	}
 
 	/**
-	 * MÈtodo que devuelve el ganador de una jugada a Grande teniendo en cuenta
+	 * M√©todo que devuelve el ganador de una jugada a Grande teniendo en cuenta
 	 * quien es la mano o el mas cercano a ella
 	 * 
 	 * @param jugadores
@@ -42,32 +42,32 @@ public class GanadorPares implements IGanadorLance, Comparator<Jugador>{
 
 	@Override
 	public int compare(Jugador j1, Jugador j2) {
-		// CASOS: COMPARAMOS J1,J2	(-1 es que J1 es m·s pequeÒo, 1 es que J2 es m·s pequeÒo)
+		// CASOS: COMPARAMOS J1,J2	(-1 es que J1 es m√°s peque√±o, 1 es que J2 es m√°s peque√±o)
 		Pares parJ1 = comprobadorPares.comprobarPares(j1);
 		Pares parJ2 = comprobadorPares.comprobarPares(j2);
 		
 		// si tiene distinto par, se ordena ello solo
 		int orden = -parJ1.compareTo(parJ2);
 		
-		// SI LOS COMPARO Y SON IGUALES, GANA LA CARTA M¡S ALTA O LA MANO
+		// SI LOS COMPARO Y SON IGUALES, GANA LA CARTA M√ÅS ALTA O LA MANO
 		// eso lo sabe hacer el comparador de grande
 		if(orden == 0){
-			orden = compararCartaM·sAlta(j1, j2);
+			orden = compararCartaM√°sAlta(j1, j2);
 		}
 		return orden;
 		
 	}
 
-	private int compararCartaM·sAlta(Jugador j1, Jugador j2) {
-		// ESO ES COMPARAR POR GRANDE PERO S”LO LAS CARTAS EMPAREJADAS
+	private int compararCartaM√°sAlta(Jugador j1, Jugador j2) {
+		// ESO ES COMPARAR POR GRANDE PERO S√ìLO LAS CARTAS EMPAREJADAS
 		Carta[] emparejadasJ1 = comprobadorPares.obtenerEmparejadas(j1);
 		Carta[] emparejadasJ2 = comprobadorPares.obtenerEmparejadas(j2);
 		// Creo 2 jugadores temporales para darles las cartas ordenadas
 		Jugador tmpJ1 = new Jugador();
 		Jugador tmpJ2 = new Jugador();
 		for (int i = 0; i < emparejadasJ1.length; i++) {
-			tmpJ1.aÒadirCarta(emparejadasJ1[i]);
-			tmpJ2.aÒadirCarta(emparejadasJ2[i]);
+			tmpJ1.a√±adirCarta(emparejadasJ1[i]);
+			tmpJ2.a√±adirCarta(emparejadasJ2[i]);
 		}
 		// Ordenamos los jugadores temporales
 		return comparadorGrande.compare(tmpJ1, tmpJ2);

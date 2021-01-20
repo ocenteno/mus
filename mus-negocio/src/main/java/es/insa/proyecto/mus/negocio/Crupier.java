@@ -11,7 +11,7 @@ import es.insa.proyecto.mus.contratos.ICrupier;
  * Gestor que implementa la interface que se encarga de las
  * operaciones del mazo de reparto y del mazo de
  * descartes. 
- * @author José Antonio y Cristina
+ * @author JosÃ© Antonio y Cristina
  *
  */
 public class Crupier implements ICrupier{
@@ -46,7 +46,7 @@ public class Crupier implements ICrupier{
 				recogerDescartes();
 				carta = mazoDeReparto.sacarCarta();
 			}
-			j.añadirCarta(carta);
+			j.aÃ±adirCarta(carta);
 		}
 	}
 
@@ -54,7 +54,7 @@ public class Crupier implements ICrupier{
 	public void descartarCartas(Jugador j, Carta... cartasADescartar) {
 		for (Carta c : cartasADescartar) {
 			j.quitarCarta(c);
-			mazoDeDescartes.añadir(c);
+			mazoDeDescartes.aÃ±adir(c);
 		}
 		
 		

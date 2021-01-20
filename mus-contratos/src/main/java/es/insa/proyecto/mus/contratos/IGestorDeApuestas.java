@@ -6,7 +6,7 @@ public interface IGestorDeApuestas {
 
 	
 	/**
-	 * Este método se llama cuando el jugador acepta la apuesta y añade
+	 * Este mÃ©todo se llama cuando el jugador acepta la apuesta y aÃ±ade
 	 * su propia apuesta.
 	 * @param recibe las piedras apostadas y el lance, o sea, grandes, chicas... 
 	 */
@@ -14,18 +14,18 @@ public interface IGestorDeApuestas {
 
 	
 	/**
-	 * Este método se llama cuando el jugador no quiere la apuesta, si el
+	 * Este mÃ©todo se llama cuando el jugador no quiere la apuesta, si el
 	 * bote es cero quiere decir que todos han pasado, por lo que se pone
 	 * una piedra en el bote, si no se devuelve lo que tenga el bote sin 
-	 * sumarle la última apuesta que no se ha aceptado. 
+	 * sumarle la Ãºltima apuesta que no se ha aceptado. 
 	 * @param recibe el lance.
-	 * @return devuelve el bote que había antes de la última apuesta.
+	 * @return devuelve el bote que habÃ­a antes de la Ãºltima apuesta.
 	 */
 	public abstract int noQuiero(Lances apuesta);
 
 	
 	/**
-	 * Este método acepta la apuesta hecha y suma al bote la última apuesta.
+	 * Este mÃ©todo acepta la apuesta hecha y suma al bote la Ãºltima apuesta.
 	 * @param recibe el lance.
 	 * @return devuelve el bote.
 	 */
@@ -33,15 +33,15 @@ public interface IGestorDeApuestas {
 
 	
 	/**
-	 * Este método suma 40 a la última apuesta, pero no la suma al bote
-	 * hasta que no se acepte en el método "quiero".
+	 * Este mÃ©todo suma 40 a la Ãºltima apuesta, pero no la suma al bote
+	 * hasta que no se acepte en el mÃ©todo "quiero".
 	 * @param recibe el lance. 
 	 */
 	public abstract void ordago(Lances apuesta);
 
 	
 	/**
-	 * Este método se llama cuando el jugador acepta la apuesta y apuesta
+	 * Este mÃ©todo se llama cuando el jugador acepta la apuesta y apuesta
 	 * 2 piedras.
 	 * @param recibe el lance, o sea, grandes, chicas... 
 	 */
@@ -49,7 +49,7 @@ public interface IGestorDeApuestas {
 
 	
 	/**
-	 * Este método devuelve el bote del lance que entra por parámetro
+	 * Este mÃ©todo devuelve el bote del lance que entra por parÃ¡metro
 	 * @param el lance del que se quiere el bote apostado
 	 * @return el bote de ese lance 
 	 */

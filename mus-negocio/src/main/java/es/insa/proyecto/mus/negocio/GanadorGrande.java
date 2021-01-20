@@ -17,7 +17,7 @@ public class GanadorGrande implements IGanadorLance, Comparator<Jugador>{
 	}
 
 	/**
-	 * Método que devuelve el ganador de una jugada a Grande teniendo en cuenta quien es la
+	 * MÃ©todo que devuelve el ganador de una jugada a Grande teniendo en cuenta quien es la
 	 * mano o el mas cercano a ella
 	 * @param jugadores - Los jugadores que intervienen en el lance
 	 * @return jugador - Jugador ganador del lance
@@ -48,7 +48,7 @@ public class GanadorGrande implements IGanadorLance, Comparator<Jugador>{
 		// resultado == -1 indica que j1 tiene las cartas mas altas
 		// resultado ==  1 indica que j2 tiene las cartas mas altas
 		if (resultado == 0) {
-			if (j1 == partida.jugadorMásCercaDeLaMano(j1, j2)){
+			if (j1 == partida.jugadorMÃ¡sCercaDeLaMano(j1, j2)){
 				resultado = -1;
 			}else {
 				resultado = 1;

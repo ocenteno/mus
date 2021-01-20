@@ -7,7 +7,7 @@ import es.insa.proyecto.dominio.cartas.Jugador;
 
 
 /**
- * La clase Partida contiene informaciÛn sobre la mesa y las parejas que la forman y 
+ * La clase Partida contiene informaci√≥n sobre la mesa y las parejas que la forman y 
  * controla quien es mano en cada ronda.
  * @author Eugenia Blanco y M.Angeles Pascual
  *
@@ -29,7 +29,7 @@ public class Partida {
 	private Pareja pareja2;
 	
 	/**
-	 * La posiciÛn en la mesa del jugador que es mano (de 0 a 3)
+	 * La posici√≥n en la mesa del jugador que es mano (de 0 a 3)
 	 */
 	private int mano;
 	
@@ -46,7 +46,7 @@ public class Partida {
 	}
 
 	/**
-	 * MÈtodo que suma puntos a la pareja 1
+	 * M√©todo que suma puntos a la pareja 1
 	 * @param puntos
 	 * @return piedras ganadas
 	 */
@@ -56,7 +56,7 @@ public class Partida {
 	}
 
 	/**
-	 * MÈtodo que suma puntos a la pareja 2
+	 * M√©todo que suma puntos a la pareja 2
 	 * @param puntos
 	 * @return piedras ganadas
 	 */
@@ -94,7 +94,7 @@ public class Partida {
 	}
 
 	
-	// ZONA DE M…TODOS
+	// ZONA DE M√âTODOS
 	
 	public boolean isEmpezada() {
 		return empezada;
@@ -142,8 +142,8 @@ public class Partida {
 	
 	/**
 	 * Despues de cada juego la mano avanza, para calcularlo, dividimos
-	 * la posiciÛn (de 0 a 3) entre cuatro y cogemos el resto.
-	 * @return la posiciÛn del array mesa, donde est· sentada la mano
+	 * la posici√≥n (de 0 a 3) entre cuatro y cogemos el resto.
+	 * @return la posici√≥n del array mesa, donde est√° sentada la mano
 	 */
 	public int cambiarMano(){
 		mano = (mano+1)%4;
@@ -152,7 +152,7 @@ public class Partida {
 	
 	
 	/**
-	 * Este mÈtodo va colocando los jugadores en la mesa
+	 * Este m√©todo va colocando los jugadores en la mesa
 	 * @param jugador que se quiere sentar a jugar esta partida
 	 * @param silla, hay cuatro sillas, de la 0 a la 3
 	 * @return true si se ha podido sentar en esa silla,
@@ -215,12 +215,12 @@ public class Partida {
 	}
 
 	/**
-	 * Devuelve el jugador m·s cercano a la mano de entre 2 jugadores
+	 * Devuelve el jugador m√°s cercano a la mano de entre 2 jugadores
 	 * @param j1 Primer jugador a comparar
 	 * @param j2 Segundo jugador a comparar
-	 * @return El jugador m·s cercano a la mano
+	 * @return El jugador m√°s cercano a la mano
 	 */
-	public Jugador jugadorM·sCercaDeLaMano(Jugador j1, Jugador j2) {
+	public Jugador jugadorM√°sCercaDeLaMano(Jugador j1, Jugador j2) {
 		for (int i=0; i< mesa.length; i++) {
 			// Busco el jugador en la mesa
 			Jugador j = mesa[(mano+i)%4];

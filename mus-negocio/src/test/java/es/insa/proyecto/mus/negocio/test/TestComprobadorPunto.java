@@ -24,25 +24,25 @@ public class TestComprobadorPunto {
 	@BeforeClass
 	public static void inicializar() {
 		j1Punto20 = new Jugador("Jugador1");
-		j1Punto20.añadirCarta(new Carta(Palo.OROS, 5, 5));
-		j1Punto20.añadirCarta(new Carta(Palo.COPAS, 5, 5));
-		j1Punto20.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		j1Punto20.añadirCarta(new Carta(Palo.ESPADAS, 5, 5));
+		j1Punto20.aÃ±adirCarta(new Carta(Palo.OROS, 5, 5));
+		j1Punto20.aÃ±adirCarta(new Carta(Palo.COPAS, 5, 5));
+		j1Punto20.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		j1Punto20.aÃ±adirCarta(new Carta(Palo.ESPADAS, 5, 5));
 		j2Punto20 = new Jugador("Jugador2");
-		j2Punto20.añadirCarta(new Carta(Palo.OROS, 1, 1));
-		j2Punto20.añadirCarta(new Gocho(Palo.COPAS, 3, 10));
-		j2Punto20.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		j2Punto20.añadirCarta(new Carta(Palo.OROS, 4, 4));
+		j2Punto20.aÃ±adirCarta(new Carta(Palo.OROS, 1, 1));
+		j2Punto20.aÃ±adirCarta(new Gocho(Palo.COPAS, 3, 10));
+		j2Punto20.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		j2Punto20.aÃ±adirCarta(new Carta(Palo.OROS, 4, 4));
 		j3Punto16 = new Jugador("Jugador3");
-		j3Punto16.añadirCarta(new Carta(Palo.OROS, 1, 1));
-		j3Punto16.añadirCarta(new Carta(Palo.COPAS, 5, 5));
-		j3Punto16.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		j3Punto16.añadirCarta(new Carta(Palo.OROS, 5, 5));
+		j3Punto16.aÃ±adirCarta(new Carta(Palo.OROS, 1, 1));
+		j3Punto16.aÃ±adirCarta(new Carta(Palo.COPAS, 5, 5));
+		j3Punto16.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		j3Punto16.aÃ±adirCarta(new Carta(Palo.OROS, 5, 5));
 		j4Juego32 = new Jugador("Jugador4");
-		j4Juego32.añadirCarta(new Carta(Palo.OROS, 12, 10));
-		j4Juego32.añadirCarta(new Carta(Palo.COPAS, 12, 10));
-		j4Juego32.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		j4Juego32.añadirCarta(new Carta(Palo.OROS, 5, 5));
+		j4Juego32.aÃ±adirCarta(new Carta(Palo.OROS, 12, 10));
+		j4Juego32.aÃ±adirCarta(new Carta(Palo.COPAS, 12, 10));
+		j4Juego32.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		j4Juego32.aÃ±adirCarta(new Carta(Palo.OROS, 5, 5));
 		
 		gp = new GanadorPunto();
 		gp.setComprobadorJuego(new ComprobadorParesJuego());
@@ -50,11 +50,11 @@ public class TestComprobadorPunto {
 	}
 
 	/**
-	 * ambos jugadores tienen punto gana el jugador con la puntuacion más alta
+	 * ambos jugadores tienen punto gana el jugador con la puntuacion mÃ¡s alta
 	 * 
 	 */
 	@Test
-	public void testGanadorPuntoMásAlto() {
+	public void testGanadorPuntoMÃ¡sAlto() {
 		Partida p = new Partida();
 		p.sentarJugador(j3Punto16, 0);
 		p.sentarJugador(j2Punto20, 1);

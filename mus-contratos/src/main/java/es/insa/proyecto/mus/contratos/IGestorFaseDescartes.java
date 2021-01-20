@@ -15,8 +15,8 @@ public interface IGestorFaseDescartes {
 	
 	/**
 	 * Devuelve el jugador al que le toca jugar respecto
-	 * a su posición en la mesa de juego.
-	 * @return posición
+	 * a su posiciÃ³n en la mesa de juego.
+	 * @return posiciÃ³n
 	 */
 	public int getTurnoJuego();
 
@@ -42,7 +42,7 @@ public interface IGestorFaseDescartes {
 	public boolean cortarMus(Jugador j);
 	
 	/**
-	 * Controla los descartes (nº de cartas y cuales) del jugador
+	 * Controla los descartes (nÂº de cartas y cuales) del jugador
 	 * 
 	 * @param j
 	 * @param cartas
@@ -62,7 +62,7 @@ public interface IGestorFaseDescartes {
 	 * Se encarga de controlar el reparto de cargas teniendo en cuenta los
 	 * descartes realizados.
 	 * @param j
-	 * @return El número de cartas recibidas o -1 en caso de error
+	 * @return El nÃºmero de cartas recibidas o -1 en caso de error
 	 */
 	public int reparte(Jugador j);
 

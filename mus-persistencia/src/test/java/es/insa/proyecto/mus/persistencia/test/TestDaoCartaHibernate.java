@@ -22,35 +22,35 @@ public class TestDaoCartaHibernate {
 	 */
 	@Test
 	public void testInsertar() {
-		// 1º PREPARAR
+		// 1Âº PREPARAR
 
 		Carta c = new Carta(Palo.COPAS, 12, 10);
-		// 2º TEST
+		// 2Âº TEST
 		dch.insertar(c);
-		// 3º VERIFICAR (ASERCIÓN)
-		Assert.assertNotEquals("Debería devolver un ID distinto de cero", 0,
+		// 3Âº VERIFICAR (ASERCIÃ“N)
+		Assert.assertNotEquals("DeberÃ­a devolver un ID distinto de cero", 0,
 				c.getId());
-		// 4º REPARAR
+		// 4Âº REPARAR
 		dch.eliminar(c);
 	}
 
 	/**
-	 * Se inserta una carta, se modifica su número y se comprueba que se
-	 * recupera de la DB con su número modificado
+	 * Se inserta una carta, se modifica su nÃºmero y se comprueba que se
+	 * recupera de la DB con su nÃºmero modificado
 	 */
 	@Test
 	public void testActualizar() {
-		// 1º PREPARAR
+		// 1Âº PREPARAR
 		Carta c = new Carta(Palo.COPAS, 12, 10);
 		dch.insertar(c);
 		c.setNumero(1);
-		// 2º TEST
+		// 2Âº TEST
 		dch.actualizar(c);
 		Carta enDB = dch.buscar(c.getId());
-		// 3º VERIFICAR (ASERCIÓN)
+		// 3Âº VERIFICAR (ASERCIÃ“N)
 		Assert.assertEquals(
-				"Debería devolver una carta de número distinto a 12", c, enDB);
-		// 4º REPARAR
+				"DeberÃ­a devolver una carta de nÃºmero distinto a 12", c, enDB);
+		// 4Âº REPARAR
 		dch.eliminar(c);
 	}
 
@@ -61,26 +61,26 @@ public class TestDaoCartaHibernate {
 	 */
 	@Test
 	public void testEliminar() {
-		// 1º PREPARAR
+		// 1Âº PREPARAR
 		Carta c = new Carta(Palo.COPAS, 12, 10);
 		dch.insertar(c);
-		// 2º TEST
+		// 2Âº TEST
 		Carta guardado = dch.buscar(c.getId());
 		dch.eliminar(c);
 		Carta enDB = dch.buscar(c.getId());
-		// 3º VERIFICAR (ASERCIÓN)
+		// 3Âº VERIFICAR (ASERCIÃ“N)
 		Assert.assertNotEquals(
-				"Debería devolver null ya que la carta se ha borrado",
+				"DeberÃ­a devolver null ya que la carta se ha borrado",
 				guardado, enDB);
 	}
 
 	/**
-	 * Se insertan tres cartas y se comprueba que el tamaño de lo grabado en DB
-	 * es 3 de la DB con su número modificado
+	 * Se insertan tres cartas y se comprueba que el tamaÃ±o de lo grabado en DB
+	 * es 3 de la DB con su nÃºmero modificado
 	 */
 	@Test
 	public void testListarTodos() {
-		// 1º PREPARAR
+		// 1Âº PREPARAR
 		int longitudAntes = dch.listarTodos().size();
 		Carta c1 = new Carta(Palo.COPAS, 6, 10);
 		dch.insertar(c1);
@@ -89,13 +89,13 @@ public class TestDaoCartaHibernate {
 		Carta c3 = new Carta(Palo.ESPADAS, 10, 10);
 		dch.insertar(c3);
 
-		// 2º TEST
+		// 2Âº TEST
 		int longitudDespues = dch.listarTodos().size();
 
-		// 3º VERIFICAR (ASERCIÓN)
-		Assert.assertEquals("Debería devolver una longitud de 3 cartas nuevas", 3,
+		// 3Âº VERIFICAR (ASERCIÃ“N)
+		Assert.assertEquals("DeberÃ­a devolver una longitud de 3 cartas nuevas", 3,
 				longitudDespues-longitudAntes);
-		// 4º REPARAR
+		// 4Âº REPARAR
 		dch.eliminar(c1);
 		dch.eliminar(c2);
 		dch.eliminar(c3);

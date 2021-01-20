@@ -57,16 +57,16 @@ public class CargaCartas {
 		
 		System.out.println("Creando mazo");
 		Mazo mazo = new Mazo("BarajaMus");
-		mazo.añadir(unoOros,dosOros,tresOros,cuatroOros,cincoOros,
+		mazo.aÃ±adir(unoOros,dosOros,tresOros,cuatroOros,cincoOros,
 				seisOros,sieteOros,sotaOros,caballoOros,reyOros); 
 		
-		mazo.añadir(unoCopas,dosCopas,tresCopas,cuatroCopas,cincoCopas,
+		mazo.aÃ±adir(unoCopas,dosCopas,tresCopas,cuatroCopas,cincoCopas,
 				seisCopas,sieteCopas,sotaCopas,caballoCopas,reyCopas);
 		
-		mazo.añadir(unoEspadas,dosEspadas,tresEspadas,cuatroEspadas,cincoEspadas,
+		mazo.aÃ±adir(unoEspadas,dosEspadas,tresEspadas,cuatroEspadas,cincoEspadas,
 				seisEspadas,sieteEspadas,sotaEspadas,caballoEspadas,reyEspadas);
 		
-		mazo.añadir(unoBastos,dosBastos,tresBastos,cuatroBastos,cincoBastos,
+		mazo.aÃ±adir(unoBastos,dosBastos,tresBastos,cuatroBastos,cincoBastos,
 				seisBastos,sieteBastos,sotaBastos,caballoBastos,reyBastos);
 		
 		DaoMazoHibernate daoMazo = new DaoMazoHibernate();

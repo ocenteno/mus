@@ -40,7 +40,7 @@ public class Jugador implements Comparable<Jugador> {
 	 *            --> la carta que se pretende aÒadir
 	 * @return 
 	 */
-	public boolean aÒadirCarta(Carta cartaAAÒadir) {
+	public boolean añadirCarta(Carta cartaAAÒadir) {
 		if (this.manoJugador.size() < 4) {
 			this.manoJugador.add(cartaAAÒadir);
 		}else {

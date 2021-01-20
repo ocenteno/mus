@@ -70,11 +70,11 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 	 */
 	@Override
 	public boolean pedirDescarte(Jugador j, Carta... cartas) {
-		// S髄o se puede descartar si han pedido mus los 4
+		// S贸lo se puede descartar si han pedido mus los 4
 		if (pideMus.size() == 4) {
-			// S髄o permitimos descartar las cartas si las tiene en la mano
+			// S贸lo permitimos descartar las cartas si las tiene en la mano
 			if(j.tieneEnMano(cartas)){
-				// A馻dimos al descarte s髄o si no se ha intentado descartar antes
+				// A帽adimos al descarte s贸lo si no se ha intentado descartar antes
 				if(descarteMus.containsKey(j)){
 					return false;
 				}else{
@@ -91,7 +91,7 @@ public class GestorFaseJuego implements IGestorFaseDescartes{
 	
 	@Override
 	public boolean ejecutarDescartar() {
-		// S髄o se puede ejecutar el descarte si los 4 han pedido descartes
+		// S贸lo se puede ejecutar el descarte si los 4 han pedido descartes
 		if (descarteMus.size() == 4) {
 			for (Jugador jugador : descarteMus.keySet()) {
 				Carta[]descartes = descarteMus.get(jugador);

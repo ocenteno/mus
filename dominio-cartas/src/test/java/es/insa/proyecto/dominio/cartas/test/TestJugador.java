@@ -14,76 +14,76 @@ public class TestJugador {
 	
 	@Test
 	public void testCrearJugador() {
-		// 1º test
+		// 1Âº test
 		Jugador jugador = new Jugador("Jugador1");
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertNotNull("El nombre no puede estar vacio", jugador.getNombre());
-		Assert.assertEquals("Ej jugador debe tener una mano vacía", 0, jugador.getMano().length);
+		Assert.assertEquals("Ej jugador debe tener una mano vacÃ­a", 0, jugador.getMano().length);
 
 	}
 
 	@Test
-	public void testAñadirCarta() {
-		// 1º preparación
+	public void testAÃ±adirCarta() {
+		// 1Âº preparaciÃ³n
 		Carta carta1 = new Carta();
 		Jugador jugador = new Jugador("Jugador1");
-		// 2º ejecución
-		jugador.añadirCarta(carta1);
-		// 3º aserción
+		// 2Âº ejecuciÃ³n
+		jugador.aÃ±adirCarta(carta1);
+		// 3Âº aserciÃ³n
 		Assert.assertNotEquals("El jugador debe tener una mano", 0, jugador.getMano().length);
 		Carta carta2 = new Carta();
 		Carta carta3 = new Carta();
 		Carta carta4 = new Carta();
 		Carta carta5 = new Carta();
-		jugador.añadirCarta(carta2);
-		jugador.añadirCarta(carta3);
-		jugador.añadirCarta(carta4);
-		errorMano = jugador.añadirCarta(carta5);
-		// 5º Aserción
+		jugador.aÃ±adirCarta(carta2);
+		jugador.aÃ±adirCarta(carta3);
+		jugador.aÃ±adirCarta(carta4);
+		errorMano = jugador.aÃ±adirCarta(carta5);
+		// 5Âº AserciÃ³n
 		Assert.assertTrue("Ya tengo 4 cartas ", errorMano);
 	}
 
 	@Test
 	public void testQuitarCarta() {
-		// 1º preparación
+		// 1Âº preparaciÃ³n
 		Carta carta = new Carta();
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(carta);
-		// 2º ejecución
+		jugador.aÃ±adirCarta(carta);
+		// 2Âº ejecuciÃ³n
 		jugador.quitarCarta(carta);
-		// 3º aserción
-		Assert.assertEquals("El jugador debe tener una mano vacía", 0, jugador.getMano().length);
-		// 4º comprobar que no se puede quitar una que no tenemos
+		// 3Âº aserciÃ³n
+		Assert.assertEquals("El jugador debe tener una mano vacÃ­a", 0, jugador.getMano().length);
+		// 4Âº comprobar que no se puede quitar una que no tenemos
 		errorMano = jugador.quitarCarta(carta);
-		// 5º aserción
-		Assert.assertTrue("La carta sigue existiendo y no debería", errorMano);
+		// 5Âº aserciÃ³n
+		Assert.assertTrue("La carta sigue existiendo y no deberÃ­a", errorMano);
 	}
 
 	@Test
 	public void testConsultarMano() {
-		// 1º preparación
+		// 1Âº preparaciÃ³n
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 10, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 10, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 11, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		// 2Âº ejecuciÃ³n
 		Carta[] mano = jugador.getMano();
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertEquals("El jugador debe tener una mano con 4 cartas", 4, mano.length);
 	}
 
 	@Test
 	public void testOrdenarManoPito() {
-		// 1º preparación
+		// 1Âº preparaciÃ³n
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 2, 2));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 2, 2));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 3, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 1, 1));
+		// 2Âº ejecuciÃ³n
 		jugador.ordenarMano();
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Carta[] mano = jugador.getMano();
 		
 		Assert.assertEquals("La primera - 2", 2, mano[0].getNumero());
@@ -95,15 +95,15 @@ public class TestJugador {
 
 	@Test
 	public void testOrdenarManoGocho() {
-		// 1º preparación
+		// 1Âº preparaciÃ³n
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 12, 10));
-		jugador.añadirCarta(new Gocho(Palo.BASTOS, 3, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Gocho(Palo.BASTOS, 12, 10));
+		jugador.aÃ±adirCarta(new Gocho(Palo.BASTOS, 3, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 1, 1));
+		// 2Âº ejecuciÃ³n
 		jugador.ordenarMano();
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Carta[] mano = jugador.getMano();
 		
 		Assert.assertEquals("La primera - 1", 1, mano[0].getNumero());
@@ -116,15 +116,15 @@ public class TestJugador {
 
 	@Test
 	public void testOrdenarMano() {
-		// 1º preparación
+		// 1Âº preparaciÃ³n
 		Jugador jugador = new Jugador("Jugador1");
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 3, 10));
-		jugador.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
-		jugador.añadirCarta(new Pito(Palo.BASTOS, 1, 1));
-		// 2º ejecución
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 3, 10));
+		jugador.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
+		jugador.aÃ±adirCarta(new Pito(Palo.BASTOS, 1, 1));
+		// 2Âº ejecuciÃ³n
 		jugador.ordenarMano();
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Carta[] mano = jugador.getMano();
 		
 		Assert.assertEquals("La primera - 1", 1, mano[0].getNumero());

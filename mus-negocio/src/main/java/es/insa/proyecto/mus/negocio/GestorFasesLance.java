@@ -19,9 +19,9 @@ import es.insa.proyecto.mus.modelo.Partida;
 /**
  * Este gestor implementa la interface que se utiliza para permitir a cada
  * jugador realizar las diferentes acciones (pasar, envidar, etc.) de cada lance
- * de una mano. Adem·s gestiona el flujo de los lances (grande, chica, etc.).
+ * de una mano. Adem√°s gestiona el flujo de los lances (grande, chica, etc.).
  * 
- * @author Cristina y JosÈ Antonio
+ * @author Cristina y Jos√© Antonio
  * 
  */
 
@@ -72,7 +72,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 
 
 	/**
-	 * Este mÈtodo gestiona las decisiones que un jugador concreto pueda tomar
+	 * Este m√©todo gestiona las decisiones que un jugador concreto pueda tomar
 	 * en el lance de Grande.
 	 */
 	@Override
@@ -81,7 +81,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Este mÈtodo gestiona las decisiones que un jugador concreto pueda tomar
+	 * Este m√©todo gestiona las decisiones que un jugador concreto pueda tomar
 	 * en el lance de Chica.
 	 */
 	@Override
@@ -90,7 +90,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Este mÈtodo gestiona las decisiones que un jugador concreto pueda tomar
+	 * Este m√©todo gestiona las decisiones que un jugador concreto pueda tomar
 	 * en el lance de Pares.
 	 */
 	@Override
@@ -99,7 +99,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Este mÈtodo gestiona las decisiones que un jugador concreto pueda tomar
+	 * Este m√©todo gestiona las decisiones que un jugador concreto pueda tomar
 	 * en el lance de Juego.
 	 */
 	@Override
@@ -108,7 +108,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Este mÈtodo gestiona las decisiones que un jugador concreto pueda tomar
+	 * Este m√©todo gestiona las decisiones que un jugador concreto pueda tomar
 	 * en el lance de Punto.
 	 */
 	@Override
@@ -117,18 +117,18 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Este mÈtodo coordina determina que mÈtodo ejecutar para cada acciÛn.
+	 * Este m√©todo coordina determina que m√©todo ejecutar para cada acci√≥n.
 	 * 
-	 * @param jugador jugador que intenta ejecutar la acciÛn
+	 * @param jugador jugador que intenta ejecutar la acci√≥n
 	 * @param accion Accion realizada por dicho jugador
 	 * @param piedras piedras apostadas
 	 * @return
 	 */
 	public boolean dispararAccion(Jugador j, AccionesLance a, int p) {
 
-		// SI SE PUEDE DISPARAR LA ACCI”N LA DISPARO
+		// SI SE PUEDE DISPARAR LA ACCI√ìN LA DISPARO
 		if (chequearAccionSolicitada(a)) {
-			// PERO LA DISPARO SEG⁄N EL CASO
+			// PERO LA DISPARO SEG√öN EL CASO
 			switch (a) {
 				case PASO:
 					return paso(j);
@@ -156,20 +156,20 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Controla un lance en "paso" y cu·l es el siguiente lance a jugar.
+	 * Controla un lance en "paso" y cu√°l es el siguiente lance a jugar.
 	 * 
 	 * @param j
 	 * @return
 	 */
 	private boolean paso(Jugador j) {
-		// aÒado el jugador al contador de jugadores que han pasado
+		// a√±ado el jugador al contador de jugadores que han pasado
 		if(!contadorDePaso.add(j)){
 			// error pq ya habia pasado
 			return false;
 		}
 		// SI PASAN LOS 4
 		if (contadorDePaso.size() == 4) {
-			// si es la ˙ltima fase hay q iniciar un nuevo juego
+			// si es la √∫ltima fase hay q iniciar un nuevo juego
 			if (faseActual == Lances.JUEGO || faseActual == Lances.PUNTO) {
 				mano = partida.cambiarMano();
 			}
@@ -184,7 +184,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Controla un lance en "envido" y cu·l es el siguiente lance a jugar.
+	 * Controla un lance en "envido" y cu√°l es el siguiente lance a jugar.
 	 * 
 	 * @param j
 	 * @return
@@ -196,7 +196,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	private void apostar(int p) {
-		// Si la apuesta supera las 40 piedras se considera Ûrdago 
+		// Si la apuesta supera las 40 piedras se considera √≥rdago 
 		if(p + gestorApuestas.getApuestas(faseActual) >= 40){
 			ordago();
 		}else{
@@ -229,12 +229,12 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 			// y yo ya he "no querido"
 			noQuiero = 1;
 		}else{
-			// soy el compaÒero, y si yo no quiero se acabÛ
+			// soy el compa√±ero, y si yo no quiero se acab√≥
 			faseSiguiente();
 			cargarAccionesQueSePuedenRealizarCuandoNadieHaApostado();
 			// reseteamos el noQuiero
 			noQuiero = 0;
-			// La pareja que apostÛ se lleva las piedras
+			// La pareja que apost√≥ se lleva las piedras
 			gestorTanteo.sacarPiedras(turnoSiguiente(), piedras);
 			// y el turno pasa a la mano
 			turno = mano;
@@ -257,7 +257,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 		int bote = gestorApuestas.quiero(faseActual);
 		if (faseOrdago || bote == 40) {
 			faseActual = Lances.CONTEO;
-			// devolvemos vacÌo las acciones posibles.
+			// devolvemos vac√≠o las acciones posibles.
 		} else {
 			faseSiguiente();
 			cargarAccionesQueSePuedenRealizarCuandoNadieHaApostado();
@@ -265,8 +265,8 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Este mÈtodo se encarga de avanzar el turno al jugador siguiente
-	 * @return El Ìndice de turno actual
+	 * Este m√©todo se encarga de avanzar el turno al jugador siguiente
+	 * @return El √≠ndice de turno actual
 	 */
 	private int turnoSiguiente() {
 		turno = (turno+1)%4;
@@ -274,7 +274,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 	
 	/**
-	 * Este mÈtodo se encarga de determinar cual ser· la siguiente fase del
+	 * Este m√©todo se encarga de determinar cual ser√° la siguiente fase del
 	 * juego.
 	 */
 	private void faseSiguiente() {
@@ -283,7 +283,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 				faseActual = Lances.CHICA;
 				break;
 			// Recuperamos en el constructor la partida, y vemos si los jugadores
-			// de dicha partida tienen pares o no para determinar si habr· lance
+			// de dicha partida tienen pares o no para determinar si habr√° lance
 			// de pares.
 			case CHICA:
 				if (hayPares()) {
@@ -343,7 +343,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Comprobamos que jugadores tienen pares para saber si habr· lance de pares
+	 * Comprobamos que jugadores tienen pares para saber si habr√° lance de pares
 	 * o no.
 	 * 
 	 * @return
@@ -359,7 +359,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Comprobamos que jugadores tienen juego para saber si habr· lance de juego
+	 * Comprobamos que jugadores tienen juego para saber si habr√° lance de juego
 	 * o no.
 	 * 
 	 * @return
@@ -385,11 +385,11 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 	
 	/**
-	 * Comprobamos que la acciÛn solicitada es posible. Para ello comprobamos
-	 * que est· dentro de las acciones permitidas.
+	 * Comprobamos que la acci√≥n solicitada es posible. Para ello comprobamos
+	 * que est√° dentro de las acciones permitidas.
 	 * 
 	 * @param a
-	 *            acciÛn solicitada
+	 *            acci√≥n solicitada
 	 * @return existe
 	 */
 	public boolean chequearAccionSolicitada(AccionesLance a) {
@@ -410,7 +410,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 
 	/**
 	 * Devolvemos las posibles acciones que puede realizar el siguiente jugador,
-	 * en funciÛn de la acciÛn realizada por el jugador anterior.
+	 * en funci√≥n de la acci√≥n realizada por el jugador anterior.
 	 */
 	@Override
 	public AccionesLance[] getAcciones() {
@@ -418,7 +418,7 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	}
 
 	/**
-	 * Recuperamos el Ìndice del jugador que actualmente tiene el turno.
+	 * Recuperamos el √≠ndice del jugador que actualmente tiene el turno.
 	 */
 	@Override
 	public int getTurno() {

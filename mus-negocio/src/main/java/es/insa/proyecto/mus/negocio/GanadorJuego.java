@@ -14,7 +14,7 @@ public class GanadorJuego implements IGanadorLance, Comparator<Jugador> {
 	private ComprobadorParesJuego comprobadorJuego;
 	
 	/**
-	 * Método que devuelve el ganador de una jugada a Juego teniendo en cuenta
+	 * MÃ©todo que devuelve el ganador de una jugada a Juego teniendo en cuenta
 	 * quien es la mano o el mas cercano a ella
 	 * 
 	 * @param jugadores
@@ -42,7 +42,7 @@ public class GanadorJuego implements IGanadorLance, Comparator<Jugador> {
 		int v1 =comprobadorJuego.obtenerPuntuacion(j1); 
 		int v2 =comprobadorJuego.obtenerPuntuacion(j2);
 		if (v1 == v2) {
-			if (j1 == partida.jugadorMásCercaDeLaMano(j1, j2)) {
+			if (j1 == partida.jugadorMÃ¡sCercaDeLaMano(j1, j2)) {
 				orden = -1;
 			} else {
 				orden = 1;

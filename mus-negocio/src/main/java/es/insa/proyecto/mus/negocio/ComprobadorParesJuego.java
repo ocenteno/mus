@@ -53,7 +53,7 @@ public class ComprobadorParesJuego implements IComprobadorParesJuego {
 		int hayPares = 0;
 		for (int i = 1; i < 4; i++) {
 			for (int k = 0; k < i; k++) {
-				// Si son la misma carta, al ordenar dará 0
+				// Si son la misma carta, al ordenar darÃ¡ 0
 				if (manoJugador[i].compareTo(manoJugador[k]) == 0) {
 					hayPares++;
 				}
@@ -83,7 +83,7 @@ public class ComprobadorParesJuego implements IComprobadorParesJuego {
 		Carta[] manoJugador = j.getMano();
 		for (int i = 1; i < 4; i++) {
 			for (int k = 0; k < i; k++) {
-				// Si son la misma carta, al ordenar dará 0
+				// Si son la misma carta, al ordenar darÃ¡ 0
 				if (manoJugador[i].compareTo(manoJugador[k]) == 0) {
 						manoEmparejadas.add(manoJugador[k]);
 						manoEmparejadas.add(manoJugador[i]);

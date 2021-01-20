@@ -17,14 +17,14 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 	private Class<G> claseG;
 	
 	/**
-	 * MÈtodo para abrir una sesiÛn de Hibernate considerando que esta no estÈ ya abierta
+	 * M√©todo para abrir una sesi√≥n de Hibernate considerando que esta no est√© ya abierta
 	 */
 	public void abrirSesion(){
 		sf.openSession();
 	}
 	
 	/**
-	 * MÈtodo para cerrar una sesiÛn de Hibernate que estÈ abierta
+	 * M√©todo para cerrar una sesi√≥n de Hibernate que est√© abierta
 	 */
 	public void cerrarSesion(){
 		sf.getCurrentSession().disconnect();
@@ -36,7 +36,7 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 	}
 
 	/**
-	 * Constructor que carga el fichero de configuraciÛn por defecto de hibernate
+	 * Constructor que carga el fichero de configuraci√≥n por defecto de hibernate
 	 * en el directorio cfg/hibernate.cfg.xml
 	 */
 	public DaoGenericoHibernate() {
@@ -44,8 +44,8 @@ public abstract class DaoGenericoHibernate<G, K extends Serializable>
 	}
 	
 	/**
-	 * Constructor que carga un fichero de configuraciÛn de hibernate pasado por par·metro
-	 * @param fichero UbicaciÛn del fichero de configuraciÛn de hibernate
+	 * Constructor que carga un fichero de configuraci√≥n de hibernate pasado por par√°metro
+	 * @param fichero Ubicaci√≥n del fichero de configuraci√≥n de hibernate
 	 */
 	@SuppressWarnings("unchecked")
 	public DaoGenericoHibernate(String fichero) {

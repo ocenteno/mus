@@ -17,8 +17,8 @@ import es.insa.proyecto.mus.negocio.GestorFasesLance;
 import es.insa.proyecto.mus.negocio.GestorTanteoParcial;
 
 /**
- * Pruebas de los métodos de la Interfaces IGestorFasesLances
- * @author Cristina y José Antonio
+ * Pruebas de los mÃ©todos de la Interfaces IGestorFasesLances
+ * @author Cristina y JosÃ© Antonio
  *
  */
 public class TestGestorFasesLance {
@@ -36,25 +36,25 @@ public class TestGestorFasesLance {
 		j2 = new Jugador("Jugador2");
 		j3 = new Jugador("Jugador3");
 		j4 = new Jugador("Jugador4");
-		j1.añadirCarta(new Carta(Palo.BASTOS, 10, 10));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 10, 10));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
 		//
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 10, 10));
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 11, 10));
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 12, 10));
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 7, 7));
+		j2.aÃ±adirCarta(new Carta(Palo.ESPADAS, 10, 10));
+		j2.aÃ±adirCarta(new Carta(Palo.ESPADAS, 11, 10));
+		j2.aÃ±adirCarta(new Carta(Palo.ESPADAS, 12, 10));
+		j2.aÃ±adirCarta(new Carta(Palo.ESPADAS, 7, 7));
 		//
-		j3.añadirCarta(new Carta(Palo.OROS, 10, 10));
-		j3.añadirCarta(new Carta(Palo.OROS, 12, 10));
-		j3.añadirCarta(new Carta(Palo.OROS, 12, 10));
-		j3.añadirCarta(new Carta(Palo.OROS, 7, 7));
+		j3.aÃ±adirCarta(new Carta(Palo.OROS, 10, 10));
+		j3.aÃ±adirCarta(new Carta(Palo.OROS, 12, 10));
+		j3.aÃ±adirCarta(new Carta(Palo.OROS, 12, 10));
+		j3.aÃ±adirCarta(new Carta(Palo.OROS, 7, 7));
 		//
-		j4.añadirCarta(new Carta(Palo.COPAS, 10, 10));
-		j4.añadirCarta(new Carta(Palo.COPAS, 11, 10));
-		j4.añadirCarta(new Carta(Palo.COPAS, 12, 10));
-		j4.añadirCarta(new Carta(Palo.COPAS, 7, 7));
+		j4.aÃ±adirCarta(new Carta(Palo.COPAS, 10, 10));
+		j4.aÃ±adirCarta(new Carta(Palo.COPAS, 11, 10));
+		j4.aÃ±adirCarta(new Carta(Palo.COPAS, 12, 10));
+		j4.aÃ±adirCarta(new Carta(Palo.COPAS, 7, 7));
 	}
 
 	@Before
@@ -75,7 +75,7 @@ public class TestGestorFasesLance {
 	}
 	
 	/**
-	 * Recupera a quién le toca jugar a partir de una partida
+	 * Recupera a quiÃ©n le toca jugar a partir de una partida
 	 * iniciada.
 	 */
 	@Test
@@ -98,7 +98,7 @@ public class TestGestorFasesLance {
 	@Test
 	public void testGetAccionesInicio() {
 		AccionesLance[] acciones  = miGestor.getAcciones();
-		Assert.assertNotEquals("Acciones no puede estar vacío. ", 0, acciones.length);
+		Assert.assertNotEquals("Acciones no puede estar vacÃ­o. ", 0, acciones.length);
 	}
 	
 	/**
@@ -272,7 +272,7 @@ public class TestGestorFasesLance {
 		Jugador[] jugadores = p.getMesa();
 		miGestor.faseGrande(jugadores[turno], AccionesLance.ENVIDO, 2);
 		boolean resultado = miGestor.faseGrande(jugadores[turno], AccionesLance.PASO, 0);
-		Assert.assertEquals("No se permite PASO al jugador que ya envidó",false, resultado);
+		Assert.assertEquals("No se permite PASO al jugador que ya envidÃ³",false, resultado);
 	
 	}
 }

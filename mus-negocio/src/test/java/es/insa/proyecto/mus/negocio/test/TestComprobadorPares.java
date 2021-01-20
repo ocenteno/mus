@@ -29,18 +29,18 @@ public class TestComprobadorPares {
 		Jugador j1=new Jugador("A");
 		Jugador j2=new Jugador("B");
 		
-		j1.añadirCarta(new Carta(Palo.OROS, 6, 6));
-		j1.añadirCarta(new Carta(Palo.COPAS, 6, 6));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		j1.añadirCarta(new Carta(Palo.OROS, 1, 1));
+		j1.aÃ±adirCarta(new Carta(Palo.OROS, 6, 6));
+		j1.aÃ±adirCarta(new Carta(Palo.COPAS, 6, 6));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		j1.aÃ±adirCarta(new Carta(Palo.OROS, 1, 1));
 		
-		j2.añadirCarta(new Carta(Palo.OROS, 1, 1));
-		j2.añadirCarta(new Carta(Palo.COPAS, 3, 3));
-		j2.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		j2.añadirCarta(new Carta(Palo.OROS, 4, 4));
+		j2.aÃ±adirCarta(new Carta(Palo.OROS, 1, 1));
+		j2.aÃ±adirCarta(new Carta(Palo.COPAS, 3, 3));
+		j2.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		j2.aÃ±adirCarta(new Carta(Palo.OROS, 4, 4));
 		
 		int resultado = gp.compare(j1, j2);
-		// Tiene que ir delante el que tiene mayor jugada (como es el j1, debería devolver -1)
+		// Tiene que ir delante el que tiene mayor jugada (como es el j1, deberÃ­a devolver -1)
 		assertTrue(resultado < 0);
 	}
 	
@@ -49,15 +49,15 @@ public class TestComprobadorPares {
 		Jugador j1=new Jugador("A");
 		Jugador j2=new Jugador("B");
 		
-		j1.añadirCarta(new Carta(Palo.OROS, 4, 4));
-		j1.añadirCarta(new Carta(Palo.COPAS, 1, 1));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		j1.añadirCarta(new Carta(Palo.OROS, 5, 5));
+		j1.aÃ±adirCarta(new Carta(Palo.OROS, 4, 4));
+		j1.aÃ±adirCarta(new Carta(Palo.COPAS, 1, 1));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		j1.aÃ±adirCarta(new Carta(Palo.OROS, 5, 5));
 		
-		j2.añadirCarta(new Carta(Palo.OROS, 1, 1));
-		j2.añadirCarta(new Carta(Palo.COPAS, 5, 5));
-		j2.añadirCarta(new Carta(Palo.BASTOS, 5, 5));
-		j2.añadirCarta(new Carta(Palo.OROS, 5, 5));
+		j2.aÃ±adirCarta(new Carta(Palo.OROS, 1, 1));
+		j2.aÃ±adirCarta(new Carta(Palo.COPAS, 5, 5));
+		j2.aÃ±adirCarta(new Carta(Palo.BASTOS, 5, 5));
+		j2.aÃ±adirCarta(new Carta(Palo.OROS, 5, 5));
 		
 		Jugador resultado = gp.ganador(j1, j2);
 		

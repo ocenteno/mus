@@ -67,7 +67,7 @@ public class Mazo {
 	 * 
 	 * @param c
 	 */
-	public void aÒadir(Carta c) {
+	public void añadir(Carta c) {
 
 		// 1∫ queremos aÒadir una Carta
 		listaDeCartasDelMazo.add(c);
@@ -78,14 +78,14 @@ public class Mazo {
 	 * 
 	 * @param l
 	 */
-	public void aÒadir(List<Carta> l) {
+	public void añadir(List<Carta> l) {
 
 		// 1∫ queremos aÒadir una lista de Carta
 		listaDeCartasDelMazo.addAll(l);
 
 	}
 	
-	public void aÒadir(Carta...arrayCartas) {
+	public void añadir(Carta...arrayCartas) {
 
 		// 1∫ queremos aÒadir una array de Carta previa conversiÛn a lista 
 		// Arrays.asList(arrayCartas);

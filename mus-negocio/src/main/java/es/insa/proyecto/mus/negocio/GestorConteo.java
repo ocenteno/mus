@@ -7,9 +7,9 @@ import es.insa.proyecto.mus.contratos.IComprobadorParesJuego;
 import es.insa.proyecto.mus.contratos.IGestorConteo;
 
 /**
- * Este gestor se encargar· de contar las 
+ * Este gestor se encargar√° de contar las 
  * piedras que otorga una jugada.
- * @author Cristina y JosÈ Antonio
+ * @author Cristina y Jos√© Antonio
  *
  */
 public class GestorConteo implements IGestorConteo{

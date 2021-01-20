@@ -20,15 +20,15 @@ public class TestDaoMazoHibernate {
 	
 	@Test
 	public void testInsertarMazoVacio() {
-		// 1º PREPARAR
+		// 1Âº PREPARAR
 		
-		Mazo m = new Mazo("barajaEspañola");	
-		// 2º TEST
+		Mazo m = new Mazo("barajaEspaÃ±ola");	
+		// 2Âº TEST
 		dmh.insertar(m);
-		// 3º VERIFICAR (ASERCIÓN)
+		// 3Âº VERIFICAR (ASERCIÃ“N)
 		Assert.assertNotEquals(
-				"Debería devolver un ID distinto de cero", 0, m.getId());
-	    // 4º REPARAR
+				"DeberÃ­a devolver un ID distinto de cero", 0, m.getId());
+	    // 4Âº REPARAR
 		dmh.eliminar(m);
 	}
 	@Test
@@ -37,14 +37,14 @@ public class TestDaoMazoHibernate {
 		Carta c2 = new Carta(Palo.COPAS, 10, 10);
 		Carta c3 = new Carta(Palo.OROS, 7, 7);
 		
-		Mazo m = new Mazo("barajaEspañola2");
-		m.añadir(c1,c2,c3);
+		Mazo m = new Mazo("barajaEspaÃ±ola2");
+		m.aÃ±adir(c1,c2,c3);
 		 
 	    // Mazo mazoBBDD = dmh.buscar(m.getId());	
 		dmh.insertar(m);
-		// 3º VERIFICAR
+		// 3Âº VERIFICAR
 		Assert.assertNotEquals("Tienen que ser distintos",0, m.getCantidadDeCartas());
-	    // 4º REPARAR
+	    // 4Âº REPARAR
 		dmh.eliminar(m);
 	
 	}
@@ -55,19 +55,19 @@ public class TestDaoMazoHibernate {
 		Carta c1 = new Carta(Palo.BASTOS, 1, 1);
 		Carta c2 = new Carta(Palo.COPAS, 10, 10);
 		Carta c3 = new Carta(Palo.OROS, 7, 7);
-		Mazo m = new Mazo("barajaEspañola2");
-		m.añadir(c1,c2,c3);
+		Mazo m = new Mazo("barajaEspaÃ±ola2");
+		m.aÃ±adir(c1,c2,c3);
 		dmh.insertar(m);
 		
 		// insertamos lista de cartas del mazo
 		dmh.llenarMazo(m);
 		
-		// 3º VERIFICAR
+		// 3Âº VERIFICAR
 		Assert.assertNotEquals("La lista no debe ser vacia",0, m.getCantidadDeCartas());
 		
 		System.out.println(m.getNombre());
 		System.out.println(m.getCantidadDeCartas());
-	    // 4º REPARAR
+	    // 4Âº REPARAR
 		dmh.eliminar(m);		
 	}
 	
@@ -77,18 +77,18 @@ public class TestDaoMazoHibernate {
 	 */
 	@Test
 	public void testActualizar() {
-		// 1º PREPARAR	
-		Mazo m = new Mazo("barajaEspañola");	
+		// 1Âº PREPARAR	
+		Mazo m = new Mazo("barajaEspaÃ±ola");	
 		dmh.insertar(m);
 		m.setNombre("barajaFrancesa");
-		// 2º TEST
+		// 2Âº TEST
 		dmh.actualizar(m);
-		// 3º VERIFICAR (ASERCIÓN)
+		// 3Âº VERIFICAR (ASERCIÃ“N)
 		Mazo  enDB = dmh.buscar(m.getId());
-		// 3º VERIFICAR (ASERCIÓN)
+		// 3Âº VERIFICAR (ASERCIÃ“N)
 		Assert.assertEquals(
-			"Debería devolver un mazo con nombre barajaFrancesa", m, enDB);
-		// 4º REPARAR
+			"DeberÃ­a devolver un mazo con nombre barajaFrancesa", m, enDB);
+		// 4Âº REPARAR
 		dmh.eliminar(m);
 	}
 	
@@ -98,40 +98,40 @@ public class TestDaoMazoHibernate {
 	 */
 	@Test
 	public void testEliminar() {
-		// 1º PREPARAR	
-		Mazo m = new Mazo("barajaEspañola");	
+		// 1Âº PREPARAR	
+		Mazo m = new Mazo("barajaEspaÃ±ola");	
 		dmh.insertar(m);
-		// 2º TEST
+		// 2Âº TEST
 		Mazo guardado = dmh.buscar(m.getId());
 		dmh.eliminar(m);
 		Mazo enDB = dmh.buscar(m.getId());
-		// 3º VERIFICAR (ASERCIÓN)
+		// 3Âº VERIFICAR (ASERCIÃ“N)
 		Assert.assertNotEquals(
-			"Debería devolver null ya que el mazo se ha borrado", guardado, enDB);
+			"DeberÃ­a devolver null ya que el mazo se ha borrado", guardado, enDB);
 	}
 	
 	/**
-	 * Se insertan tres mazos y se comprueba que el tamaño de lo grabado en DB es 3
-	 * de la DB	con su número modificado
+	 * Se insertan tres mazos y se comprueba que el tamaÃ±o de lo grabado en DB es 3
+	 * de la DB	con su nÃºmero modificado
 	 */
 	@Test
 	public void testListarTodos() {
-		// 1º PREPARAR	
+		// 1Âº PREPARAR	
 		int longitudListaAntes = dmh.listarTodos().size(); 
-		// 1º PREPARAR	
-		Mazo m1 = new Mazo("barajaEspañola");	
+		// 1Âº PREPARAR	
+		Mazo m1 = new Mazo("barajaEspaÃ±ola");	
 		Mazo m2 = new Mazo("barajaFrancesa");
-		Mazo m3 = new Mazo("barajaEspañola");
+		Mazo m3 = new Mazo("barajaEspaÃ±ola");
 		dmh.insertar(m1);
 		dmh.insertar(m2);
 		dmh.insertar(m3);
 	
-		// 2º TEST
+		// 2Âº TEST
 		int longitudLista = dmh.listarTodos().size(); 
 
-		// 3º VERIFICAR (ASERCIÓN)
-		Assert.assertEquals("Debería tener 3 mazos más", longitudListaAntes+3, longitudLista);
-		// 4º REPARAR
+		// 3Âº VERIFICAR (ASERCIÃ“N)
+		Assert.assertEquals("DeberÃ­a tener 3 mazos mÃ¡s", longitudListaAntes+3, longitudLista);
+		// 4Âº REPARAR
 		dmh.eliminar(m1);
 		dmh.eliminar(m2);
 		dmh.eliminar(m3);
@@ -142,10 +142,10 @@ public class TestDaoMazoHibernate {
 	 */
 	@Test
 	public void testBuscar() {
-		// 2º TEST
+		// 2Âº TEST
 		Mazo m = dmh.buscar(1); 
 
-		// 3º VERIFICAR (ASERCIÓN)
-		Assert.assertNotNull("Debería existir un mazo", m);
+		// 3Âº VERIFICAR (ASERCIÃ“N)
+		Assert.assertNotNull("DeberÃ­a existir un mazo", m);
 	}
 }

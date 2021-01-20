@@ -22,23 +22,23 @@ public class TestMazo {
 	}
 	
 	/**
-	 * Test para comprobar que se crea el mazo correctamente con un nombre y una lista de cartas vacía
+	 * Test para comprobar que se crea el mazo correctamente con un nombre y una lista de cartas vacÃ­a
 	 */
 	@Test
 	public void testCrearMazo() {
-		// 1º test
+		// 1Âº test
 		Mazo mazo = new Mazo("Nombre Mazo");
-		// 3º aserción
+		// 3Âº aserciÃ³n
 		Assert.assertNotNull("El nombre no puede estar vacio", mazo.getNombre());
-		Assert.assertEquals("Ej mazo debe tener una lista de cartas vacía", 0, mazo.getCantidadDeCartas());
+		Assert.assertEquals("Ej mazo debe tener una lista de cartas vacÃ­a", 0, mazo.getCantidadDeCartas());
 
 	}
 
 	/**
-	 * Test para comprobar que se puede añadir una carta al mazo
+	 * Test para comprobar que se puede aÃ±adir una carta al mazo
 	 */
 	@Test
-	public void testAñadirCarta() {
+	public void testAÃ±adirCarta() {
 
 		miMazo.setNombre("cartas de mus de 4 reyes");
 		miMazo.setId(1);
@@ -46,16 +46,16 @@ public class TestMazo {
 		c.setNumero(1);
 		c.setPalo(Palo.OROS);
 		c.setValor(1);
-		miMazo.añadir(c);
+		miMazo.aÃ±adir(c);
 		assertEquals("Debe haber una carta en el mazo",1, miMazo.getCantidadDeCartas());
 
 	}
 
 	/**
-	 * Test para comprobar que se puede añadir una lista de cartas al mazo
+	 * Test para comprobar que se puede aÃ±adir una lista de cartas al mazo
 	 */
 	@Test
-	public void testAñadirListaCarta() {
+	public void testAÃ±adirListaCarta() {
 
 		miMazo.setNombre("cartas de mus de 4 reyes");
 	//	miMazo.setId(1);
@@ -76,17 +76,17 @@ public class TestMazo {
 		lista.add(p1);
 		lista.add(p2);
 		
-		miMazo.añadir(lista);
+		miMazo.aÃ±adir(lista);
 		
 		assertEquals("Debe haber 7 cartas en el mazo",7, miMazo.getCantidadDeCartas());
 
 	}
 	
 	/**
-	 * Test para comprobar que se puede añadir un array de cartas al mazo
+	 * Test para comprobar que se puede aÃ±adir un array de cartas al mazo
 	 */
 	@Test
-	public void testAñadirArrayCarta() {
+	public void testAÃ±adirArrayCarta() {
 
 		miMazo.setNombre("cartas de mus de 4 reyes");
 		Carta[] array = new Carta[5];
@@ -101,7 +101,7 @@ public class TestMazo {
 		array[3] = g2;
 		array[4] = p1;
 			
-		miMazo.añadir(array);
+		miMazo.aÃ±adir(array);
 		
 		assertEquals("Debe haber 5 cartas en el mazo",5, miMazo.getCantidadDeCartas());
 
@@ -117,16 +117,16 @@ public class TestMazo {
 		c.setNumero(1);
 		c.setPalo(Palo.OROS);
 		c.setValor(1);
-		miMazo.añadir(c);
+		miMazo.aÃ±adir(c);
 		miMazo.sacarCarta();
 		assertEquals("No debe haber una carta en el mazo",0, miMazo.getCantidadDeCartas());
 		Carta d = miMazo.sacarCarta();
-		assertNull("Debería devolver NULL ya que no hay cartas en el mazo", d);
+		assertNull("DeberÃ­a devolver NULL ya que no hay cartas en el mazo", d);
 
 	}
 
 	/**
-	 * Test para comprobar que se puede añadir una lista de cartas al mazo
+	 * Test para comprobar que se puede aÃ±adir una lista de cartas al mazo
 	 */
 	@Test
 	public void testGetCantidadDeCartas() {
@@ -149,7 +149,7 @@ public class TestMazo {
 		lista.add(p1);
 		lista.add(p2);
 		
-		miMazo.añadir(lista);
+		miMazo.aÃ±adir(lista);
 		
 		int numCartas = miMazo.getCantidadDeCartas();
 		
@@ -158,7 +158,7 @@ public class TestMazo {
 	}
 
 	/**
-	 * Test para comprobar que se puede añadir una lista de cartas al mazo
+	 * Test para comprobar que se puede aÃ±adir una lista de cartas al mazo
 	 */
 	@Test
 	public void testGetListaDeCartasDelMazo() {
@@ -175,7 +175,7 @@ public class TestMazo {
 		lista.add(c3);
 		lista.add(c4);
 		
-		miMazo.añadir(lista);
+		miMazo.aÃ±adir(lista);
 				
 		assertEquals("La lista de cartas obtenida debe tener 4 cartas", 4, miMazo.getCantidadDeCartas());
 

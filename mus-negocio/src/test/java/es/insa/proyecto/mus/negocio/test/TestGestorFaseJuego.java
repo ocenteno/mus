@@ -24,25 +24,25 @@ public class TestGestorFaseJuego {
 	public static void setUpBeforeClass() throws Exception {
 		p = new Partida();
 		j1 = new Jugador("Jugador1");
-		j1.añadirCarta(new Carta(Palo.BASTOS, 10, 10));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 11, 10));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 12, 10));
-		j1.añadirCarta(new Carta(Palo.BASTOS, 7, 7));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 10, 10));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 11, 10));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 12, 10));
+		j1.aÃ±adirCarta(new Carta(Palo.BASTOS, 7, 7));
 		j2 = new Jugador("Jugador2");
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 10, 10));
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 11, 10));
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 12, 10));
-		j2.añadirCarta(new Carta(Palo.ESPADAS, 7, 7));
+		j2.aÃ±adirCarta(new Carta(Palo.ESPADAS, 10, 10));
+		j2.aÃ±adirCarta(new Carta(Palo.ESPADAS, 11, 10));
+		j2.aÃ±adirCarta(new Carta(Palo.ESPADAS, 12, 10));
+		j2.aÃ±adirCarta(new Carta(Palo.ESPADAS, 7, 7));
 		j3 = new Jugador("Jugador3");
-		j3.añadirCarta(new Carta(Palo.OROS, 10, 10));
-		j3.añadirCarta(new Carta(Palo.OROS, 11, 10));
-		j3.añadirCarta(new Carta(Palo.OROS, 12, 10));
-		j3.añadirCarta(new Carta(Palo.OROS, 7, 7));
+		j3.aÃ±adirCarta(new Carta(Palo.OROS, 10, 10));
+		j3.aÃ±adirCarta(new Carta(Palo.OROS, 11, 10));
+		j3.aÃ±adirCarta(new Carta(Palo.OROS, 12, 10));
+		j3.aÃ±adirCarta(new Carta(Palo.OROS, 7, 7));
 		j4 = new Jugador("Jugador4");
-		j4.añadirCarta(new Carta(Palo.COPAS, 10, 10));
-		j4.añadirCarta(new Carta(Palo.COPAS, 11, 10));
-		j4.añadirCarta(new Carta(Palo.COPAS, 12, 10));
-		j4.añadirCarta(new Carta(Palo.COPAS, 7, 7));
+		j4.aÃ±adirCarta(new Carta(Palo.COPAS, 10, 10));
+		j4.aÃ±adirCarta(new Carta(Palo.COPAS, 11, 10));
+		j4.aÃ±adirCarta(new Carta(Palo.COPAS, 12, 10));
+		j4.aÃ±adirCarta(new Carta(Palo.COPAS, 7, 7));
 		p.sentarJugador(j1, 0);
 		p.sentarJugador(j2, 1);
 		p.sentarJugador(j3, 2);
@@ -210,7 +210,7 @@ public class TestGestorFaseJuego {
 	
 	@Test
 	public void testEjecutarDescarteSiNoTodos() {
-		//Solicitar ejecución descartes sin que todos se hayan descartado
+		//Solicitar ejecuciÃ³n descartes sin que todos se hayan descartado
 		IGestorFaseDescartes miGestor = new GestorFaseJuego();
 		miGestor.pedirMus(j1);
 		miGestor.pedirMus(j2);
