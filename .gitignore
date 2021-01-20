@@ -2,6 +2,7 @@
 .DS_Store
 
 ### Eclipse ###
+.classpath
 *.pydevproject
 .metadata
 .gradle
@@ -12,7 +13,7 @@ tmp/
 *.swp
 *~.nib
 local.properties
-# .settings/
+.settings/
 .loadpath
 
 # External tool builders
