@@ -4,7 +4,7 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
-  <property name="hibernate.connection.url">jdbc:derby:C:\BaseDeDatosMus;create=true</property>
+  <property name="hibernate.connection.url">jdbc:derby:BaseDeDatosMus;create=true</property>
   <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
