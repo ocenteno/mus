@@ -10,6 +10,7 @@ import es.insa.proyecto.dominio.cartas.Jugador;
 import es.insa.proyecto.dominio.cartas.Palo;
 import es.insa.proyecto.mus.contratos.IGestorFaseDescartes;
 import es.insa.proyecto.mus.modelo.Partida;
+import es.insa.proyecto.mus.negocio.Crupier;
 import es.insa.proyecto.mus.negocio.GestorFaseJuego;
 
 public class TestGestorFaseJuego {
@@ -100,6 +101,10 @@ public class TestGestorFaseJuego {
 		Assert.assertTrue("Permite cortar mus", resultado);
 	}
 	
+	/**
+	 * Recupera a quién le toca jugar a partir de una partida
+	 * iniciada.
+	 */
 	@Test
 	public void testTurnoJuego() {
 		GestorFaseJuego miGestor = new GestorFaseJuego();
