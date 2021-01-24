@@ -138,38 +138,9 @@
 	<!-- UN DATASOURCE ES UNA CONEXIÓN A BD -->
 	<bean name="ds" scope="singleton" 
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="url" value="jdbc:derby:../BaseDeDatosMus" />
+		<property name="url" value="jdbc:derby:BaseDeDatosMus" />
 		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" />
 	</bean>
 
-	<!-- ============================= -->
-	<!-- CONFIGURACIÓN PARA BD MARIADB -->
-	<!-- ============================= -->
-	<bean name="sfMariaDB" scope="singleton" 
-		 class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.current_session_context_class">thread</prop>
-				<prop key="hibernate.default_schema">mus</prop>
-			</props>
-		</property>
-		<property name="dataSource">
-			<bean name="dsMariaDB" scope="singleton" 
-				 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-				<property name="url" value="jdbc:mysql://192.168.1.18:3306/mus" />
-				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		        <property name="username" value="usuario"/>
-		        <property name="password" value="mus"/>
-			</bean>
-		</property>
-		<property name="mappingResources">
-			<array>
-				<value>cfg/Mapeo.hbm.xml</value>
-			</array>
-		</property>
-	</bean>
 
 </beans>

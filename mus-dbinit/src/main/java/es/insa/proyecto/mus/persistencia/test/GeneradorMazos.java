@@ -9,9 +9,19 @@ import es.insa.proyecto.mus.persistencia.DaoMazoHibernate;
 
 public class GeneradorMazos {
 
+	private String configuracion;
+
+	public GeneradorMazos(String configuracion) {
+		this();
+		this.configuracion = configuracion;
+	}
+
+	public GeneradorMazos() {
+	}
+
 	public Mazo crearBaraja() {
 		Mazo mazo = new Mazo("BarajaMus");
-		
+
 		for (Palo palo : Palo.values()) {
 			añadirPalo(mazo, palo);
 		}
@@ -30,23 +40,26 @@ public class GeneradorMazos {
 		Carta sota = new Carta(palo, 10, 10);
 		Carta caballo = new Carta(palo, 11, 10);
 		Carta rey = new Gocho(palo, 12, 10);
-		
-		mazo.añadir(uno,dos,tres,cuatro,cinco,
-				seis,siete,sota,caballo,rey); 
+
+		mazo.añadir(uno, dos, tres, cuatro, cinco, seis, siete, sota, caballo, rey);
 	}
 
 	public void guardarMazo(Mazo mazo) {
-		DaoMazoHibernate daoMazo = new DaoMazoHibernate();
+		DaoMazoHibernate daoMazo = null;
+		if (configuracion == null) {
+			daoMazo = new DaoMazoHibernate();
+		} else {
+			daoMazo = new DaoMazoHibernate(configuracion);
 //		DaoMazoHibernate daoMazo = new DaoMazoHibernate("cfg/mariadb-hibernate.cfg.xml");
-
+		}
 		daoMazo.abrirSesion();
 		daoMazo.insertar(mazo);
-		daoMazo.cerrarSesion();		
+		daoMazo.cerrarSesion();
 	}
 
 	public void guardarNuevoMazo() {
 		Mazo mazo = crearBaraja();
 		guardarMazo(mazo);
 	}
-	
+
 }

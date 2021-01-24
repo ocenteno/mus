@@ -8,6 +8,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import es.insa.proyecto.mus.contratos.ICrupier;
+import es.insa.proyecto.mus.persistencia.test.GeneradorMazos;
 
 public class TestCrupier {
 	
@@ -15,9 +16,12 @@ public class TestCrupier {
 
 	@BeforeClass
 	public static void iniciar(){
+		String applicationContext = "WebContent/WEB-INF/testContext.xml";
+		new GeneradorMazos(applicationContext).guardarNuevoMazo();
 		@SuppressWarnings("resource")
-		BeanFactory bf = new FileSystemXmlApplicationContext("WebContent/WEB-INF/applicationContext.xml");
+		BeanFactory bf = new FileSystemXmlApplicationContext(applicationContext);
 		c = bf.getBean(ICrupier.class); 
+		new GeneradorMazos().crearBaraja();
 	}
 	
 	@Test

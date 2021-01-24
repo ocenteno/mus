@@ -15,6 +15,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.ui.Model;
 import org.springframework.validation.support.BindingAwareModelMap;
 
+import es.insa.proyecto.mus.persistencia.test.GeneradorMazos;
 import es.insa.proyecto.mus.web.controladores.ControladorMesaInicial;
 
 @SuppressWarnings("deprecation")
@@ -27,8 +28,10 @@ public class TestControlMesaInicial {
 	@BeforeClass
 	@SuppressWarnings({"rawtypes", "resource"})
 	public static void iniciar(){
+		String applicationContext = "WebContent/WEB-INF/testContext.xml";
+		new GeneradorMazos(applicationContext).guardarNuevoMazo();
 		BeanFactory bf = new FileSystemXmlApplicationContext(
-				"WebContent/WEB-INF/applicationContext.xml",
+				applicationContext,
 				"WebContent/WEB-INF/central-servlet.xml");
 		cmi = bf.getBean(ControladorMesaInicial.class);
 		m = new BindingAwareModelMap();
