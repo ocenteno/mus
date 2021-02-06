@@ -36,7 +36,7 @@ public class Carta implements Comparable<Carta> {
 	}
 	
 	/**
-	 * Constructor con par·metros
+	 * Constructor con parámetros
 	 * @param palo
 	 * @param numero
 	 * @param valor
@@ -111,7 +111,7 @@ public class Carta implements Comparable<Carta> {
 	 * Se sobreescribe el mÈtodo compareTo para que si comparamos
 	 * nuestra Carta con otra Carta,
 	 * se comparan por n˙mero, siendo menor la que tiene menor n˙mero
-	 * @param otro es la Carta con el que queremos comparar nuestra Carta
+	 * @param otra es la Carta con el que queremos comparar nuestra Carta
 	 * @return 0 si son iguales
 	 * 		  -1 si es menor
 	 * 		   1 si es mayor
@@ -129,9 +129,9 @@ public class Carta implements Comparable<Carta> {
 	
 	/**
 	 * Si comparamos nuestra Carta con un Gocho, 
-	 * 	- si nuestra carta es un 12 ser· igual que el Gocho
-	 * 	- para cualquier otra Carta, nuestra carta ser· menor que el Gocho
-	 * @param otro es el Gocho con el que queremos comparar nuestra Carta
+	 * 	- si nuestra carta es un 12 será igual que el Gocho
+	 * 	- para cualquier otra Carta, nuestra carta será menor que el Gocho
+	 * @param otra es el Gocho con el que queremos comparar nuestra Carta
 	 * @return 0 si son iguales
 	 * 		  -1 en cualquier otro caso
 	 */
@@ -144,9 +144,9 @@ public class Carta implements Comparable<Carta> {
 		
 	/**
 	 * Si comparamos nuestra Carta con un Pito,
-	 * 	- si nuestra Carta es un 1 ser· igual que el Pito
-	 * 	- para cualquier otra Carta, nuestra carta ser· mayor que el Pito
-	 * @param otro es el Pito con el que queremos comparar nuestra Carta
+	 * 	- si nuestra Carta es un 1 será igual que el Pito
+	 * 	- para cualquier otra Carta, nuestra carta será mayor que el Pito
+	 * @param otra es el Pito con el que queremos comparar nuestra Carta
 	 * @return 0 si son iguales
 	 * 		   1 en cualquier otro caso
 	 */

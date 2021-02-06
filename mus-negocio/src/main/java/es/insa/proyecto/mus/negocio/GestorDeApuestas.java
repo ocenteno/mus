@@ -41,7 +41,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 
 	/**
 	 * Este método devuelve el bote del lance que entra por parámetro
-	 * @param el lance del que se quiere el bote apostado
+	 * @param apuesta el lance del que se quiere el bote apostado
 	 * @return el bote de ese lance 
 	 */
 	public int getApuestas(Lances apuesta){
@@ -55,7 +55,8 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	/**
 	 * Este método se llama cuando el jugador acepta la apuesta y añades
 	 * tu propia apuesta.
-	 * @param recibe las piedras apostadas y el lance, o sea, grandes, chicas... 
+	 * @param piedras las piedras apostadas 
+	 * @param apuesta el lance, o sea, grandes, chicas... 
 	 */
 	@Override
 	public void apostar(int piedras, Lances apuesta){
@@ -72,7 +73,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	 * bote es cero quiere decir que todos han pasado, por lo que se pone
 	 * una piedra en el bote, si no se devuelve lo que tenga el bote sin 
 	 * sumarle la última apuesta que no se ha aceptado. 
-	 * @param recibe el lance.
+	 * @param apuesta recibe el lance.
 	 * @return devuelve el bote que había antes de la última apuesta.
 	 */
 	@Override
@@ -89,7 +90,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	
 	/**
 	 * Este método acepta la apuesta hecha y suma al bote la última apuesta.
-	 * @param recibe el lance.
+	 * @param apuesta recibe el lance.
 	 * @return devuelve el bote.
 	 */
 	@Override
@@ -107,7 +108,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	/**
 	 * Este método se llama cuando el jugador acepta la apuesta y apuesta
 	 * 2 piedras.
-	 * @param recibe el lance, o sea, grandes, chicas... 
+	 * @param apuesta recibe el lance, o sea, grandes, chicas... 
 	 */
 	@Override
 	public void envido(Lances apuesta){
@@ -121,7 +122,7 @@ public class GestorDeApuestas implements IGestorDeApuestas {
 	/**
 	 * Este método suma 40 a la última apuesta, pero no la suma al bote
 	 * hasta que no se acepte en el método "quiero".
-	 * @param recibe el lance. 
+	 * @param apuesta recibe el lance. 
 	 */
 	@Override
 	public void ordago(Lances apuesta){

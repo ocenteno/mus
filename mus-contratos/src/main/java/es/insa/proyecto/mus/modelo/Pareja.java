@@ -3,7 +3,7 @@ package es.insa.proyecto.mus.modelo;
 import es.insa.proyecto.dominio.cartas.Jugador;
 
 /**
- * La clase Pareja está formada por dos jugadores y lleva el control de los puntos y juegos ganados. 
+ * La clase Pareja estÃ¡ formada por dos jugadores y lleva el control de los puntos y juegos ganados. 
  * @author Eugenia Blanco y M.Angeles Pascual
  *
  */
@@ -21,12 +21,12 @@ public class Pareja {
 	private Jugador jugador2;
 	
 	/**
-	 * Número de puntos de cada pareja en cada juego
+	 * NÃºmero de puntos de cada pareja en cada juego
 	 */
 	private int piedrasGanadas;
 	
 	/**
-	 * Número de juegos ganados por la pareja
+	 * NÃºmero de juegos ganados por la pareja
 	 */
 	private int juegosGanados;
 	
@@ -78,10 +78,10 @@ public class Pareja {
 		this.juegosGanados = juegosGanados;
 	}
 
-	// ZONA DE MÉTODOS
+	// ZONA DE MÃ‰TODOS
 	
 	/**
-	 * Este método comprueba si un jugador pertenece a esta pareja
+	 * Este mÃ©todo comprueba si un jugador pertenece a esta pareja
 	 * @return true si el jugador pertenece a la pareja
 	 * 			false en caso contrario
 	 */
@@ -94,10 +94,10 @@ public class Pareja {
 	
 	
 	/**
-	 * Este método va acumulando los puntos de la pareja en 
+	 * Este mÃ©todo va acumulando los puntos de la pareja en 
 	 * cada juego.
 	 * @param puntos
-	 * @return el número de piedras de la pareja despues de sumarle 
+	 * @return el nÃºmero de piedras de la pareja despues de sumarle 
 	 * los nuevos puntos
 	 */
 	public int sumarPuntos(int puntos){
@@ -107,7 +107,7 @@ public class Pareja {
 	
 	
 	/**
-	 * Este método inicializa las piedras de la pareja
+	 * Este mÃ©todo inicializa las piedras de la pareja
 	 */
 	public void nuevoJuego(){
 		this.piedrasGanadas = 0;
@@ -115,9 +115,9 @@ public class Pareja {
 	 
 	
 	/**
-	 * Este método añade 1 al contador de juegos ganados de la
+	 * Este mÃ©todo aÃ±ade 1 al contador de juegos ganados de la
 	 * pareja
-	 * @return el número de juegos ganados
+	 * @return el nÃºmero de juegos ganados
 	 */
 	public int ganarJuego(){
 		this.juegosGanados ++;
@@ -162,7 +162,7 @@ public class Pareja {
 		} else if (!jugador2.equals(other.jugador2))
 			return false;
 		
-		// Añadido para comparar el 1 con el 2 y el 2 con el 1
+		// AÃ±adido para comparar el 1 con el 2 y el 2 con el 1
 		if (jugador1.equals(other.jugador2) && 
 					jugador2.equals(other.jugador1))
 			return true;

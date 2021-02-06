@@ -39,7 +39,6 @@ public class DaoMazoHibernate
 	 * dado un mazo m, va a las Cartas y recoge todas las que pertenezcan a ese mazo
 	 * y las inserta en el mazo	
 	 * @param m
-	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public void llenarMazo(Mazo m){

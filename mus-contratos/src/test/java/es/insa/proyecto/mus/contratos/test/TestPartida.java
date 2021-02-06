@@ -24,14 +24,14 @@ public class TestPartida {
 	}
 	
 	/**
-	 * comprueba que el jugador que se ha sentado en una silla está en ella
+	 * comprueba que el jugador que se ha sentado en una silla estÃ¡ en ella
 	 */
 	@Test
 	public void testSentarSoloUnJugador() {
 		p.sentarJugador(j1, 1);
 		boolean respuesta = p.empezarPartida();
 		assertEquals("La silla uno de la mesa debe contener al jugador j1 ", j1, p.getMesa()[1]);
-		assertFalse("Si se sienta un único jugador la partida no ha empezado", respuesta);
+		assertFalse("Si se sienta un Ãºnico jugador la partida no ha empezado", respuesta);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class TestPartida {
 				false, respuesta);
 		p.sentarJugador(j4, 3);
 		respuesta = p.empezarPartida();
-		assertEquals("La partida debería poder empezar ya que hay 4 jugadores",
+		assertEquals("La partida deberÃ­a poder empezar ya que hay 4 jugadores",
 				true, respuesta);
 		System.out.println(p.toString());
 		

@@ -3,7 +3,7 @@ package es.insa.proyecto.mus.contratos;
 import es.insa.proyecto.dominio.cartas.Jugador;
 
 /**
- * Interface que incluye la comprobación del ganador de un lance
+ * Interface que incluye la comprobaciÃ³n del ganador de un lance
  * 
  * @author Cristina y Javier
  *
@@ -11,7 +11,7 @@ import es.insa.proyecto.dominio.cartas.Jugador;
 public interface IGanadorLance {
 	
 	/**
-	 *  Este método permite saber que jugador, de un array de jugadores, ha ganado un lance
+	 *  Este mÃ©todo permite saber que jugador, de un array de jugadores, ha ganado un lance
 	 */
 	public Jugador ganador(Jugador... jugadores);
 

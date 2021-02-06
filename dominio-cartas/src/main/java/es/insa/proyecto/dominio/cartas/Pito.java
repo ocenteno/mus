@@ -21,7 +21,7 @@ public class Pito extends Carta {
 	/**
 	 * Compara un Pito con otro Pito y con otra Carta, si esta
 	 * carta es un 1 son iguales.
-	 * @param objeto a comparar
+	 * @param o objeto a comparar
 	 * @return true si son iguales
 	 */
 	@Override
@@ -39,7 +39,7 @@ public class Pito extends Carta {
 	
 	/**
 	 * Compara el Pito contra otra Carta
-	 * @param cualquier otra carta
+	 * @param otra cualquier otra carta
 	 * @return -1 porque el Pito es menor que cualquier otra carta
 	 * 			0 si la otra carta es un 1 (son iguales).
 	 */
@@ -57,7 +57,7 @@ public class Pito extends Carta {
 	
 	/**
 	 * Compara el Pito contra otro Pito
-	 * @param  cualquier otro Pito
+	 * @param otra cualquier otro Pito
 	 * @return 0 porque dos Pitos son siempre iguales 
 	 */
 	public int compareTo(Pito otra){

@@ -119,9 +119,9 @@ public class GestorFasesLance implements IGestorFaseApuestas {
 	/**
 	 * Este método coordina determina que método ejecutar para cada acción.
 	 * 
-	 * @param jugador jugador que intenta ejecutar la acción
-	 * @param accion Accion realizada por dicho jugador
-	 * @param piedras piedras apostadas
+	 * @param j jugador que intenta ejecutar la acción
+	 * @param a Accion realizada por dicho jugador
+	 * @param p piedras apostadas
 	 * @return
 	 */
 	public boolean dispararAccion(Jugador j, AccionesLance a, int p) {

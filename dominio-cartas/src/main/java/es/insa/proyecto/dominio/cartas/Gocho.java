@@ -18,7 +18,7 @@ public class Gocho extends Carta{
 	/**
 	 * Compara una Gocho con otro Gocho y con otra Carta, si esta
 	 * carta es un 12 son iguales.
-	 * @param objeto a comparar
+	 * @param o objeto a comparar
 	 * @return true si son iguales
 	 */
 	@Override

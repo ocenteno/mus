@@ -22,7 +22,7 @@ import es.insa.proyecto.mus.modelo.Partida;
 public class ControladorMesaJugador {
 
 	/**
-	 * La partida es única para todos los jugadores.
+	 * La partida es ÃÂºnica para todos los jugadores.
 	 */
 	@Autowired(required = true)
 	private Partida partida;
@@ -32,7 +32,7 @@ public class ControladorMesaJugador {
 	 */
 	private Jugador jugadorEnviado;
 	/**
-	 * La posición del jugador que está conectado.
+	 * La posición del jugador que estÃÂ¡ conectado.
 	 */
 	private int intYo;
 	/**
@@ -55,8 +55,8 @@ public class ControladorMesaJugador {
 	/**
 	 * Este método inicia la partida
 	 * 
-	 * @param modelo
-	 * @param sesión
+	 * @param m modelo
+	 * @param sesion sesión
 	 * @return pantalla mesa jugador
 	 */
 	@RequestMapping("/iniciarJuego.html")
@@ -97,7 +97,7 @@ public class ControladorMesaJugador {
 	/**
 	 * Refresca la mesa de la partida.
 	 * 
-	 * @param Modelo
+	 * @param m modelo
 	 * @param sesion
 	 * @return pantalla mesa jugador
 	 */
@@ -120,8 +120,8 @@ public class ControladorMesaJugador {
 	/**
 	 * Se ha pulsado el botón MUS y va a pedir MUS.
 	 * 
-	 * @param modelo
-	 * @param sesión
+	 * @param m modelo
+	 * @param sesion sesión
 	 * @return pantalla mesa jugador
 	 */
 	@RequestMapping("/accionDarMus.html")
@@ -150,8 +150,8 @@ public class ControladorMesaJugador {
 	/**
 	 * Se ha pulsado el botón NO HAY MUS y va a apostar.
 	 * 
-	 * @param modelo
-	 * @param sesión
+	 * @param m modelo
+	 * @param sesion sesión
 	 * @return pantalla mesa jugador
 	 */
 	@RequestMapping("/accionNoHayMus.html")
@@ -177,8 +177,8 @@ public class ControladorMesaJugador {
 	/**
 	 * Descarta las cartas seleccionas por cada jugador en la fase de DESCARTES
 	 * 
-	 * @param request
-	 * @param modelo
+	 * @param req request
+	 * @param m modelo
 	 * @param sesion
 	 * @return pantalla mesa jugador
 	 */
@@ -216,8 +216,8 @@ public class ControladorMesaJugador {
 	/**
 	 * Reparte las cartas despues del descarte en la fase de REPARTO
 	 * 
-	 * @param request
-	 * @param modelo
+	 * @param req request
+	 * @param m modelo
 	 * @param sesion
 	 * @return pantalla mesa jugador
 	 */
@@ -244,7 +244,7 @@ public class ControladorMesaJugador {
 	 * Se ha pulsado el botón PASO y va a la acción PASAR tiene que estar en la fase
 	 * de GRANDE.
 	 * 
-	 * @param modelo
+	 * @param m modelo
 	 * @param sesion
 	 * @return pantalla mesa jugador.
 	 */
@@ -275,7 +275,7 @@ public class ControladorMesaJugador {
 	 * Se ha pulsado el botón QUIERO y va a la acción QUIERO tiene que estar en la
 	 * fase de GRANDE.
 	 * 
-	 * @param modelo
+	 * @param m modelo
 	 * @param sesion
 	 * @return pantalla mesa jugador.
 	 */
@@ -307,7 +307,7 @@ public class ControladorMesaJugador {
 	 * Se ha pulsado el botón ENVIDO y va a la acción ENVIDO tiene que estar en la
 	 * fase de GRANDE.
 	 * 
-	 * @param modelo
+	 * @param m modelo
 	 * @param sesion
 	 * @return pantalla mesa jugador.
 	 */
@@ -339,7 +339,7 @@ public class ControladorMesaJugador {
 	 * Se ha pulsado el botón APOSTAR y va a la acción APOSTAR tiene que estar en la
 	 * fase de GRANDE.
 	 * 
-	 * @param modelo
+	 * @param m modelo
 	 * @param sesion
 	 * @return pantalla mesa jugador.
 	 */
@@ -372,7 +372,7 @@ public class ControladorMesaJugador {
 	 * Se ha pulsado el botón ORDAGO y va a la acción ORDAGO tiene que estar en la
 	 * fase de GRANDE.
 	 * 
-	 * @param modelo
+	 * @param m modelo
 	 * @param sesion
 	 * @return pantalla mesa jugador.
 	 */
@@ -403,13 +403,14 @@ public class ControladorMesaJugador {
 	/**
 	 * Este método mira las cartas de las que se ha descartado un jugador
 	 * 
-	 * @param modelo
-	 * @param request
+	 * @param m modelo
+	 * @param req request
+	 * @return
 	 */
 	public Carta[] mirarDescartes(Model m, HttpServletRequest req) {
 		// Cuando marcamos las cartas a descartar, primero hay que comprobar
 		// que al menos hay una seleccionada, si no damos mensaje de error y
-		// retornamos a la página.
+		// retornamos a la pÃÂ¡gina.
 		int contadorDescartes = 0;
 		boolean descartado0 = false;
 		boolean descartado1 = false;
@@ -497,7 +498,7 @@ public class ControladorMesaJugador {
 	/**
 	 * Construir la mesa de juego
 	 * 
-	 * @param modelo
+	 * @param m modelo
 	 * @param elQueHabla es el que le toca jugar
 	 * @param loQueDice  es la fase en la que estamos
 	 * @param sesion
@@ -513,7 +514,7 @@ public class ControladorMesaJugador {
 		for (int i = 0; i < numeroCartas; i++) {
 			cartasJugador[i] = cartasYo[i].getPalo() + "" + cartasYo[i].getNumero() + ".jpg";
 		}
-		String quéToca = loQueDice.toString();
+		String queToca = loQueDice.toString();
 
 		// SI TOCA CONTEO, llamamos al gestor de conteo
 		if (loQueDice == Lances.CONTEO) {
@@ -528,7 +529,7 @@ public class ControladorMesaJugador {
 		m.addAttribute("cartasJugador", cartasJugador);
 		m.addAttribute("mesa", mesa);
 		m.addAttribute("partida", partida);
-		m.addAttribute("queToca", quéToca);
+		m.addAttribute("queToca", queToca);
 
 		m.addAttribute("loQueDice", loQueDice);
 		m.addAttribute("elTurno", elTurno);

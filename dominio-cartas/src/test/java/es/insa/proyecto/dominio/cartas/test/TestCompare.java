@@ -47,7 +47,7 @@ public class TestCompare {
 		assertEquals("La cuarta - 5 BASTOS", c2, lista.get(3));
 		assertEquals("La quinta - 11 BASTOS", c3, lista.get(4));
 		assertEquals("La sexta - GOCHO", g1, lista.get(5));
-		assertEquals("La séptima - GOCHO", g2, lista.get(6));
+		assertEquals("La sÃ©ptima - GOCHO", g2, lista.get(6));
 		
 		for (int i = 0; i <=6; i++) {
 			System.out.println("Lista - " + i + " = " + lista.get(i).toString());
