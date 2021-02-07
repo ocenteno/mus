@@ -28,10 +28,9 @@ public class TestControlMesaInicial {
 	@BeforeClass
 	@SuppressWarnings({"rawtypes", "resource"})
 	public static void iniciar(){
-		String applicationContext = "WebContent/WEB-INF/testContext.xml";
-		new GeneradorMazos(applicationContext).guardarNuevoMazo();
+		new GeneradorMazos().guardarNuevoMazo();
 		BeanFactory bf = new FileSystemXmlApplicationContext(
-				applicationContext,
+				"WebContent/WEB-INF/testContext.xml",
 				"WebContent/WEB-INF/central-servlet.xml");
 		cmi = bf.getBean(ControladorMesaInicial.class);
 		m = new BindingAwareModelMap();
